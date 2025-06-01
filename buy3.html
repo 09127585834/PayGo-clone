@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Processing Airtime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #333;
+    }
+    .processing, .receipt {
+      text-align: center;
+    }
+    .loader {
+      border: 5px solid #eee;
+      border-top: 5px solid #00c17b;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .receipt {
+      display: none;
+      max-width: 90%;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .logo {
+      background: red;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .amount {
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .success {
+      color: green;
+      margin: 8px 0;
+    }
+    .cashback {
+      color: #00c17b;
+      font-size: 14px;
+    }
+    .details {
+      text-align: left;
+      margin-top: 20px;
+    }
+    .details p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #00c17b;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="processing" id="processing">
+  <div class="loader"></div>
+  <p>Processing Airtime Purchase...</p>
+</div>
+
+<div class="receipt" id="receipt">
+  <div class="logo">A</div>
+  <div>Airtel</div>
+  <div class="amount">₦171.00</div>
+  <div class="success">✓ Successful</div>
+  <div class="cashback">+₦1.71 Cashback</div>
+
+  <div class="details">
+    <p><strong>Recipient Mobile:</strong> <span id="userNumber">Loading...</span></p>
+    <p><strong>Transaction Type:</strong> Airtime</p>
+    <p><strong>Payment Method:</strong> PayGo Wallet</p>
+    <p><strong>Transaction No.:</strong> <span id="txnId"></span></p>
+    <p><strong>Transaction Date:</strong> <span id="txnDate"></span></p>
+  </div>
+
+  <button class="btn" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+</div>
+
+<script>
+  // Simulated values
+  const userPhone = sessionStorage.getItem('userPhone') || '09012345678'; // Fallback if not set
+  const transactionId = '250531100100003210' + Math.floor(Math.random() * 100000);
+  const date = new Date().toLocaleString('en-US', {
+    year: 'numeric', month: 'long', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  });
+
+  // Show receipt after 3 seconds
+  setTimeout(() => {
+    document.getElementById('processing').style.display = 'none';
+    document.getElementById('receipt').style.display = 'block';
+    document.getElementById('userNumber').innerText = userPhone;
+    document.getElementById('txnId').innerText = transactionId;
+    document.getElementById('txnDate').innerText = date;
+  }, 3000);
+</script>
+
+</body>
+</html>
