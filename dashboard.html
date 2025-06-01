@@ -2,199 +2,194 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PalmPay Style Dashboard</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"/>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f4ff;
+      font-family: 'Inter', sans-serif;
+      background-color: #f5f3ff;
       margin: 0;
       padding: 0;
-      color: #333;
+      color: #222;
     }
-    .header {
-      background-color: #6a21a6;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      font-weight: bold;
-    }
-    .dashboard {
-      background-color: #7200f0;
-      color: white;
-      border-radius: 15px;
-      margin: 20px;
-      padding: 20px;
-      max-width: 400px;
-    }
-    .dashboard-header {
+    header {
+      background-color: #fff;
+      padding: 15px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid #eee;
     }
-    .dashboard-header h2 {
-      margin: 0;
-    }
-    .balance {
-      font-size: 28px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-    .buttons {
+    .user-info {
       display: flex;
-      gap: 15px;
-      margin: 20px 0;
-    }
-    .btn {
-      flex: 1;
-      background-color: #a04bff;
-      border: none;
-      padding: 12px 0;
-      border-radius: 30px;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      text-align: center;
-      user-select: none;
-    }
-    .btn:hover {
-      background-color: #7d26c7;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-      max-width: 400px;
-      margin: 0 20px 40px 20px;
-      justify-content: center;
-    }
-    .feature {
-      background: white;
-      width: 80px;
-      height: 80px;
-      border-radius: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      color: #7200f0;
-      font-weight: 600;
-      cursor: pointer;
-      user-select: none;
-      transition: background-color 0.3s ease;
-      text-align: center;
-      font-size: 12px;
     }
-    .feature:hover {
-      background-color: #e9d7ff;
+    .user-info img {
+      width: 40px;
+      margin-right: 10px;
     }
-    .feature-icon {
-      font-size: 24px;
-      margin-bottom: 6px;
+    .balance-box {
+      background-color: #eae6ff;
+      margin: 15px;
+      padding: 15px;
+      border-radius: 12px;
     }
-    .promotions {
-      max-width: 400px;
-      margin: 0 20px 20px 20px;
+    .balance-box strong {
+      font-size: 20px;
     }
-    .promotions h3 {
+    .quick-actions, .services, .exclusive {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      margin: 15px;
+    }
+    .section-title {
       margin-bottom: 10px;
       font-weight: bold;
     }
-    .promo-img {
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .item {
+      text-align: center;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .item img {
+      width: 35px;
+      margin-bottom: 5px;
+    }
+    .transfer-info {
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+    }
+    .exclusive {
+      font-size: 14px;
+    }
+    .exclusive button {
+      float: right;
+      background: #6c4bff;
+      border: none;
+      color: #fff;
+      border-radius: 20px;
+      padding: 5px 15px;
+      cursor: pointer;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
       width: 100%;
-      border-radius: 15px;
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #ccc;
+    }
+    footer div {
+      font-size: 12px;
+      text-align: center;
+    }
+    footer div.active {
+      color: #6c4bff;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="header">Dear User, We're currently experiencing issues</div>
-  <div class="dashboard" id="dashboard">
-    <div class="dashboard-header">
-      <h2>Hi, Khalifah 👋<br /><small>Welcome back!</small></h2>
-      <button title="Notifications" style="background:none; border:none; color:white; font-size: 24px; cursor:pointer;">🔔</button>
-    </div>
-    <div>Your Balance</div>
-    <div class="balance" id="balance">₦180,000.00</div>
-    <div>Weekly Rewards: ₦180,000.00</div>
-    <div class="buttons">
-      <button class="btn" id="upgradeBtn">Upgrade</button>
-      <button class="btn" id="transferBtn">Transfer</button>
+
+<header>
+  <div class="user-info">
+    <img src="https://via.placeholder.com/40" alt="Avatar" />
+    <div>
+      <div><strong>Hi, KHALIFAH</strong></div>
+      <small>Welcome, let's make payments!</small>
     </div>
   </div>
-  <div class="features">
-    <div class="feature" id="buyPayID"><div class="feature-icon">💳</div>Buy PAY ID</div>
-    <div class="feature" id="watch"><div class="feature-icon">📺</div>Watch</div>
-    <div class="feature" id="airtime"><div class="feature-icon">📶</div>Airtime</div>
-    <div class="feature" id="data"><div class="feature-icon">🛢️</div>Data</div>
-    <div class="feature" id="support"><div class="feature-icon">🎧</div>Support</div>
-    <div class="feature" id="group"><div class="feature-icon">🌐</div>Group</div>
-    <div class="feature" id="earnMore"><div class="feature-icon">💰</div>Earn More</div>
-    <div class="feature" id="profile"><div class="feature-icon">👤</div>Profile</div>
+  <div>
+    <img src="https://img.icons8.com/ios-glyphs/24/000000/appointment-reminders.png"/>
   </div>
-  <div class="promotions">
-    <h3>Current Promotions</h3>
-    <img
-      class="promo-img"
-      src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80"
-      alt="Promotion Banner"
-    />
+</header>
+
+<div class="balance-box">
+  <div><small>Available Balance</small></div>
+  <strong>₦220.00</strong>
+  <div style="margin-top: 5px; font-size: 13px;">
+    Cash Alert! Earn <span style="color: #6c4bff;">20% p.a</span> interest
   </div>
+</div>
 
-  <script>
-    // Redirect handlers
-    document.getElementById('upgradeBtn').onclick = () => {
-      window.location.href = 'earn.html';
-    };
+<div class="quick-actions">
+  <div class="grid">
+    <div class="item" onclick="location.href='withdraw.html'">
+      <img src="https://img.icons8.com/ios-filled/50/bank.png"/>
+      <div>To Bank</div>
+    </div>
+    <div class="item" onclick="location.href='earn.html'">
+      <img src="https://img.icons8.com/ios-filled/50/money-transfer.png"/>
+      <div>To PalmPay</div>
+    </div>
+    <div class="item" onclick="location.href='support.html'">
+      <img src="https://img.icons8.com/ios-filled/50/bank-card-back-side.png"/>
+      <div>ATM Card</div>
+    </div>
+  </div>
+</div>
 
-    document.getElementById('transferBtn').onclick = () => {
-      let amount = prompt('Enter amount to withdraw:');
-      if (amount !== null) {
-        amount = parseFloat(amount);
-        if (isNaN(amount) || amount <= 0) {
-          alert('Please enter a valid positive number');
-          return;
-        }
-        let balanceEl = document.getElementById('balance');
-        let currentBalance = parseFloat(balanceEl.textContent.replace(/[^0-9.-]+/g,""));
-        if (amount > currentBalance) {
-          alert('Insufficient balance');
-          return;
-        }
-        let newBalance = currentBalance - amount;
-        balanceEl.textContent = '₦' + newBalance.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
-        // After deduction redirect
-        setTimeout(() => {
-          window.location.href = 'withdraw.html';
-        }, 500);
-      }
-    };
+<div class="transfer-info">
+  <div><strong>Transfer Successful</strong></div>
+  <div><s>₦7,200.00</s> <span style="color: green;">Success</span> - Today 10:53 AM</div>
+</div>
 
-    document.getElementById('buyPayID').onclick = () => {
-      window.location.href = 'buy.html';
-    };
-    document.getElementById('watch').onclick = () => {
-      window.location.href = 'watch.html';
-    };
-    document.getElementById('airtime').onclick = () => {
-      window.location.href = 'airtime.html';
-    };
-    document.getElementById('data').onclick = () => {
-      window.location.href = 'data.html';
-    };
-    document.getElementById('support').onclick = () => {
-      window.location.href = 'support.html';
-    };
-    document.getElementById('group').onclick = () => {
-      window.location.href = 'group.html';
-    };
-    document.getElementById('earnMore').onclick = () => {
-      window.location.href = 'earn.html';
-    };
-    document.getElementById('profile').onclick = () => {
-      window.location.href = 'profile.html';
-    };
-  </script>
+<div class="services">
+  <div class="section-title">Services</div>
+  <div class="grid">
+    <div class="item" onclick="location.href='airtime.html'">
+      <img src="https://img.icons8.com/ios-filled/50/phone.png"/>
+      <div>Airtime</div>
+    </div>
+    <div class="item" onclick="location.href='data.html'">
+      <img src="https://img.icons8.com/ios-filled/50/upload-to-cloud.png"/>
+      <div>Data</div>
+    </div>
+    <div class="item">
+      <img src="https://img.icons8.com/ios-filled/50/soccer-ball.png"/>
+      <div>Betting</div>
+    </div>
+    <div class="item">
+      <img src="https://img.icons8.com/ios-filled/50/lightning-bolt.png"/>
+      <div>Electricity</div>
+    </div>
+    <div class="item" onclick="location.href='profile.html'">
+      <img src="https://img.icons8.com/ios-filled/50/tv.png"/>
+      <div>TV</div>
+    </div>
+    <div class="item" onclick="location.href='earn.html'">
+      <img src="https://img.icons8.com/ios-filled/50/money-bag.png"/>
+      <div>Refer & Earn</div>
+    </div>
+  </div>
+</div>
+
+<div class="exclusive">
+  <div>
+    <strong>Exclusive reward</strong><br>
+    DataBundle Coupon - ₦99 | Purchase over ₦100
+    <button>Claim</button>
+  </div>
+</div>
+
+<footer>
+  <div class="active">Home</div>
+  <div>Loan</div>
+  <div>Wealth</div>
+  <div>Reward</div>
+  <div>Me</div>
+</footer>
+
 </body>
 </html>
