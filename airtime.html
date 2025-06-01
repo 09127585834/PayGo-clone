@@ -1,161 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Airtime Purchase</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Buy Airtime - PayGo</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background: #f9f9f9;
-      color: #222;
-    }
-
-    .container {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6fa;
       padding: 20px;
-      max-width: 480px;
+      max-width: 400px;
       margin: auto;
     }
 
     h2 {
+      color: #333;
       text-align: center;
-      margin-bottom: 20px;
     }
 
-    .input-group {
+    .form-group {
       margin-bottom: 15px;
     }
 
-    .input-group label {
-      font-size: 14px;
-      margin-bottom: 5px;
+    label {
       display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
     }
 
-    .input-group input {
+    input, select, button {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 6px;
       font-size: 16px;
     }
 
-    .buy-payid {
-      font-size: 14px;
-      color: #007b5f;
+    button {
+      background-color: #01a962;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #019353;
+    }
+
+    .link-btn {
+      background: none;
+      border: none;
+      color: #007bff;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .error {
+      color: red;
       margin-top: 5px;
-      cursor: pointer;
-      display: inline-block;
     }
 
-    .amounts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 20px 0;
-    }
-
-    .amount-box {
-      flex: 1 1 30%;
-      padding: 15px;
-      background: white;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .amount-box:hover {
-      background-color: #e6f9f3;
-    }
-
-    .amount-box p {
-      margin: 5px 0;
-    }
-
-    .cashback {
+    .success {
       color: green;
-      font-size: 13px;
+      margin-top: 5px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>Buy Airtime</h2>
+  <h2>Buy Airtime</h2>
 
-    <div class="input-group">
-      <label for="phone">Phone Number</label>
-      <input type="tel" id="phone" placeholder="e.g. 09123456789" required>
-    </div>
-
-    <div class="input-group">
-      <label for="payid">PAY ID</label>
-      <input type="text" id="payid" placeholder="Enter your PAY ID" required>
-      <a class="buy-payid" href="buy.html">Don't have a PAY ID? Buy one</a>
-    </div>
-
-    <h3>Select Amount</h3>
-
-    <div class="amounts">
-      <div class="amount-box" onclick="purchaseAirtime(50)"> 
-        <p class="cashback">₦1.75 Cashback</p>
-        <p><strong>₦50</strong></p>
-        <p>Pay ₦50</p>
-      </div>
-      <div class="amount-box" onclick="purchaseAirtime(100)">
-        <p class="cashback">₦3.5 Cashback</p>
-        <p><strong>₦100</strong></p>
-        <p>Pay ₦100</p>
-      </div>
-      <div class="amount-box" onclick="purchaseAirtime(200)">
-        <p class="cashback">₦7 Cashback</p>
-        <p><strong>₦200</strong></p>
-        <p>Pay ₦200</p>
-      </div>
-      <div class="amount-box" onclick="purchaseAirtime(500)">
-        <p class="cashback">₦10 Cashback</p>
-        <p><strong>₦500</strong></p>
-        <p>Pay ₦500</p>
-      </div>
-      <div class="amount-box" onclick="purchaseAirtime(1000)">
-        <p class="cashback">₦20 Cashback</p>
-        <p><strong>₦1,000</strong></p>
-        <p>Pay ₦1,000</p>
-      </div>
-      <div class="amount-box" onclick="purchaseAirtime(2000)">
-        <p class="cashback">₦40 Cashback</p>
-        <p><strong>₦2,000</strong></p>
-        <p>Pay ₦2,000</p>
-      </div>
-    </div>
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" placeholder="e.g. 08012345678" required>
   </div>
 
+  <div class="form-group">
+    <label for="amount">Amount (₦)</label>
+    <input type="number" id="amount" placeholder="e.g. 500" required>
+  </div>
+
+  <div class="form-group">
+    <label for="network">Network</label>
+    <select id="network">
+      <option value="MTN">MTN</option>
+      <option value="Glo">Glo</option>
+      <option value="9mobile">9mobile</option>
+      <option value="Airtel">Airtel</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="payid">PAY ID</label>
+    <input type="text" id="payid" placeholder="Your PAY ID" required>
+    <div id="payidError" class="error" style="display:none;">Incorrect PAY ID</div>
+  </div>
+
+  <button onclick="buyAirtime()">Buy Airtime</button>
+
+  <button class="link-btn" onclick="window.location.href='buy.html'">Don't have a PAY ID?</button>
+
+  <div id="successMessage" class="success" style="display:none;">Airtime purchase successful!</div>
+
   <script>
-    function purchaseAirtime(amount) {
+    // Simulated correct PAY ID stored from dashboard
+    const correctPayID = localStorage.getItem('paygo_pay_id') || "PAYGO123456";
+
+    // Simulated balance from dashboard
+    let balance = parseFloat(localStorage.getItem('paygo_balance')) || 5000;
+
+    function buyAirtime() {
       const phone = document.getElementById('phone').value.trim();
+      const amount = parseFloat(document.getElementById('amount').value.trim());
       const payid = document.getElementById('payid').value.trim();
 
-      if (!phone || !payid) {
-        alert("Please enter both Phone Number and PAY ID.");
+      document.getElementById('payidError').style.display = "none";
+      document.getElementById('successMessage').style.display = "none";
+
+      if (payid !== correctPayID) {
+        document.getElementById('payidError').style.display = "block";
         return;
       }
 
-      if (payid.toLowerCase() === "none" || payid === "") {
-        window.location.href = "buy.html";
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
         return;
       }
 
-      // Simulate deduction (replace with backend call in production)
-      alert(`₦${amount} will be deducted from your balance for ${phone}.`);
+      if (amount > balance) {
+        alert("Insufficient balance.");
+        return;
+      }
 
-      // Redirect after "processing"
-      window.location.href = "buy3.html";
+      // Deduct balance
+      balance -= amount;
+      localStorage.setItem('paygo_balance', balance.toFixed(2));
+
+      // Show success message
+      document.getElementById('successMessage').style.display = "block";
+
+      // Redirect to confirmation page
+      setTimeout(() => {
+        window.location.href = 'buy3.html';
+      }, 1500);
     }
   </script>
-
 </body>
 </html>
