@@ -3,228 +3,162 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Dashboard</title>
+  <title>Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
       margin: 0;
-      background-color: #fff;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #f9f6ff;
       color: #333;
     }
-    /* Header */
+
     .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #f8f8f8;
-    }
-    .time {
-      font-weight: bold;
-      font-size: 16px;
-    }
-    .status-icons {
-      font-size: 20px;
-    }
-
-    /* Greeting */
-    .greeting {
-      padding: 20px;
-    }
-    .greeting h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    .greeting p {
-      margin: 4px 0 0 0;
-      color: #555;
-    }
-
-    /* Balance & Rewards */
-    .balances {
-      display: flex;
-      justify-content: space-around;
-      margin: 20px 10px;
-    }
-    .balance-box {
-      background-color: #f0f0f0;
-      padding: 20px;
-      border-radius: 8px;
-      width: 45%;
-      text-align: center;
-    }
-    .balance-box h2 {
-      margin: 0;
+      background-color: #8000ff;
+      color: white;
+      padding: 10px;
       font-size: 14px;
-      color: #555;
-    }
-    .balance-amount {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    /* Actions */
-    .actions {
-      display: flex;
-      justify-content: space-around;
-      margin: 20px 10px;
-    }
-    .btn {
-      background-color: #0d6efd;
-      color: #fff;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s;
-    }
-    .btn:hover {
-      background-color: #0956b1;
-    }
-
-    /* Navigation Icons */
-    .nav-icons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      margin: 30px 10px;
-    }
-    .nav-item {
-      width: 22%;
       text-align: center;
-      margin-bottom: 20px;
-      cursor: pointer;
-    }
-    .nav-item span {
-      display: block;
-      font-size: 24px;
-    }
-    .nav-label {
-      margin-top: 8px;
-      font-size: 12px;
     }
 
-    /* Promotions */
-    .promo {
-      margin: 30px 10px;
+    .dashboard {
+      background-color: #a020f0;
+      color: white;
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px;
+      position: relative;
     }
-    .promo h3 {
-      font-size: 18px;
-      font-weight: bold;
+
+    .dashboard h2 {
       margin-bottom: 10px;
     }
-    .promo-banner {
-      background-color: #ffe4b5;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    .promo-text {
+
+    .balance {
+      font-size: 28px;
       font-weight: bold;
-      font-size: 16px;
+      margin: 10px 0;
     }
-    .winner-names {
-      margin-top: 10px;
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 10px;
+      background-color: white;
+      color: #8000ff;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin: 20px;
+      text-align: center;
+    }
+
+    .menu-item {
       font-size: 14px;
+    }
+
+    .menu-item img {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 5px;
+    }
+
+    .promotions {
+      margin: 20px;
+      text-align: center;
+    }
+
+    .promotions img {
+      width: 100%;
+      border-radius: 15px;
+    }
+
+    .nav {
+      text-align: center;
+      font-size: 12px;
+      color: gray;
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
   <div class="header">
-    <div class="time">6:42</div>
-    <div class="status-icons">
-      📶 🔋
-    </div>
+    Dear User, We're currently experiencing issues
   </div>
 
-  <!-- Greeting -->
-  <div class="greeting">
-    <h1>Hi, Khalifah 👋</h1>
+  <div class="dashboard">
+    <h2>Hi, Khalifah 👋</h2>
     <p>Welcome back!</p>
-  </div>
-
-  <!-- Balance & Rewards -->
-  <div class="balances">
-    <div class="balance-box">
-      <h2>Balance</h2>
-      <div class="balance-amount">₦180,000.00</div>
-    </div>
-    <div class="balance-box">
-      <h2>Weekly Rewards</h2>
-      <div class="balance-amount">₦180,000.00</div>
+    <div class="balance">₦180,000.00</div>
+    <p>Weekly Rewards: ₦180,000.00</p>
+    <div class="buttons">
+      <button class="btn">Upgrade</button>
+      <button class="btn">Transfer</button>
     </div>
   </div>
 
-  <!-- Action Buttons -->
-  <div class="actions">
-    <button class="btn" id="upgradeBtn">Upgrade</button>
-    <button class="btn" id="transferBtn">Transfer</button>
-  </div>
-
-  <!-- Navigation Icons -->
-  <div class="nav-icons">
-    <div class="nav-item" data-target="buy.html">
-      <span>💳</span>
-      <div class="nav-label">Buy PAY ID</div>
+  <div class="menu">
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/card.png" alt="Buy PAY ID"/>
+      <div>Buy PAY ID</div>
     </div>
-    <div class="nav-item" data-target="watch.html">
-      <span>🎥</span>
-      <div class="nav-label">Watch</div>
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/tv.png" alt="Watch"/>
+      <div>Watch</div>
     </div>
-    <div class="nav-item" data-target="airtime.html">
-      <span>📱</span>
-      <div class="nav-label">Airtime</div>
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/network.png" alt="Airtime"/>
+      <div>Airtime</div>
     </div>
-    <div class="nav-item" data-target="data.html">
-      <span>🌐</span>
-      <div class="nav-label">Data</div>
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/oil-barrel.png" alt="Data"/>
+      <div>Data</div>
     </div>
-    <div class="nav-item" data-target="support.html">
-      <span>🛠️</span>
-      <div class="nav-label">Support</div>
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/headphones.png" alt="Support"/>
+      <div>Support</div>
     </div>
-    <div class="nav-item" data-target="group.html">
-      <span>👥</span>
-      <div class="nav-label">Group</div>
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/internet.png" alt="Group"/>
+      <div>Group</div>
     </div>
-    <div class="nav-item" data-target="earn.html">
-      <span>💸</span>
-      <div class="nav-label">Earn More</div>
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/money-bag.png" alt="Earn More"/>
+      <div>Earn More</div>
     </div>
-    <div class="nav-item" data-target="profile.html">
-      <span>👤</span>
-      <div class="nav-label">Profile</div>
+    <div class="menu-item">
+      <img src="https://img.icons8.com/ios-filled/50/user.png" alt="Profile"/>
+      <div>Profile</div>
     </div>
   </div>
 
-  <!-- Promotions -->
-  <div class="promo">
+  <div class="promotions">
     <h3>Current Promotions</h3>
-    <div class="promo-banner">
-      <div class="promo-text">Winners of K20 airtime</div>
-      <div class="winner-names">Patience Ng'andwe, Phiri John</div>
-    </div>
+    <img src="https://img.freepik.com/free-photo/happy-woman-celebrating_53876-139153.jpg" alt="Promo"/>
+    <p><strong>Winners of K20 Airtime</strong><br>Patience Ng'andwe, Phiri John</p>
   </div>
 
-  <script>
-    // Add event listeners for buttons
-    document.getElementById('upgradeBtn').addEventListener('click', () => {
-      window.location.href = 'earn.html';
-    });
-    document.getElementById('transferBtn').addEventListener('click', () => {
-      window.location.href = 'withdraw.html';
-    });
+  <div class="nav">
+    © 2025 PayGo. All rights reserved.
+  </div>
 
-    // Add event listeners for navigation icons
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const targetPage = item.getAttribute('data-target');
-        window.location.href = targetPage;
-      });
-    });
-  </script>
 </body>
 </html>
