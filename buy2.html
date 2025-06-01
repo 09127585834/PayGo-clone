@@ -1,119 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Processing - Buy Data | PayGo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Processing & Receipt</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #f4f6f9;
+      background-color: #fff;
       margin: 0;
       padding: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      color: #333;
     }
-
-    .container {
-      background: #fff;
-      padding: 30px 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    .center {
       text-align: center;
-      width: 90%;
-      max-width: 400px;
     }
-
     .loader {
       border: 6px solid #f3f3f3;
-      border-top: 6px solid #4CAF50;
+      border-top: 6px solid #5c27fe;
       border-radius: 50%;
       width: 50px;
       height: 50px;
       animation: spin 1s linear infinite;
-      margin: 20px auto;
+      margin: 100px auto 20px;
     }
-
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
     }
-
-    .success {
+    .message {
+      font-size: 18px;
+      color: #333;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
       display: none;
+    }
+    .top {
       text-align: center;
+      padding: 20px 0;
     }
-
-    .success h2 {
-      color: #4CAF50;
+    .top img {
+      width: 50px;
     }
-
-    .btn {
-      margin-top: 20px;
-      background-color: #4CAF50;
-      color: white;
+    .amount {
+      font-size: 28px;
+      font-weight: bold;
+      color: #111;
+      margin: 10px 0;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+    }
+    .info-box {
+      background: #f9f9f9;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    .info-box div {
+      margin: 10px 0;
+    }
+    .label {
+      font-size: 14px;
+      color: #888;
+    }
+    .value {
+      font-weight: bold;
+    }
+    .actions {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .back-btn {
+      display: inline-block;
+      background: #5c27fe;
+      color: #fff;
       padding: 12px 24px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .info {
-      margin-top: 15px;
-      text-align: left;
-      font-size: 15px;
-    }
-
-    .info span {
+      border-radius: 25px;
+      text-decoration: none;
       font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-<div class="container">
   <!-- Processing Section -->
-  <div id="processing">
-    <h2>Processing your purchase...</h2>
+  <div id="processing" class="center">
     <div class="loader"></div>
-    <p>Please wait while we complete your data purchase.</p>
+    <p class="message">Processing your payment, please wait...</p>
   </div>
 
-  <!-- Success Receipt Section -->
-  <div id="success" class="success">
-    <h2>✅ Purchase Successful!</h2>
-    <div class="info">
-      <p><span>Phone Number:</span> <span id="phoneDisplay"></span></p>
-      <p><span>Network:</span> <span id="networkDisplay"></span></p>
-      <p><span>Amount:</span> ₦<span id="amountDisplay"></span></p>
+  <!-- Receipt Section -->
+  <div id="receipt" class="container">
+    <div class="top">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Airtel_logo_2020.svg/512px-Airtel_logo_2020.svg.png" alt="Airtel Logo">
+      <div id="amount" class="amount">₦0.00</div>
+      <div class="success">✓ Successful</div>
     </div>
-    <button class="btn" onclick="goToDashboard()">Back to Dashboard</button>
+
+    <div class="info-box">
+      <div>
+        <div class="label">Recipient Mobile</div>
+        <div id="mobile" class="value">Loading...</div>
+      </div>
+      <div>
+        <div class="label">Transaction Type</div>
+        <div id="type" class="value">Loading...</div>
+      </div>
+      <div>
+        <div class="label">Payment Method</div>
+        <div id="method" class="value">Loading...</div>
+      </div>
+      <div>
+        <div class="label">Transaction ID</div>
+        <div id="id" class="value">Loading...</div>
+      </div>
+      <div>
+        <div class="label">Order Time</div>
+        <div id="datetime" class="value">Loading...</div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a class="back-btn" href="dashboard.html">← Back to Dashboard</a>
+    </div>
   </div>
-</div>
 
-<script>
-  // Simulate delay to show processing
-  const phone = localStorage.getItem('phone');
-  const network = localStorage.getItem('network');
-  const amount = localStorage.getItem('amount');
+  <script>
+    // Sample data to simulate user details
+    const transactionData = {
+      amount: "₦400.00",
+      mobile: "091 2758 5834",
+      type: "Top up Airtime",
+      method: "PalmPay Balance",
+      id: "132mi2rdd4f00",
+      datetime: new Date().toLocaleString("en-GB")
+    };
 
-  setTimeout(() => {
-    document.getElementById('processing').style.display = 'none';
-    document.getElementById('success').style.display = 'block';
+    // Fill the receipt fields
+    function showReceipt(data) {
+      document.getElementById("amount").innerText = data.amount;
+      document.getElementById("mobile").innerText = data.mobile;
+      document.getElementById("type").innerText = data.type;
+      document.getElementById("method").innerText = data.method;
+      document.getElementById("id").innerText = data.id;
+      document.getElementById("datetime").innerText = data.datetime;
+    }
 
-    // Show user input values
-    document.getElementById('phoneDisplay').textContent = phone || 'N/A';
-    document.getElementById('networkDisplay').textContent = network || 'N/A';
-    document.getElementById('amountDisplay').textContent = amount || '0';
-  }, 3000); // 3 seconds processing
-
-  function goToDashboard() {
-    window.location.href = 'dashboard.html';
-  }
-</script>
+    // Simulate delay and then show receipt
+    setTimeout(() => {
+      document.getElementById("processing").style.display = "none";
+      document.getElementById("receipt").style.display = "block";
+      showReceipt(transactionData);
+    }, 4000);
+  </script>
 
 </body>
 </html>
