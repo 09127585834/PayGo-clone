@@ -1,162 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Processing & Receipt</title>
+  <meta charset="UTF-8">
+  <title>Processing Data Purchase</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fff;
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
       margin: 0;
       padding: 0;
-      color: #333;
-    }
-    .center {
       text-align: center;
     }
-    .loader {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #5c27fe;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      animation: spin 1s linear infinite;
-      margin: 100px auto 20px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
-    }
-    .message {
-      font-size: 18px;
-      color: #333;
-    }
-    .container {
-      max-width: 400px;
-      margin: auto;
-      padding: 20px;
+
+    .page {
       display: none;
+      padding: 40px 20px;
     }
-    .top {
-      text-align: center;
-      padding: 20px 0;
+
+    .active {
+      display: block;
     }
-    .top img {
-      width: 50px;
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
+
     .amount {
-      font-size: 28px;
+      font-size: 2rem;
       font-weight: bold;
-      color: #111;
       margin: 10px 0;
     }
-    .success {
+
+    .status {
       color: green;
       font-weight: bold;
+      margin-bottom: 20px;
     }
-    .info-box {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 15px;
-      margin: 20px 0;
-    }
-    .info-box div {
+
+    .info {
       margin: 10px 0;
+      font-size: 16px;
+      text-align: left;
     }
+
     .label {
-      font-size: 14px;
-      color: #888;
-    }
-    .value {
       font-weight: bold;
     }
-    .actions {
-      text-align: center;
-      padding: 20px 0;
-    }
-    .back-btn {
-      display: inline-block;
-      background: #5c27fe;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 25px;
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      font-size: 16px;
+      cursor: pointer;
       text-decoration: none;
-      font-weight: bold;
+    }
+
+    .btn:hover {
+      background-color: #574fcf;
     }
   </style>
 </head>
 <body>
 
-  <!-- Processing Section -->
-  <div id="processing" class="center">
-    <div class="loader"></div>
-    <p class="message">Processing your payment, please wait...</p>
+  <!-- Processing Page -->
+  <div id="processingPage" class="page active">
+    <h2>Processing Data Purchase...</h2>
+    <p>Please wait while we process your transaction.</p>
   </div>
 
-  <!-- Receipt Section -->
-  <div id="receipt" class="container">
-    <div class="top">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Airtel_logo_2020.svg/512px-Airtel_logo_2020.svg.png" alt="Airtel Logo">
-      <div id="amount" class="amount">₦0.00</div>
-      <div class="success">✓ Successful</div>
-    </div>
+  <!-- Receipt Page -->
+  <div id="receiptPage" class="page">
+    <div class="container">
+      <img id="networkLogo" src="" alt="Network Logo" width="60" />
+      <div class="amount" id="receiptAmount"></div>
+      <div class="status">✓ Successful</div>
 
-    <div class="info-box">
-      <div>
-        <div class="label">Recipient Mobile</div>
-        <div id="mobile" class="value">Loading...</div>
-      </div>
-      <div>
-        <div class="label">Transaction Type</div>
-        <div id="type" class="value">Loading...</div>
-      </div>
-      <div>
-        <div class="label">Payment Method</div>
-        <div id="method" class="value">Loading...</div>
-      </div>
-      <div>
-        <div class="label">Transaction ID</div>
-        <div id="id" class="value">Loading...</div>
-      </div>
-      <div>
-        <div class="label">Order Time</div>
-        <div id="datetime" class="value">Loading...</div>
-      </div>
-    </div>
+      <div class="info"><span class="label">Recipient Mobile:</span> <span id="receiptPhone"></span></div>
+      <div class="info"><span class="label">Transaction Type:</span> Data Bundle Purchase</div>
+      <div class="info"><span class="label">Data Plan:</span> <span id="receiptPlan"></span></div>
+      <div class="info"><span class="label">Network:</span> <span id="receiptNetwork"></span></div>
+      <div class="info"><span class="label">Payment Method:</span> Wallet Balance</div>
+      <div class="info"><span class="label">Transaction ID:</span> <span id="receiptID"></span></div>
+      <div class="info"><span class="label">Order Time:</span> <span id="receiptTime"></span></div>
 
-    <div class="actions">
-      <a class="back-btn" href="dashboard.html">← Back to Dashboard</a>
+      <button class="btn" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
     </div>
   </div>
 
   <script>
-    // Sample data to simulate user details
-    const transactionData = {
-      amount: "₦400.00",
-      mobile: "091 2758 5834",
-      type: "Top up Airtime",
-      method: "PalmPay Balance",
-      id: "132mi2rdd4f00",
-      datetime: new Date().toLocaleString("en-GB")
+    // Simulate pre-filled user data (replace with your actual dynamic data)
+    const userData = {
+      phone: "09127585834",
+      amount: 1200,
+      network: "MTN",
+      plan: "3.5GB - 30 Days"
     };
 
-    // Fill the receipt fields
-    function showReceipt(data) {
-      document.getElementById("amount").innerText = data.amount;
-      document.getElementById("mobile").innerText = data.mobile;
-      document.getElementById("type").innerText = data.type;
-      document.getElementById("method").innerText = data.method;
-      document.getElementById("id").innerText = data.id;
-      document.getElementById("datetime").innerText = data.datetime;
+    const logos = {
+      "Airtel": "https://1000logos.net/wp-content/uploads/2021/05/Airtel-logo.png",
+      "MTN": "https://upload.wikimedia.org/wikipedia/commons/6/6e/MTN_Logo.svg",
+      "Glo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Globacom_Logo.png",
+      "9mobile": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/9mobile_logo.svg/800px-9mobile_logo.svg.png"
+    };
+
+    function generateTransactionID() {
+      return 'DT' + Math.random().toString(36).substring(2, 10).toUpperCase();
     }
 
-    // Simulate delay and then show receipt
-    setTimeout(() => {
-      document.getElementById("processing").style.display = "none";
-      document.getElementById("receipt").style.display = "block";
-      showReceipt(transactionData);
-    }, 4000);
+    function showReceipt() {
+      document.getElementById('receiptPhone').textContent = userData.phone;
+      document.getElementById('receiptAmount').textContent = `₦${parseFloat(userData.amount).toFixed(2)}`;
+      document.getElementById('receiptPlan').textContent = userData.plan;
+      document.getElementById('receiptNetwork').textContent = userData.network;
+      document.getElementById('receiptID').textContent = generateTransactionID();
+      document.getElementById('receiptTime').textContent = new Date().toLocaleString();
+      document.getElementById('networkLogo').src = logos[userData.network] || "";
+
+      document.getElementById('processingPage').classList.remove("active");
+      document.getElementById('receiptPage').classList.add("active");
+    }
+
+    // Delay 4 seconds before showing receipt
+    setTimeout(showReceipt, 4000);
   </script>
 
 </body>
