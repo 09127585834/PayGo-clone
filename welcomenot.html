@@ -1,0 +1,152 @@
+<!-- welcome.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to PayGo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom, #7b2ff7, #f107a3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .modal {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 90%;
+      padding: 20px;
+      position: relative;
+      text-align: center;
+      animation: slideIn 0.4s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      background-color: #7b2ff7;
+      color: white;
+      padding: 15px 20px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      font-size: 18px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background-color: #fff;
+      margin-top: 5px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      width: 20%;
+      height: 100%;
+      background-color: #ddd;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      background-color: #f3e9ff;
+      color: #7b2ff7;
+      border-radius: 50%;
+      margin: 20px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    .modal-body h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .modal-body p {
+      color: #444;
+      font-size: 15px;
+    }
+
+    .modal-footer {
+      padding: 20px;
+    }
+
+    .next-button {
+      background-color: #7b2ff7;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .next-button:hover {
+      background-color: #651dce;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      font-size: 20px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div class="modal">
+  <div class="modal-header">
+    Welcome to PayGo, Khalifah!
+    <button class="close-btn" onclick="redirectToDashboard()">×</button>
+    <div style="font-size: 13px; margin-top: 5px;">Step 1 of 5</div>
+    <div class="progress-bar">
+      <div class="progress-bar-inner"></div>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <div class="icon-circle">🎁</div>
+    <h2>Welcome Bonus</h2>
+    <p>
+      You've received a welcome bonus of <strong>₦180,000!</strong> This amount is already in your account and can be withdrawn after purchasing a PAY ID.
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button class="next-button" onclick="redirectToDashboard()">Next →</button>
+  </div>
+</div>
+
+<script>
+  function redirectToDashboard() {
+    window.location.href = "dashboard.html";
+  }
+</script>
+
+</body>
+</html>
