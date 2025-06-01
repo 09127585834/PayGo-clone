@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Payment Not Confirmed - PayGo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .icon {
+      font-size: 60px;
+      color: #ff4d4d;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .buttons a {
+      display: block;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: bold;
+      color: white;
+      transition: background-color 0.3s;
+    }
+
+    .retry {
+      background-color: #ff4d4d;
+    }
+
+    .retry:hover {
+      background-color: #e04343;
+    }
+
+    .dashboard {
+      background-color: #333;
+    }
+
+    .dashboard:hover {
+      background-color: #222;
+    }
+
+    @media (min-width: 500px) {
+      .buttons {
+        flex-direction: row;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="icon">❌</div>
+    <h2>Payment Not Confirmed</h2>
+    <p>We couldn't verify your payment. Please try again or go back to your dashboard.</p>
+
+    <div class="buttons">
+      <a href="buy.html" class="retry">Retry</a>
+      <a href="dashboard.html" class="dashboard">Back to Dashboard</a>
+    </div>
+  </div>
+
+</body>
+</html>
