@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Support - PayGo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
+      color: #111;
+    }
+    header {
+      background-color: #7b1fa2;
+      color: white;
+      padding: 16px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+    }
+    header span {
+      margin-left: 8px;
+    }
+    .container {
+      padding: 20px;
+    }
+    h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .card {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .card h3 {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      color: #000;
+    }
+    .card h3 svg {
+      margin-right: 10px;
+    }
+    .description {
+      margin-top: 5px;
+      margin-bottom: 15px;
+      color: #444;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      text-align: center;
+    }
+    .btn.live {
+      background-color: #7b1fa2;
+    }
+    .btn.whatsapp {
+      background-color: #25D366;
+    }
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span onclick="history.back()" style="cursor:pointer;">←</span>
+    <span style="margin-left: 12px;">Support</span>
+  </header>
+
+  <div class="container">
+    <h2>How can we help you?</h2>
+
+    <!-- Live Chat -->
+    <div class="card">
+      <h3>💬 Live Chat</h3>
+      <p class="description">Chat with our support team directly in the app</p>
+      <button class="btn live" onclick="openLiveChat()">💬 Start Live Chat</button>
+      <p class="description">Our support agents are available to assist you with any questions or issues.</p>
+    </div>
+
+    <!-- WhatsApp Support -->
+    <div class="card">
+      <h3>💬 WhatsApp Support</h3>
+      <p class="description">Chat with our support team on WhatsApp for quick assistance</p>
+      <a href="#" class="btn whatsapp" id="whatsapp-link">💬 Chat on WhatsApp</a>
+      <p class="description">Our support team is available 24/7 to assist you with any issues or questions.</p>
+    </div>
+
+    <footer>
+      Financial Services<br/>
+      PayGo © 2023. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function openLiveChat() {
+      // Replace with your live chat service trigger
+      // Example for Tawk.to:
+      // Tawk_API.maximize(); 
+      
+      alert("⚠️ Live chat not yet connected. Add your script in openLiveChat().");
+    }
+
+    // WhatsApp Support Link — Replace with your number
+    document.getElementById("whatsapp-link").href = "https://wa.me/2348037750681"; // Your WhatsApp number
+  </script>
+
+</body>
+</html>
