@@ -3,126 +3,137 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buy Data - PayGo</title>
+  <title>Buy Data</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
+      background-color: #f9f5ff;
+      margin: 0;
+      padding: 0;
     }
     .container {
-      background: #fff;
-      max-width: 400px;
-      margin: auto;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin: auto;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
+    .banner {
+      background-color: #00a651;
+      color: white;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    label {
+    .banner span {
       font-weight: bold;
-      margin-top: 10px;
-      display: block;
+      color: #ffd700;
     }
-    input, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 15px;
+    .network-buttons button {
+      width: 45%;
+      margin: 5px;
+      padding: 15px;
+      font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 8px;
+      background-color: white;
+      cursor: pointer;
     }
-    .error {
-      color: red;
+    input, .amount-option {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .amount-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .amount-option {
+      background-color: white;
+      cursor: pointer;
       text-align: center;
     }
-    .redirect {
-      text-align: center;
-      font-size: 14px;
+    .amount-option.selected {
+      border: 2px solid #a855f7;
+      background-color: #f3e8ff;
     }
-    .redirect a {
-      color: blue;
-      text-decoration: underline;
+    .buy-button {
+      background-color: #d9b4fc;
+      color: white;
+      border: none;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      width: 100%;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Data</h2>
 
-<div class="container">
-  <h2>Buy Data</h2>
-  <div id="error" class="error"></div>
-  <form id="buyDataForm">
-    <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" name="phone" required placeholder="e.g. 08012345678" />
+    <div class="banner">
+      <div>Enjoy <span>Glo's</span> Amazing 5X Data Bonuses!</div>
+      <button style="background-color: #ffd700; border: none; padding: 8px 14px; border-radius: 999px;">GO</button>
+    </div>
 
-    <label for="amount">Amount (₦)</label>
-    <input type="number" id="amount" name="amount" required placeholder="Enter amount" />
+    <div class="network-buttons">
+      <button>Airtel</button>
+      <button>MTN</button>
+      <button>Glo</button>
+      <button>9mobile</button>
+    </div>
 
-    <label for="network">Network</label>
-    <select id="network" name="network" required>
-      <option value="">Select Network</option>
-      <option value="MTN">MTN</option>
-      <option value="Glo">Glo</option>
-      <option value="Airtel">Airtel</option>
-      <option value="9mobile">9mobile</option>
-    </select>
+    <input type="tel" id="phone" placeholder="Enter mobile number" required />
+    <h4>Select Data Plan</h4>
 
-    <label for="payid">PAY ID</label>
-    <input type="text" id="payid" name="payid" required placeholder="Your PAY ID" />
+    <div class="amount-options">
+      <div class="amount-option" data-amount="100">₦100<br>300MB<br>1 DAY</div>
+      <div class="amount-option" data-amount="300">₦300<br>1GB<br>7 DAYS</div>
+      <div class="amount-option" data-amount="500">₦500<br>3GB<br>30 DAYS</div>
+      <div class="amount-option" data-amount="800">₦800<br>5GB<br>30 DAYS</div>
+      <div class="amount-option" data-amount="1500">₦1500<br>10GB<br>30 DAYS</div>
+    </div>
 
-    <button type="submit">Buy Data</button>
-  </form>
+    <input type="text" id="payid" placeholder="Enter PAY ID Code" required />
 
-  <div class="redirect">
-    Don’t have a PAY ID? <a href="buy.html">Buy PAY ID</a>
+    <button class="buy-button" onclick="buyData()">Buy Data</button>
   </div>
-</div>
 
-<script>
-  // Simulated PAY ID and balance from session or server
-  const storedPayId = localStorage.getItem('payid') || 'PAY123456'; // Replace with backend integration
-  let dashboardBalance = parseFloat(localStorage.getItem('balance')) || 15000;
+  <script>
+    let selectedAmount = null;
+    const options = document.querySelectorAll('.amount-option');
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        option.classList.add('selected');
+        selectedAmount = option.getAttribute('data-amount');
+      });
+    });
 
-  document.getElementById('buyDataForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    function buyData() {
+      const phone = document.getElementById('phone').value.trim();
+      const payid = document.getElementById('payid').value.trim();
 
-    const phone = document.getElementById('phone').value.trim();
-    const amount = parseFloat(document.getElementById('amount').value.trim());
-    const network = document.getElementById('network').value.trim();
-    const payid = document.getElementById('payid').value.trim();
-    const errorDiv = document.getElementById('error');
+      if (!phone || !payid || !selectedAmount) {
+        alert('Please fill all fields and select a data plan.');
+        return;
+      }
 
-    // Basic validations
-    if (!phone || !amount || !network || !payid) {
-      errorDiv.textContent = 'Please fill all fields.';
-      return;
+      if (payid !== 'PAYGO238') {
+        alert('Invalid PAY ID. Only PAYGO238 is accepted.');
+        return;
+      }
+
+      // Redirect to buy2.html
+      window.location.href = 'buy2.html';
     }
-
-    if (payid !== storedPayId) {
-      errorDiv.textContent = 'Incorrect PAY ID. Redirecting...';
-      setTimeout(() => {
-        window.location.href = 'buy.html';
-      }, 2000);
-      return;
-    }
-
-    if (amount > dashboardBalance) {
-      errorDiv.textContent = 'Insufficient balance.';
-      return;
-    }
-
-    // Deduct from balance (simulate)
-    dashboardBalance -= amount;
-    localStorage.setItem('balance', dashboardBalance.toFixed(2));
-
-    // Simulate success and redirect
-    alert('Data purchase successful!');
-    window.location.href = 'buy2.html';
-  });
-</script>
-
+  </script>
 </body>
 </html>
