@@ -101,41 +101,19 @@
     <h2>Withdrawal Successful</h2>
     <p>Your funds have been sent successfully.</p>
 
-    <div class="receipt" id="receipt-details">
-      <!-- Receipt data will be injected here -->
+    <div class="receipt">
+      <p><strong>Name:</strong> John Doe</p>
+      <p><strong>Account:</strong> 1234567890</p>
+      <p><strong>Bank:</strong> Access Bank</p>
+      <p><strong>Amount:</strong> ₦50,000</p>
+      <p><strong>Date:</strong> June 1, 2025</p>
+      <p><strong>Transaction ID:</strong> TXN123456789</p>
     </div>
 
     <div class="dashboard-bar" onclick="window.location.href='dashboard.html'">
       Back to Dashboard
     </div>
   </div>
-
-  <script>
-    // Function to get URL parameters
-    function getQueryParams() {
-      const params = new URLSearchParams(window.location.search);
-      return {
-        name: params.get('name') || 'N/A',
-        account: params.get('account') || 'N/A',
-        bank: params.get('bank') || 'N/A',
-        amount: params.get('amount') ? `₦${params.get('amount')}` : 'N/A',
-        date: params.get('date') || new Date().toLocaleDateString(),
-        txn: params.get('txn') || 'N/A'
-      };
-    }
-
-    const data = getQueryParams();
-    const receiptDiv = document.getElementById('receipt-details');
-
-    receiptDiv.innerHTML = `
-      <p><strong>Name:</strong> ${data.name}</p>
-      <p><strong>Account:</strong> ${data.account}</p>
-      <p><strong>Bank:</strong> ${data.bank}</p>
-      <p><strong>Amount:</strong> ${data.amount}</p>
-      <p><strong>Date:</strong> ${data.date}</p>
-      <p><strong>Transaction ID:</strong> ${data.txn}</p>
-    `;
-  </script>
 
 </body>
 </html>
