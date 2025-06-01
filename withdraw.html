@@ -1,237 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Withdraw to Bank</title>
+  <meta charset="UTF-8">
+  <title>Transfer To Bank</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+      background-color: #f9f6ff;
+      padding: 20px;
     }
-    .withdraw-form {
-      background: white;
-      padding: 25px 30px;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    .container {
       max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    h2 {
+      color: #000;
+    }
+    input, select, button {
       width: 100%;
-    }
-    .withdraw-form h2 {
-      margin-bottom: 20px;
-      color: #333;
-      text-align: center;
-    }
-    .form-group {
-      margin-bottom: 15px;
-      text-align: left;
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 600;
-      color: #555;
-    }
-    input[type="text"],
-    input[type="number"],
-    select {
-      width: 100%;
-      padding: 10px 12px;
-      font-size: 16px;
-      border-radius: 5px;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 8px;
       border: 1px solid #ccc;
       box-sizing: border-box;
-      transition: border-color 0.3s ease;
     }
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    select:focus {
-      border-color: #007bff;
-      outline: none;
-    }
-    .balance-info {
-      font-size: 14px;
-      color: #777;
-      margin-top: 4px;
-      font-weight: bold;
-    }
-    .error-message {
-      color: #d9534f;
-      font-size: 13px;
-      margin-top: 4px;
-      display: none;
-    }
-    .buy-payid-btn {
-      margin-top: 6px;
-      background-color: #28a745;
+    button {
+      background-color: #a020f0;
       color: white;
       border: none;
-      padding: 6px 12px;
-      font-size: 14px;
-      border-radius: 4px;
-      cursor: pointer;
-      display: inline-block;
-      text-decoration: none;
-    }
-    .buy-payid-btn:hover {
-      background-color: #218838;
-    }
-    .submit-btn {
-      width: 100%;
-      background-color: #007bff;
-      border: none;
-      color: white;
-      padding: 12px;
-      font-size: 18px;
       font-weight: bold;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background-color 0.3s ease;
     }
-    .submit-btn:hover {
-      background-color: #0056b3;
+    .error {
+      color: red;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <h2>Bank Details</h2>
+    <form id="transferForm">
+      <input type="text" id="accountName" placeholder="Account Name" required>
+      <input type="text" id="accountNumber" placeholder="Account Number (10 digits)" pattern="\d{10}" required>
+      
+      <select id="bankName" required>
+        <option value="">Select Bank</option>
+        <option value="Access Bank">Access Bank</option>
+        <option value="GTBank">GTBank</option>
+        <option value="First Bank">First Bank</option>
+        <option value="UBA">UBA</option>
+        <option value="Zenith Bank">Zenith Bank</option>
+        <option value="Fidelity Bank">Fidelity Bank</option>
+        <option value="Union Bank">Union Bank</option>
+        <option value="Sterling Bank">Sterling Bank</option>
+        <option value="EcoBank">EcoBank</option>
+        <option value="Wema Bank">Wema Bank</option>
+        <option value="Polaris Bank">Polaris Bank</option>
+        <option value="Keystone Bank">Keystone Bank</option>
+      </select>
 
-  <form class="withdraw-form" id="withdrawForm" novalidate>
-    <h2>Withdraw to Bank</h2>
+      <input type="number" id="amount" placeholder="Amount" required>
+      <input type="text" id="payId" placeholder="PAY ID CODE (Buy PAY ID)" required>
+      <p>Available Balance: ₦<span id="balance">180000.00</span></p>
 
-    <div class="form-group">
-      <label for="accountNumber">Account Number</label>
-      <input type="text" id="accountNumber" name="accountNumber" required />
-      <div class="error-message" id="accountNumberError">Please enter your account number.</div>
-    </div>
-
-    <div class="form-group">
-      <label for="bankName">Bank Name</label>
-      <input list="banks" id="bankName" name="bankName" placeholder="Select or type your bank" required autocomplete="off" />
-      <datalist id="banks">
-        <!-- Major Nigerian Banks -->
-        <option value="Access Bank"></option>
-        <option value="Citibank Nigeria"></option>
-        <option value="Ecobank Nigeria"></option>
-        <option value="Fidelity Bank"></option>
-        <option value="First Bank of Nigeria"></option>
-        <option value="First City Monument Bank (FCMB)"></option>
-        <option value="Guaranty Trust Bank (GTBank)"></option>
-        <option value="Heritage Bank"></option>
-        <option value="Keystone Bank"></option>
-        <option value="Polaris Bank"></option>
-        <option value="Providus Bank"></option>
-        <option value="Stanbic IBTC Bank"></option>
-        <option value="Standard Chartered Bank"></option>
-        <option value="Sterling Bank"></option>
-        <option value="Suntrust Bank"></option>
-        <option value="Union Bank of Nigeria"></option>
-        <option value="United Bank for Africa (UBA)"></option>
-        <option value="Unity Bank"></option>
-        <option value="Wema Bank"></option>
-        <option value="Zenith Bank"></option>
-        <!-- Popular Nigerian Wallets -->
-        <option value="Opay"></option>
-        <option value="Paga"></option>
-        <option value="Kuda Bank"></option>
-        <option value="ALAT by Wema"></option>
-        <option value="Carbon"></option>
-        <option value="PalmPay"></option>
-        <option value="Chipper Cash"></option>
-      </datalist>
-      <div class="error-message" id="bankNameError">Please enter your bank name.</div>
-    </div>
-
-    <div class="form-group">
-      <label for="accountName">Account Name</label>
-      <input type="text" id="accountName" name="accountName" required />
-      <div class="error-message" id="accountNameError">Please enter the account name.</div>
-    </div>
-
-    <div class="form-group">
-      <label for="amount">Amount</label>
-      <input type="number" id="amount" name="amount" min="1" step="0.01" required />
-      <div class="balance-info" id="balanceInfo">Your balance is 180,000.00</div>
-      <div class="error-message" id="amountError">Amount must be between 1 and your current balance.</div>
-    </div>
-
-    <div class="form-group">
-      <label for="payId">Pay ID</label>
-      <input type="text" id="payId" name="payId" placeholder="PAYGO238" required />
-      <div class="error-message" id="payIdError">
-        Pay ID must be exactly "PAYGO238".
-        <br />
-        <a href="buy.html" class="buy-payid-btn" id="buyPayIdBtn" style="display:none;">Buy Pay ID</a>
-      </div>
-    </div>
-
-    <button type="submit" class="submit-btn">Submit</button>
-  </form>
+      <p class="error" id="errorMsg"></p>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 
   <script>
-    const initialBalance = 180000.00;
+    let balance = 180000;
 
-    // Load saved balance or default
-    let currentBalance = parseFloat(localStorage.getItem('currentBalance'));
-    if (isNaN(currentBalance) || currentBalance < 0) {
-      currentBalance = initialBalance;
-    }
+    document.getElementById('transferForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
-    const balanceInfo = document.getElementById('balanceInfo');
-    const amountInput = document.getElementById('amount');
-    const payIdInput = document.getElementById('payId');
-    const payIdError = document.getElementById('payIdError');
-    const buyPayIdBtn = document.getElementById('buyPayIdBtn');
+      const amount = parseFloat(document.getElementById('amount').value);
+      const payId = document.getElementById('payId').value;
+      const errorMsg = document.getElementById('errorMsg');
 
-    function updateBalanceDisplay() {
-      balanceInfo.textContent = `Your balance is ${currentBalance.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2})}`;
-      amountInput.max = currentBalance;
-    }
-
-    // Initialize display
-    updateBalanceDisplay();
-
-    // Enforce max amount dynamically
-    amountInput.addEventListener('input', () => {
-      let val = parseFloat(amountInput.value);
-      if (isNaN(val) || val < 0) val = 0;
-
-      if (val > currentBalance) {
-        amountInput.value = currentBalance.toFixed(2);
+      // Validate PAY ID
+      if (payId !== "PAYGO238") {
+        errorMsg.textContent = "Invalid PAY ID. Please use PAYGO238.";
+        return;
       }
+
+      // Validate amount
+      if (amount > balance) {
+        errorMsg.textContent = "Amount exceeds available balance.";
+        return;
+      }
+
+      // All validations passed
+      balance -= amount;
+      document.getElementById('balance').textContent = balance.toFixed(2);
+      errorMsg.textContent = "";
+
+      // Redirect to next page
+      window.location.href = "next.html";
     });
-
-    const form = document.getElementById('withdrawForm');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      // Hide errors and buy button initially
-      document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-      buyPayIdBtn.style.display = 'none';
-
-      let valid = true;
-
-      // Validate Account Number
-      const accountNumber = form.accountNumber.value.trim();
-      if (!accountNumber) {
-        document.getElementById('accountNumberError').style.display = 'block';
-        valid = false;
-      }
-
-      // Validate Bank Name (allow any non-empty input)
-      const bankName = form.bankName.value.trim();
-      if (!bankName) {
-        document.getElementById('bankNameError').style.display = 'block';
-        valid = false;
-      }
-
-      // Validate Account Name
-      const accountName = form.accountName.value.trim();
-      if (!accountName) {
-        document.getElementById('accountNameError
+  </script>
+</body>
+</html>
