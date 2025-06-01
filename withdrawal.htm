@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Withdrawal Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #receipt { display: none; border: 1px solid #ccc; padding: 20px; margin-top: 20px; background-color: #f9f9f9; }
+    form { max-width: 500px; }
+    label { font-weight: bold; }
+    input, select { width: 100%; padding: 8px; margin-bottom: 15px; }
+  </style>
+</head>
+<body>
+
+<h2>Withdrawal Form</h2>
+
+<form id="withdrawalForm">
+  <label for="payId">Pay ID:</label>
+  <input type="text" id="payId" name="payId" required>
+
+  <label for="fullname">Full Name:</label>
+  <input type="text" id="fullname" name="fullname" required>
+
+  <label for="email">Email Address:</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required>
+
+  <label for="bank">Select Your Bank:</label>
+  <select id="bank" name="bank" required>
+    <option value="">--Select Bank--</option>
+    <option value="Access Bank">Access Bank</option>
+    <option value="First Bank">First Bank</option>
+    <option value="GTBank">GTBank</option>
+    <option value="UBA">UBA</option>
+    <option value="Zenith Bank">Zenith Bank</option>
+    <!-- Add all Nigerian banks here if needed -->
+  </select>
+
+  <label for="accountNumber">Account Number:</label>
+  <input type="text" id="accountNumber" name="accountNumber" maxlength="10" required>
+
+  <label for="amount">Amount to Withdraw (₦):</label>
+  <input type="number" id="amount" name="amount" min="1" required>
+
+  <button type="submit">Submit Withdrawal</button>
+</form>
+
+<!-- Receipt Display -->
+<div id="receipt">
+  <h3>Withdrawal Receipt</h3>
+  <p><strong>Pay ID:</strong> <span id="rPayId"></span></p>
+  <p><strong>Full Name:</strong> <span id="rFullname"></span></p>
+  <p><strong>Email:</strong> <span id="rEmail"></span></p>
+  <p><strong>Phone:</strong> <span id="rPhone"></span></p>
+  <p><strong>Bank:</strong> <span id="rBank"></span></p>
+  <p><strong>Account Number:</strong> <span id="rAccount"></span></p>
+  <p><strong>Amount:</strong> ₦<span id="rAmount"></span></p>
+  <p><strong>Date:</strong> <span id="rDate"></span></p>
+  <p><strong>Time:</strong> <span id="rTime"></span></p>
+  <p style="color: green;"><em>Submission successful. Please wait while we process your withdrawal.</em></p>
+</div>
+
+<script>
+document.getElementById("withdrawalForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const now = new Date();
+  const date = now.toLocaleDateString();
+  const time = now.toLocaleTimeString();
+
+  // Populate receipt
+  document.getElementById("rPayId").textContent = document.getElementById("payId").value;
+  document.getElementById("rFullname").textContent = document.getElementById("fullname").value;
+  document.getElementById("rEmail").textContent = document.getElementById("email").value;
+  document.getElementById("rPhone").textContent = document.getElementById("phone").value;
+  document.getElementById("rBank").textContent = document.getElementById("bank").value;
+  document.getElementById("rAccount").textContent = document.getElementById("accountNumber").value;
+  document.getElementById("rAmount").textContent = document.getElementById("amount").value;
+  document.getElementById("rDate").textContent = date;
+  document.getElementById("rTime").textContent = time;
+
+  // Hide form, show receipt
+  document.getElementById("withdrawalForm").style.display = "none";
+  document.getElementById("receipt").style.display = "block";
+});
+</script>
+
+</body>
+</html>
