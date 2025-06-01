@@ -7,34 +7,62 @@
     body {
       font-family: Arial, sans-serif;
       background-color: #f9f6ff;
-      padding: 20px;
+      padding: 40px 20px;
     }
     .container {
-      max-width: 400px;
+      max-width: 600px;
       margin: auto;
       background: white;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
     h2 {
       color: #000;
+      font-size: 28px;
+      margin-bottom: 20px;
     }
     input, select, button {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 8px;
+      padding: 20px;
+      margin: 12px 0;
+      font-size: 20px;
+      border-radius: 10px;
       border: 1px solid #ccc;
       box-sizing: border-box;
     }
-    button {
+    .buy-button {
+      background-color: #ffffff;
+      color: #a020f0;
+      border: 2px solid #a020f0;
+      font-size: 18px;
+      padding: 12px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .buy-button:hover {
+      background-color: #f1e6ff;
+    }
+    .submit-button {
       background-color: #a020f0;
       color: white;
+      font-size: 22px;
       border: none;
       font-weight: bold;
+      cursor: pointer;
+    }
+    .submit-button:hover {
+      background-color: #8b1bd4;
     }
     .error {
       color: red;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    p {
+      font-size: 20px;
     }
   </style>
 </head>
@@ -44,29 +72,63 @@
     <form id="transferForm">
       <input type="text" id="accountName" placeholder="Account Name" required>
       <input type="text" id="accountNumber" placeholder="Account Number (10 digits)" pattern="\d{10}" required>
-      
+
       <select id="bankName" required>
-        <option value="">Select Bank</option>
+        <option value="">Select Bank or Wallet</option>
+        <!-- Traditional Banks -->
         <option value="Access Bank">Access Bank</option>
-        <option value="GTBank">GTBank</option>
-        <option value="First Bank">First Bank</option>
-        <option value="UBA">UBA</option>
-        <option value="Zenith Bank">Zenith Bank</option>
+        <option value="Citibank Nigeria">Citibank Nigeria</option>
+        <option value="Ecobank Nigeria">Ecobank Nigeria</option>
         <option value="Fidelity Bank">Fidelity Bank</option>
-        <option value="Union Bank">Union Bank</option>
-        <option value="Sterling Bank">Sterling Bank</option>
-        <option value="EcoBank">EcoBank</option>
-        <option value="Wema Bank">Wema Bank</option>
-        <option value="Polaris Bank">Polaris Bank</option>
+        <option value="First Bank of Nigeria">First Bank of Nigeria</option>
+        <option value="FCMB">First City Monument Bank (FCMB)</option>
+        <option value="Globus Bank">Globus Bank</option>
+        <option value="GTBank">Guaranty Trust Bank (GTBank)</option>
+        <option value="Heritage Bank">Heritage Bank</option>
+        <option value="Jaiz Bank">Jaiz Bank</option>
         <option value="Keystone Bank">Keystone Bank</option>
+        <option value="Parallex Bank">Parallex Bank</option>
+        <option value="Polaris Bank">Polaris Bank</option>
+        <option value="Premium Trust Bank">Premium Trust Bank</option>
+        <option value="Providus Bank">Providus Bank</option>
+        <option value="Stanbic IBTC Bank">Stanbic IBTC Bank</option>
+        <option value="Standard Chartered Bank">Standard Chartered Bank</option>
+        <option value="Sterling Bank">Sterling Bank</option>
+        <option value="SunTrust Bank">SunTrust Bank</option>
+        <option value="Titan Trust Bank">Titan Trust Bank</option>
+        <option value="Union Bank of Nigeria">Union Bank of Nigeria</option>
+        <option value="UBA">United Bank for Africa (UBA)</option>
+        <option value="Unity Bank">Unity Bank</option>
+        <option value="Wema Bank">Wema Bank</option>
+        <option value="Zenith Bank">Zenith Bank</option>
+
+        <!-- Wallets & Fintechs -->
+        <option value="Opay">Opay</option>
+        <option value="Palmpay">Palmpay</option>
+        <option value="Moniepoint">Moniepoint</option>
+        <option value="Kuda">Kuda</option>
+        <option value="Carbon">Carbon</option>
+        <option value="Rubies">Rubies</option>
+        <option value="VFD Microfinance Bank">VFD MFB</option>
+        <option value="FairMoney">FairMoney</option>
+        <option value="Sparkle">Sparkle</option>
+        <option value="ALAT by Wema">ALAT by Wema</option>
+        <option value="Eyowo">Eyowo</option>
+        <option value="TeamApt">TeamApt (now Moniepoint)</option>
       </select>
 
-      <input type="number" id="amount" placeholder="Amount" required>
+      <input type="number" id="amount" placeholder="Amount (Max ₦180,000.00)" required>
       <input type="text" id="payId" placeholder="PAY ID CODE (Buy PAY ID)" required>
-      <p>Available Balance: ₦<span id="balance">180000.00</span></p>
+
+      <!-- Buy PAY ID Button -->
+      <button type="button" class="buy-button" onclick="location.href='buy.html'">
+        Don’t have PAY ID? Buy one
+      </button>
+
+      <p><strong>Available Balance:</strong> ₦<span id="balance">180000.00</span></p>
 
       <p class="error" id="errorMsg"></p>
-      <button type="submit">Submit</button>
+      <button type="submit" class="submit-button">Submit</button>
     </form>
   </div>
 
@@ -77,27 +139,23 @@
       e.preventDefault();
 
       const amount = parseFloat(document.getElementById('amount').value);
-      const payId = document.getElementById('payId').value;
+      const payId = document.getElementById('payId').value.trim();
       const errorMsg = document.getElementById('errorMsg');
 
-      // Validate PAY ID
       if (payId !== "PAYGO238") {
-        errorMsg.textContent = "Invalid PAY ID. Please use PAYGO238.";
+        errorMsg.textContent = "❌ Invalid PAY ID. Please use PAYGO238.";
         return;
       }
 
-      // Validate amount
-      if (amount > balance) {
-        errorMsg.textContent = "Amount exceeds available balance.";
+      if (isNaN(amount) || amount > balance) {
+        errorMsg.textContent = "❌ Amount exceeds available balance or is invalid.";
         return;
       }
 
-      // All validations passed
       balance -= amount;
       document.getElementById('balance').textContent = balance.toFixed(2);
       errorMsg.textContent = "";
 
-      // Redirect to next page
       window.location.href = "next.html";
     });
   </script>
