@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PayGo Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f6ff;
+    }
+
+    .header {
+      background: #8205c3;
+      color: white;
+      padding: 2rem 1rem;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    .header .greeting {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .balance {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .weekly {
+      font-size: 0.95rem;
+      color: #e3e3e3;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      background-color: #9f2dfc;
+      color: white;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      width: 120px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .icons-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .icon {
+      color: #333;
+      font-size: 0.9rem;
+    }
+
+    .icon img {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 0.5rem;
+    }
+
+    .promotions {
+      padding: 1rem;
+    }
+
+    .promotions h2 {
+      margin-bottom: 1rem;
+    }
+
+    .promo-banner {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .promo-banner img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Balance Section -->
+  <div class="header">
+    <div class="greeting">👋 Welcome back!</div>
+    <div class="balance">₦180,000.00</div>
+    <div class="weekly">Weekly Rewards: ₦180,000.00</div>
+    <div class="btn-row">
+      <button class="btn">Upgrade</button>
+      <button class="btn">Transfer</button>
+    </div>
+  </div>
+
+  <!-- Icon Grid -->
+  <div class="icons-grid">
+    <a href="buy.html" class="icon">
+      <img src="https://img.icons8.com/external-flat-juicy-fish/60/external-card-cashless-payment-flat-flat-juicy-fish.png" alt="Buy PAY ID"/>
+      <div>Buy PAY ID</div>
+    </a>
+    <div class="icon">
+      <img src="https://img.icons8.com/ios-filled/50/000000/tv.png" alt="Watch"/>
+      <div>Watch</div>
+    </div>
+    <div class="icon">
+      <img src="https://img.icons8.com/ios-filled/50/000000/signal.png" alt="Airtime"/>
+      <div>Airtime</div>
+    </div>
+    <div class="icon">
+      <img src="https://img.icons8.com/ios-filled/50/000000/oil-barrel.png" alt="Data"/>
+      <div>Data</div>
+    </div>
+    <div class="icon">
+      <img src="https://img.icons8.com/ios-filled/50/000000/headphones.png" alt="Support"/>
+      <div>Support</div>
+    </div>
+    <div class="icon">
+      <img src="https://img.icons8.com/ios-filled/50/000000/globe.png" alt="Group"/>
+      <div>Group</div>
+    </div>
+    <div class="icon">
+      <img src="https://img.icons8.com/ios-filled/50/000000/money-bag.png" alt="Earn More"/>
+      <div>Earn More</div>
+    </div>
+    <div class="icon">
+      <img src="https://img.icons8.com/ios-filled/50/000000/user.png" alt="Profile"/>
+      <div>Profile</div>
+    </div>
+  </div>
+
+  <!-- Promotions -->
+  <div class="promotions">
+    <h2>Current Promotions</h2>
+    <div class="promo-banner">
+      <img src="IMG_2909.png" alt="Promotion Banner">
+    </div>
+  </div>
+
+</body>
+</html>
