@@ -3,139 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Withdraw - PayGo</title>
+  <title>Withdraw</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f9f9f9;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fc;
       margin: 0;
+      padding: 0;
     }
     .container {
-      background: #fff;
-      border-radius: 16px;
       padding: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+    .section {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
     }
     label {
-      font-weight: bold;
       display: block;
-      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
-    input, select {
+    input, select, button {
       width: 100%;
       padding: 12px;
-      margin-top: 5px;
+      margin-bottom: 15px;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      border-radius: 12px;
       font-size: 16px;
     }
-    #account-name {
-      background-color: #f1f1f1;
-    }
-    .button {
-      margin-top: 25px;
-      background-color: #b0eacb;
-      border: none;
+    button {
+      background-color: #94e2bd;
       color: #000;
-      padding: 14px;
-      width: 100%;
-      border-radius: 30px;
-      font-size: 18px;
+      font-weight: bold;
+      border: none;
       cursor: pointer;
     }
-    .button:hover {
-      background-color: #9adbb9;
+    input[readonly] {
+      background-color: #f1f1f1;
+    }
+    .no-payid {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .no-payid a {
+      color: #007bff;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Withdraw to Bank</h2>
-    
-    <label for="payid">PAY ID</label>
-    <input type="text" id="payid" placeholder="Enter your PAY ID" />
+    <h2>Transfer To Bank Account</h2>
 
-    <label for="account-number">Account Number</label>
-    <input type="text" id="account-number" maxlength="10" placeholder="Enter 10-digit account number" />
+    <div class="section">
+      <form action="next.html" method="GET">
+        <label for="payid">PAY ID</label>
+        <input type="text" id="payid" name="payid" placeholder="Enter your PAY ID" required>
 
-    <label for="bank">Select Bank</label>
-    <select id="bank">
-      <option value="">-- Select Bank --</option>
-      <option value="044">Access Bank</option>
-      <option value="063">Access (Diamond)</option>
-      <option value="050">EcoBank</option>
-      <option value="070">Fidelity Bank</option>
-      <option value="011">First Bank</option>
-      <option value="214">FCMB</option>
-      <option value="058">GTBank</option>
-      <option value="030">Heritage Bank</option>
-      <option value="082">Keystone Bank</option>
-      <option value="221">Stanbic IBTC</option>
-      <option value="232">Sterling Bank</option>
-      <option value="032">Union Bank</option>
-      <option value="033">UBA</option>
-      <option value="215">Unity Bank</option>
-      <option value="035">Wema Bank</option>
-      <option value="057">Zenith Bank</option>
-    </select>
+        <label for="accountNumber">Account Number</label>
+        <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter 10-digit account number" pattern="\d{10}" required>
 
-    <label for="account-name">Account Name</label>
-    <input type="text" id="account-name" placeholder="Account name will appear here" readonly />
+        <label for="bank">Select Bank</label>
+        <select id="bank" name="bank" required>
+          <option value="">-- Select Bank --</option>
+          <option value="access">Access Bank</option>
+          <option value="citibank">Citibank</option>
+          <option value="ecobank">Ecobank</option>
+          <option value="fidelity">Fidelity Bank</option>
+          <option value="first">First Bank</option>
+          <option value="fcmb">FCMB</option>
+          <option value="globus">Globus Bank</option>
+          <option value="gtbank">GTBank</option>
+          <option value="heritage">Heritage Bank</option>
+          <option value="jaiz">Jaiz Bank</option>
+          <option value="keystone">Keystone Bank</option>
+          <option value="kuda">Kuda Bank</option>
+          <option value="opay">Opay</option>
+          <option value="palmpay">PalmPay</option>
+          <option value="parallex">Parallex Bank</option>
+          <option value="polaris">Polaris Bank</option>
+          <option value="providus">Providus Bank</option>
+          <option value="stanbic">Stanbic IBTC</option>
+          <option value="standard">Standard Chartered</option>
+          <option value="sterling">Sterling Bank</option>
+          <option value="suntrust">Suntrust Bank</option>
+          <option value="taj">Taj Bank</option>
+          <option value="uba">UBA</option>
+          <option value="union">Union Bank</option>
+          <option value="unity">Unity Bank</option>
+          <option value="wema">Wema Bank</option>
+          <option value="zenith">Zenith Bank</option>
+        </select>
 
-    <button class="button" onclick="goNext()">Next</button>
+        <label for="accountName">Account Name</label>
+        <input type="text" id="accountName" name="accountName" readonly placeholder="Account name will appear here">
+
+        <button type="submit">Next</button>
+      </form>
+
+      <div class="no-payid">
+        Don't have a PAY ID? <a href="buy.html">Buy Now</a>
+      </div>
+    </div>
   </div>
 
   <script>
-    const accountInput = document.getElementById('account-number');
+    const accountNumberInput = document.getElementById('accountNumber');
     const bankSelect = document.getElementById('bank');
-    const nameField = document.getElementById('account-name');
+    const accountNameField = document.getElementById('accountName');
 
-    function resolveAccountName(account, bank) {
-      nameField.value = 'Resolving...';
-      fetch(`/resolve-account?account_number=${account}&bank_code=${bank}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.status && data.data) {
-            nameField.value = data.data.account_name;
-          } else {
-            nameField.value = 'Unable to resolve';
-          }
-        })
-        .catch(() => {
-          nameField.value = 'Error resolving name';
-        });
+    function simulateFetchAccountName(accountNumber, bank) {
+      // Replace this with a real API call (e.g. Paystack, Flutterwave)
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          const fakeNames = {
+            'gtbank': 'ADEBAYO JOHNSON',
+            'first': 'CHIOMA OBI',
+            'opay': 'MUHAMMAD NASIR',
+            'palmpay': 'IBRAHIM KHALIFAH'
+          };
+          resolve(fakeNames[bank] || 'JOHN DOE');
+        }, 1000);
+      });
     }
 
-    accountInput.addEventListener('input', () => {
-      if (accountInput.value.length === 10 && bankSelect.value) {
-        resolveAccountName(accountInput.value, bankSelect.value);
-      }
-    });
-
-    bankSelect.addEventListener('change', () => {
-      if (accountInput.value.length === 10 && bankSelect.value) {
-        resolveAccountName(accountInput.value, bankSelect.value);
-      }
-    });
-
-    function goNext() {
-      const payid = document.getElementById('payid').value;
-      const account = accountInput.value;
+    function handleFetch() {
+      const accountNumber = accountNumberInput.value;
       const bank = bankSelect.value;
-      const name = nameField.value;
 
-      if (!payid || !account || !bank || !name || name === 'Resolving...' || name === 'Unable to resolve') {
-        alert('Fill all fields and ensure account is resolved.');
-        return;
+      if (accountNumber.length === 10 && bank) {
+        accountNameField.value = "Fetching...";
+        simulateFetchAccountName(accountNumber, bank).then(name => {
+          accountNameField.value = name;
+        });
       }
-
-      window.location.href = 'next.html';
     }
+
+    accountNumberInput.addEventListener('input', handleFetch);
+    bankSelect.addEventListener('change', handleFetch);
   </script>
 </body>
 </html>
