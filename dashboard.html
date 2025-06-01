@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dashboard</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+  }
+
+  /* Header style */
+  .header {
+    background-color: #7b4aff;
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+  }
+
+  .header .time {
+    font-size: 14px;
+  }
+  
+  /* Greeting and balance */
+  .greeting {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #7b4aff;
+    color: white;
+  }
+
+  .greeting h2 {
+    margin: 0;
+    font-size: 16px;
+  }
+
+  .balance-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .balance-label {
+    font-size: 14px;
+    color: #555;
+  }
+
+  .balance-amount {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+
+  .rewards {
+    font-size: 14px;
+    color: #777;
+  }
+
+  /* Buttons */
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+  }
+
+  .btn {
+    background-color: #7b4aff;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 45%;
+    text-align: center;
+  }
+
+  /* Icons menu */
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 20px;
+  }
+
+  .menu-item {
+    width: 25%;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #555;
+    cursor: pointer;
+  }
+
+  .menu-item i {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  /* Promotions section */
+  .promo {
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .promo h3 {
+    margin-top: 0;
+  }
+
+  /* Detail section */
+  #detail-section {
+    margin: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: none; /* Hidden by default */
+  }
+
+  #detail-section h4 {
+    margin-top: 0;
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 600px) {
+    .menu-item {
+      width: 33.33%;
+    }
+    .buttons {
+      flex-direction: column;
+    }
+    .btn {
+      width: 80%;
+      margin-bottom: 10px;
+    }
+  }
+</style>
+<!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Header with time -->
+<div class="header">
+  <div class="time">7:39</div>
+</div>
+
+<!-- Greeting -->
+<div class="greeting">
+  <div>
+    <h2>Hi, Khalifah <span style="font-size:20px;">👋</span></h2>
+    <p>Welcome back!</p>
+  </div>
+  <div style="font-size:24px; cursor:pointer;">🔔</div>
+</div>
+
+<!-- Balance section -->
+<div class="balance-box">
+  <div class="balance-label">Your Balance</div>
+  <div class="balance-amount">₦180,000.00</div>
+  <div class="rewards">Weekly Rewards: ₦180,000.00</div>
+</div>
+
+<!-- Action Buttons -->
+<div class="buttons">
+  <div class="btn" onclick="alert('Upgrade feature coming soon!')">Upgrade</div>
+  <div class="btn" onclick="alert('Transfer feature coming soon!')">Transfer</div>
+</div>
+
+<!-- Menu icons -->
+<div class="menu">
+  <div class="menu-item" onclick="showDetails('Buy PAY ID')">
+    <i class="fas fa-credit-card"></i>
+    Buy PAY ID
+  </div>
+  <div class="menu-item" onclick="showDetails('Watch')">
+    <i class="fas fa-tv"></i>
+    Watch
+  </div>
+  <div class="menu-item" onclick="showDetails('Airtime')">
+    <i class="fas fa-signal"></i>
+    Airtime
+  </div>
+  <div class="menu-item" onclick="showDetails('Data')">
+    <i class="fas fa-database"></i>
+    Data
+  </div>
+  <div class="menu-item" onclick="showDetails('Support')">
+    <i class="fas fa-headset"></i>
+    Support
+  </div>
+  <div class="menu-item" onclick="showDetails('Group')">
+    <i class="fas fa-users"></i>
+    Group
+  </div>
+  <div class="menu-item" onclick="showDetails('Earn More')">
+    <i class="fas fa-money-bill-wave"></i>
+    Earn More
+  </div>
+  <div class="menu-item" onclick="showDetails('Profile')">
+    <i class="fas fa-user"></i>
+    Profile
+  </div>
+</div>
+
+<!-- Promotions -->
+<div class="promo">
+  <h3>Current Promotions</h3>
+  <h4>Transact & Win</h4>
+  <p>Locations: Cheers Gold Crest Mall | Chrismar Hotel | Hot Spot Pub & Grill</p>
+  <p>All customers who pay with PayGo in store will stand a chance to win great prizes.</p>
+</div>
+
+<!-- Details display section -->
+<div id="detail-section">
+  <button style="float:right; background:none; border:none; font-size:20px; cursor:pointer;" onclick="hideDetails()">✖</button>
+  <h4 id="detail-title"></h4>
+  <p id="detail-info"></p>
+</div>
+
+<script>
+  function showDetails(itemName) {
+    const detailsSection = document.getElementById('detail-section');
+    const title = document.getElementById('detail-title');
+    const info = document.getElementById('detail-info');
+
+    // Define details for each menu item
+    const detailsMap = {
+      'Buy PAY ID': 'Buy PAY ID allows you to purchase a PAY ID to send and receive money easily.',
+      'Watch': 'Watch feature offers access to a variety of entertainment content.',
+      'Airtime': 'Airtime recharge options for mobile networks.',
+      'Data': 'Buy data bundles for your mobile devices.',
+      'Support': 'Customer support services for assistance.',
+      'Group': 'Create or join groups for shared transactions.',
+      'Earn More': 'Participate in activities to earn more rewards.',
+      'Profile': 'View and update your profile information.',
+    };
+
+    title.innerText = itemName;
+    info.innerText = detailsMap[itemName] || 'Details coming soon.';
+    detailsSection.style.display = 'block';
+  }
+
+  function hideDetails() {
+    document.getElementById('detail-section').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
