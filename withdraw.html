@@ -5,68 +5,92 @@
   <title>Transfer To Bank</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f6ff;
-      padding: 40px 20px;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: white;
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    h2 {
-      color: #000;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-    input, select, button {
-      width: 100%;
-      padding: 20px;
-      margin: 12px 0;
-      font-size: 20px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-    }
-    .buy-button {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", sans-serif;
       background-color: #ffffff;
-      color: #a020f0;
-      border: 2px solid #a020f0;
-      font-size: 18px;
-      padding: 12px;
-      margin-top: -10px;
-      margin-bottom: 20px;
-      border-radius: 10px;
-      cursor: pointer;
     }
-    .buy-button:hover {
-      background-color: #f1e6ff;
-    }
-    .submit-button {
+
+    .header {
       background-color: #a020f0;
       color: white;
+      padding: 20px 20px;
       font-size: 22px;
-      border: none;
       font-weight: bold;
+    }
+
+    .header span {
+      margin-right: 10px;
+      font-size: 24px;
+      font-weight: normal;
       cursor: pointer;
     }
+
+    .container {
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      font-size: 18px;
+      padding: 18px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-sizing: border-box;
+    }
+
+    .buy-link {
+      display: block;
+      margin-top: -10px;
+      margin-bottom: 25px;
+      color: #a020f0;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .balance {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .error {
+      color: red;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .submit-button {
+      width: 100%;
+      background-color: #a020f0;
+      color: white;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 16px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
     .submit-button:hover {
       background-color: #8b1bd4;
     }
-    .error {
-      color: red;
-      font-size: 18px;
-      margin-top: 10px;
-    }
-    p {
-      font-size: 20px;
-    }
+
   </style>
 </head>
 <body>
+
+  <div class="header">
+    <span>&larr;</span> Transfer To Bank
+  </div>
+
   <div class="container">
     <h2>Bank Details</h2>
     <form id="transferForm">
@@ -75,65 +99,58 @@
 
       <select id="bankName" required>
         <option value="">Select Bank or Wallet</option>
-        <!-- Traditional Banks -->
+        <!-- Nigerian Banks and Wallets -->
         <option value="Access Bank">Access Bank</option>
-        <option value="Citibank Nigeria">Citibank Nigeria</option>
-        <option value="Ecobank Nigeria">Ecobank Nigeria</option>
-        <option value="Fidelity Bank">Fidelity Bank</option>
-        <option value="First Bank of Nigeria">First Bank of Nigeria</option>
-        <option value="FCMB">First City Monument Bank (FCMB)</option>
-        <option value="Globus Bank">Globus Bank</option>
-        <option value="GTBank">Guaranty Trust Bank (GTBank)</option>
-        <option value="Heritage Bank">Heritage Bank</option>
-        <option value="Jaiz Bank">Jaiz Bank</option>
-        <option value="Keystone Bank">Keystone Bank</option>
-        <option value="Parallex Bank">Parallex Bank</option>
-        <option value="Polaris Bank">Polaris Bank</option>
-        <option value="Premium Trust Bank">Premium Trust Bank</option>
-        <option value="Providus Bank">Providus Bank</option>
-        <option value="Stanbic IBTC Bank">Stanbic IBTC Bank</option>
-        <option value="Standard Chartered Bank">Standard Chartered Bank</option>
-        <option value="Sterling Bank">Sterling Bank</option>
-        <option value="SunTrust Bank">SunTrust Bank</option>
-        <option value="Titan Trust Bank">Titan Trust Bank</option>
-        <option value="Union Bank of Nigeria">Union Bank of Nigeria</option>
-        <option value="UBA">United Bank for Africa (UBA)</option>
-        <option value="Unity Bank">Unity Bank</option>
-        <option value="Wema Bank">Wema Bank</option>
+        <option value="First Bank">First Bank</option>
+        <option value="GTBank">GTBank</option>
+        <option value="UBA">UBA</option>
         <option value="Zenith Bank">Zenith Bank</option>
-
-        <!-- Wallets & Fintechs -->
+        <option value="Fidelity Bank">Fidelity Bank</option>
+        <option value="Union Bank">Union Bank</option>
+        <option value="Stanbic IBTC">Stanbic IBTC</option>
+        <option value="Polaris Bank">Polaris Bank</option>
+        <option value="Wema Bank">Wema Bank</option>
+        <option value="Keystone Bank">Keystone Bank</option>
+        <option value="FCMB">FCMB</option>
+        <option value="EcoBank">EcoBank</option>
+        <option value="Sterling Bank">Sterling Bank</option>
+        <option value="Unity Bank">Unity Bank</option>
+        <option value="Heritage Bank">Heritage Bank</option>
         <option value="Opay">Opay</option>
         <option value="Palmpay">Palmpay</option>
-        <option value="Moniepoint">Moniepoint</option>
         <option value="Kuda">Kuda</option>
+        <option value="Moniepoint">Moniepoint</option>
         <option value="Carbon">Carbon</option>
-        <option value="Rubies">Rubies</option>
-        <option value="VFD Microfinance Bank">VFD MFB</option>
         <option value="FairMoney">FairMoney</option>
+        <option value="Rubies">Rubies</option>
         <option value="Sparkle">Sparkle</option>
-        <option value="ALAT by Wema">ALAT by Wema</option>
         <option value="Eyowo">Eyowo</option>
-        <option value="TeamApt">TeamApt (now Moniepoint)</option>
+        <option value="ALAT">ALAT by Wema</option>
       </select>
 
       <input type="number" id="amount" placeholder="Amount (Max ₦180,000.00)" required>
       <input type="text" id="payId" placeholder="PAY ID CODE (Buy PAY ID)" required>
 
-      <!-- Buy PAY ID Button -->
-      <button type="button" class="buy-button" onclick="location.href='buy.html'">
-        Don’t have PAY ID? Buy one
-      </button>
+      <a href="buy.html" class="buy-link">Buy PAY ID code</a>
 
-      <p><strong>Available Balance:</strong> ₦<span id="balance">180000.00</span></p>
-
+      <p class="balance">Available Balance: ₦<span id="balance"></span></p>
       <p class="error" id="errorMsg"></p>
+
       <button type="submit" class="submit-button">Submit</button>
     </form>
   </div>
 
   <script>
-    let balance = 180000;
+    // Initialize balance from localStorage or set default
+    let balance = localStorage.getItem("walletBalance");
+    if (!balance) {
+      balance = 180000;
+      localStorage.setItem("walletBalance", balance);
+    } else {
+      balance = parseFloat(balance);
+    }
+
+    document.getElementById('balance').textContent = balance.toFixed(2);
 
     document.getElementById('transferForm').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -143,21 +160,25 @@
       const errorMsg = document.getElementById('errorMsg');
 
       if (payId !== "PAYGO238") {
-        errorMsg.textContent = "❌ Invalid PAY ID. Please use PAYGO238.";
+        errorMsg.textContent = "❌ Invalid PAY ID. Please buy pay Id.";
         return;
       }
 
-      if (isNaN(amount) || amount > balance) {
+      if (isNaN(amount) || amount <= 0 || amount > balance) {
         errorMsg.textContent = "❌ Amount exceeds available balance or is invalid.";
         return;
       }
 
+      // Deduct amount from balance
       balance -= amount;
+      localStorage.setItem("walletBalance", balance.toFixed(2));
       document.getElementById('balance').textContent = balance.toFixed(2);
       errorMsg.textContent = "";
 
+      // Redirect to next.html
       window.location.href = "next.html";
     });
   </script>
+
 </body>
 </html>
