@@ -1,72 +1,179 @@
-import React, { useState } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PayGo Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-const Dashboard = ({ username }) => {
-  const [balance] = useState(180000.0);
-  const [weeklyRewards] = useState(180000.0);
+    body {
+      background: #f2f5f7;
+      color: #1a1a1a;
+      padding: 16px;
+    }
 
-  return (
-    <div style={{ fontFamily: "Arial, sans-serif", backgroundColor: "#7b16e8", minHeight: "100vh", color: "#fff", padding: "20px" }}>
-      <header style={{ marginBottom: "20px" }}>
-        <h2>
-          Hi, {username} <span role="img" aria-label="waving hand">👋</span>
-        </h2>
-        <p>Welcome back!</p>
-      </header>
+    .balance-card {
+      background: #0057ff;
+      color: white;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
 
-      <section style={{ backgroundColor: "#6a12d1", borderRadius: "12px", padding: "20px", boxShadow: "0 5px 15px rgba(0,0,0,0.2)" }}>
-        <p>Your Balance</p>
-        <h1 style={{ fontWeight: "bold", fontSize: "2.5rem" }}>₦{balance.toLocaleString(undefined, {minimumFractionDigits: 2})}</h1>
-        <p>Weekly Rewards: ₦{weeklyRewards.toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
+    .balance-card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      font-weight: 400;
+    }
 
-        <div style={{ marginTop: "20px", display: "flex", gap: "15px" }}>
-          <button style={buttonStyle}>Upgrade</button>
-          <button style={buttonStyle}>Transfer</button>
-        </div>
-      </section>
+    .balance-card .amount {
+      font-size: 32px;
+      font-weight: 600;
+    }
 
-      <nav style={{ marginTop: "30px", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px", color: "#3c3c3c" }}>
-        {[
-          { label: "Buy PAY ID", icon: "💳" },
-          { label: "Watch", icon: "📺" },
-          { label: "Airtime", icon: "📶" },
-          { label: "Data", icon: "🛢️" },
-          { label: "Support", icon: "🎧" },
-          { label: "Group", icon: "🌐" },
-          { label: "Earn More", icon: "💰" },
-          { label: "Profile", icon: "👤" },
-        ].map(({ label, icon }) => (
-          <div key={label} style={{ textAlign: "center", backgroundColor: "#f0f0f0", borderRadius: "10px", padding: "15px", color: "#333", cursor: "pointer" }}>
-            <div style={{ fontSize: "1.5rem" }}>{icon}</div>
-            <div style={{ marginTop: "8px", fontSize: "0.85rem" }}>{label}</div>
-          </div>
-        ))}
-      </nav>
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
 
-      <section style={{ marginTop: "40px", color: "#fff" }}>
-        <h3>Current Promotions</h3>
-        <div style={{ backgroundColor: "#6a12d1", borderRadius: "12px", padding: "15px" }}>
-          <h2>Transact & Win</h2>
-          <p>
-            Locations: Cheers Gold Crest Mall | Chrismar Hotel | Hot Spot Pub & Grill
-          </p>
-          <p>
-            All customers who pay with PayGo in store will stand a chance to win great prizes.
-          </p>
-        </div>
-      </section>
+    .action-buttons button {
+      flex: 1;
+      background: white;
+      border: 2px solid #0057ff;
+      color: #0057ff;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 10px;
+      margin: 0 4px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .icon-box {
+      background: white;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .icon-box:hover {
+      transform: scale(1.05);
+    }
+
+    .icon-box img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 8px;
+    }
+
+    .icon-box span {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .promo-banner {
+      margin-top: 30px;
+      background: #ffe9cc;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .promo-banner .text {
+      max-width: 70%;
+    }
+
+    .promo-banner h3 {
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #ff7300;
+    }
+
+    .promo-banner p {
+      font-size: 14px;
+    }
+
+    .promo-banner img {
+      width: 60px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="balance-card">
+    <h2>Current Balance</h2>
+    <div class="amount">₦25,000.00</div>
+
+    <div class="action-buttons">
+      <button onclick="window.location.href='upgrade.html'">Upgrade</button>
+      <button onclick="window.location.href='transfer.html'">Transfer</button>
     </div>
-  );
-};
+  </div>
 
-const buttonStyle = {
-  backgroundColor: "#8f37ff",
-  border: "none",
-  padding: "12px 25px",
-  borderRadius: "25px",
-  color: "#fff",
-  cursor: "pointer",
-  fontWeight: "bold",
-  fontSize: "1rem",
-};
+  <div class="grid">
+    <div class="icon-box" onclick="location.href='buy.html'">
+      <img src="icons/payid.png" alt="Buy PAY ID">
+      <span>Buy PAY ID</span>
+    </div>
+    <div class="icon-box" onclick="location.href='withdraw.html'">
+      <img src="icons/withdraw.png" alt="Withdraw">
+      <span>Withdraw</span>
+    </div>
+    <div class="icon-box" onclick="location.href='airtime.html'">
+      <img src="icons/airtime.png" alt="Airtime">
+      <span>Airtime</span>
+    </div>
+    <div class="icon-box" onclick="location.href='data.html'">
+      <img src="icons/data.png" alt="Buy Data">
+      <span>Buy Data</span>
+    </div>
+    <div class="icon-box" onclick="location.href='electricity.html'">
+      <img src="icons/electricity.png" alt="Electricity">
+      <span>Electricity</span>
+    </div>
+    <div class="icon-box" onclick="location.href='cable.html'">
+      <img src="icons/cable.png" alt="Cable TV">
+      <span>Cable TV</span>
+    </div>
+    <div class="icon-box" onclick="location.href='bet.html'">
+      <img src="icons/bet.png" alt="Betting">
+      <span>Betting</span>
+    </div>
+    <div class="icon-box" onclick="location.href='more.html'">
+      <img src="icons/more.png" alt="More">
+      <span>More</span>
+    </div>
+  </div>
 
-export default Dashboard;
+  <div class="promo-banner">
+    <div class="text">
+      <h3>🔥 Promo Offer!</h3>
+      <p>Get 10% bonus on first PAY ID purchase this week.</p>
+    </div>
+    <img src="icons/promo.png" alt="Promo">
+  </div>
+
+</body>
+</html>
