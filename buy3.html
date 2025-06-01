@@ -2,160 +2,180 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Airtime Receipt</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airtime Top-up</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #fafafa;
       margin: 0;
-      padding: 20px;
-      color: #222;
+      padding: 0;
       text-align: center;
     }
-    .processing {
-      font-size: 24px;
-      margin-top: 50px;
-    }
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #00b96b;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .receipt {
+
+    .page {
       display: none;
-      max-width: 400px;
-      margin: 30px auto;
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 40px 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
       padding: 20px;
-      text-align: left;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
-    .receipt-header {
-      text-align: center;
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    .receipt-header img {
-      width: 40px;
-      margin-bottom: 8px;
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
     }
+
+    .btn:hover {
+      background-color: #574fcf;
+    }
+
     .amount {
-      font-size: 28px;
+      font-size: 2rem;
       font-weight: bold;
       margin: 10px 0;
     }
-    .success {
-      color: #00b96b;
+
+    .status {
+      color: green;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .info {
+      margin: 10px 0;
+      font-size: 16px;
+      text-align: left;
+    }
+
+    .label {
       font-weight: bold;
     }
-    .cashback {
-      color: #00b96b;
-      text-align: center;
-      margin-top: 5px;
-    }
-    .details {
-      margin-top: 20px;
-      border-top: 1px solid #eee;
-      padding-top: 15px;
-    }
-    .details p {
-      margin: 5px 0;
-    }
-    .btn {
-      display: inline-block;
-      background-color: #00b96b;
-      color: white;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 25px;
-      margin-top: 30px;
-      text-decoration: none;
-      font-size: 16px;
-      transition: background 0.3s ease;
-    }
-    .btn:hover {
-      background-color: #019256;
-    }
+
   </style>
 </head>
 <body>
 
-<div id="processing" class="processing">
-  Processing Purchase...
-  <div class="loader"></div>
-</div>
-
-<div id="receipt" class="receipt">
-  <div class="receipt-header">
-    <img id="networkLogo" src="" alt="Network Logo">
-    <h2 id="networkName">Network</h2>
-    <div class="amount" id="amountDisplay">₦0.00</div>
-    <div class="success">✅ Successful</div>
-    <div class="cashback" id="cashback"></div>
+  <!-- Airtime Form -->
+  <div id="formPage" class="page active">
+    <div class="container">
+      <h2>Airtime Top-Up</h2>
+      <form onsubmit="startPayment(event)">
+        <input type="tel" id="phone" placeholder="Enter phone number" required />
+        <input type="number" id="amount" placeholder="Enter amount (₦)" required />
+        <select id="network" required>
+          <option value="">Select Network</option>
+          <option value="Airtel">Airtel</option>
+          <option value="MTN">MTN</option>
+          <option value="Glo">Glo</option>
+          <option value="9mobile">9mobile</option>
+        </select>
+        <button class="btn" type="submit">Top Up</button>
+      </form>
+    </div>
   </div>
 
-  <div class="details">
-    <h3>Transaction Details</h3>
-    <p><strong>Recipient Mobile:</strong> <span id="phoneDisplay"></span></p>
-    <p><strong>Transaction Type:</strong> Airtime</p>
-    <p><strong>Payment Method:</strong> PayGo Wallet</p>
-    <p><strong>Transaction No.:</strong> <span id="txnId"></span></p>
-    <p><strong>Transaction Date:</strong> <span id="txnDate"></span></p>
+  <!-- Processing -->
+  <div id="processingPage" class="page">
+    <h2>Processing Airtime Payment...</h2>
+    <p>Please wait while we process your transaction.</p>
   </div>
 
-  <a href="dashboard.html" class="btn">Back to Dashboard</a>
-</div>
+  <!-- Receipt -->
+  <div id="receiptPage" class="page">
+    <div class="container">
+      <img id="networkLogo" src="" alt="Network Logo" width="60" />
+      <div class="amount" id="receiptAmount"></div>
+      <div class="status">✓ Successful</div>
 
-<script>
-  // Get query parameters
-  const params = new URLSearchParams(window.location.search);
-  const amount = parseFloat(params.get('amount') || '0').toFixed(2);
-  const phone = params.get('phone') || 'Unknown';
-  const network = params.get('network') || 'Unknown';
+      <div class="info"><span class="label">Recipient Mobile:</span> <span id="receiptPhone"></span></div>
+      <div class="info"><span class="label">Transaction Type:</span> Top up Airtime</div>
+      <div class="info"><span class="label">Payment Method:</span> Wallet Balance</div>
+      <div class="info"><span class="label">Transaction ID:</span> <span id="receiptID"></span></div>
+      <div class="info"><span class="label">Order Time:</span> <span id="receiptTime"></span></div>
 
-  const networkLogos = {
-    'Airtel': 'https://upload.wikimedia.org/wikipedia/commons/1/11/Airtel_logo_2020.png',
-    'MTN': 'https://upload.wikimedia.org/wikipedia/commons/2/2e/MTN_Logo.svg',
-    'Glo': 'https://upload.wikimedia.org/wikipedia/commons/4/42/Glo_Logo.png',
-    '9mobile': 'https://upload.wikimedia.org/wikipedia/commons/f/fb/9mobile_logo.png'
-  };
+      <button class="btn" onclick="showDashboard()">Back to Dashboard</button>
+    </div>
+  </div>
 
-  // Generate random transaction ID
-  const randomTxnId = '250' + Math.floor(100000000000000 + Math.random() * 900000000000000);
+  <!-- Dashboard -->
+  <div id="dashboardPage" class="page">
+    <h1>Welcome to Your Dashboard</h1>
+    <p>You have successfully completed your transaction.</p>
+  </div>
 
-  // Get current date & time
-  const now = new Date();
-  const dateString = now.toLocaleDateString('en-NG', {
-    year: 'numeric', month: 'long', day: 'numeric'
-  });
-  const timeString = now.toLocaleTimeString('en-NG');
-  const fullDateTime = `${dateString} ${timeString}`;
+  <script>
+    function startPayment(event) {
+      event.preventDefault();
 
-  // Delay and show receipt
-  setTimeout(() => {
-    document.getElementById('processing').style.display = 'none';
-    document.getElementById('receipt').style.display = 'block';
+      const phone = document.getElementById('phone').value;
+      const amount = document.getElementById('amount').value;
+      const network = document.getElementById('network').value;
 
-    // Fill receipt content
-    document.getElementById('amountDisplay').textContent = `₦${amount}`;
-    document.getElementById('cashback').textContent = `+₦${(amount * 0.01).toFixed(2)} Cashback`;
-    document.getElementById('phoneDisplay').textContent = phone;
-    document.getElementById('txnId').textContent = randomTxnId;
-    document.getElementById('txnDate').textContent = fullDateTime;
-    document.getElementById('networkName').textContent = network;
+      // Save details to show later
+      document.getElementById('receiptPhone').textContent = phone;
+      document.getElementById('receiptAmount').textContent = `₦${parseFloat(amount).toFixed(2)}`;
+      document.getElementById('receiptID').textContent = generateTransactionID();
+      document.getElementById('receiptTime').textContent = new Date().toLocaleString();
 
-    const logoUrl = networkLogos[network] || '';
-    document.getElementById('networkLogo').src = logoUrl;
-  }, 3000);
-</script>
+      // Network logos (can be expanded)
+      const logos = {
+        "Airtel": "https://1000logos.net/wp-content/uploads/2021/05/Airtel-logo.png",
+        "MTN": "https://upload.wikimedia.org/wikipedia/commons/6/6e/MTN_Logo.svg",
+        "Glo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Globacom_Logo.png",
+        "9mobile": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/9mobile_logo.svg/800px-9mobile_logo.svg.png"
+      };
+      document.getElementById('networkLogo').src = logos[network] || "";
+
+      // Go to processing
+      switchPage("formPage", "processingPage");
+
+      // Simulate processing for 4 seconds
+      setTimeout(() => {
+        switchPage("processingPage", "receiptPage");
+      }, 4000);
+    }
+
+    function generateTransactionID() {
+      return 'TX' + Math.random().toString(36).substring(2, 10).toUpperCase();
+    }
+
+    function switchPage(from, to) {
+      document.getElementById(from).classList.remove("active");
+      document.getElementById(to).classList.add("active");
+    }
+
+    function showDashboard() {
+      switchPage("receiptPage", "dashboardPage");
+    }
+  </script>
 
 </body>
 </html>
