@@ -2,29 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Processing Airtime</title>
+  <title>Airtime Receipt</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
+      background-color: #fafafa;
       margin: 0;
-      background: #f9f9f9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      color: #333;
-    }
-    .processing, .receipt {
+      padding: 20px;
+      color: #222;
       text-align: center;
     }
+    .processing {
+      font-size: 24px;
+      margin-top: 50px;
+    }
     .loader {
-      border: 5px solid #eee;
-      border-top: 5px solid #00c17b;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #00b96b;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       animation: spin 1s linear infinite;
       margin: 20px auto;
     }
@@ -34,98 +32,128 @@
     }
     .receipt {
       display: none;
-      max-width: 90%;
-      background: white;
+      max-width: 400px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: left;
     }
-    .logo {
-      background: red;
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 10px;
+    .receipt-header {
+      text-align: center;
+    }
+    .receipt-header img {
+      width: 40px;
+      margin-bottom: 8px;
     }
     .amount {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: bold;
+      margin: 10px 0;
     }
     .success {
-      color: green;
-      margin: 8px 0;
+      color: #00b96b;
+      font-weight: bold;
     }
     .cashback {
-      color: #00c17b;
-      font-size: 14px;
+      color: #00b96b;
+      text-align: center;
+      margin-top: 5px;
     }
     .details {
-      text-align: left;
       margin-top: 20px;
+      border-top: 1px solid #eee;
+      padding-top: 15px;
     }
     .details p {
-      margin: 4px 0;
-      font-size: 14px;
+      margin: 5px 0;
     }
     .btn {
-      margin-top: 20px;
-      padding: 12px 24px;
-      background: #00c17b;
+      display: inline-block;
+      background-color: #00b96b;
       color: white;
+      padding: 12px 20px;
       border: none;
       border-radius: 25px;
+      margin-top: 30px;
+      text-decoration: none;
       font-size: 16px;
-      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .btn:hover {
+      background-color: #019256;
     }
   </style>
 </head>
 <body>
 
-<div class="processing" id="processing">
+<div id="processing" class="processing">
+  Processing Purchase...
   <div class="loader"></div>
-  <p>Processing Airtime Purchase...</p>
 </div>
 
-<div class="receipt" id="receipt">
-  <div class="logo">A</div>
-  <div>Airtel</div>
-  <div class="amount">₦171.00</div>
-  <div class="success">✓ Successful</div>
-  <div class="cashback">+₦1.71 Cashback</div>
+<div id="receipt" class="receipt">
+  <div class="receipt-header">
+    <img id="networkLogo" src="" alt="Network Logo">
+    <h2 id="networkName">Network</h2>
+    <div class="amount" id="amountDisplay">₦0.00</div>
+    <div class="success">✅ Successful</div>
+    <div class="cashback" id="cashback"></div>
+  </div>
 
   <div class="details">
-    <p><strong>Recipient Mobile:</strong> <span id="userNumber">Loading...</span></p>
+    <h3>Transaction Details</h3>
+    <p><strong>Recipient Mobile:</strong> <span id="phoneDisplay"></span></p>
     <p><strong>Transaction Type:</strong> Airtime</p>
     <p><strong>Payment Method:</strong> PayGo Wallet</p>
     <p><strong>Transaction No.:</strong> <span id="txnId"></span></p>
     <p><strong>Transaction Date:</strong> <span id="txnDate"></span></p>
   </div>
 
-  <button class="btn" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
+  <a href="dashboard.html" class="btn">Back to Dashboard</a>
 </div>
 
 <script>
-  // Simulated values
-  const userPhone = sessionStorage.getItem('userPhone') || '09012345678'; // Fallback if not set
-  const transactionId = '250531100100003210' + Math.floor(Math.random() * 100000);
-  const date = new Date().toLocaleString('en-US', {
-    year: 'numeric', month: 'long', day: '2-digit',
-    hour: '2-digit', minute: '2-digit', second: '2-digit'
-  });
+  // Get query parameters
+  const params = new URLSearchParams(window.location.search);
+  const amount = parseFloat(params.get('amount') || '0').toFixed(2);
+  const phone = params.get('phone') || 'Unknown';
+  const network = params.get('network') || 'Unknown';
 
-  // Show receipt after 3 seconds
+  const networkLogos = {
+    'Airtel': 'https://upload.wikimedia.org/wikipedia/commons/1/11/Airtel_logo_2020.png',
+    'MTN': 'https://upload.wikimedia.org/wikipedia/commons/2/2e/MTN_Logo.svg',
+    'Glo': 'https://upload.wikimedia.org/wikipedia/commons/4/42/Glo_Logo.png',
+    '9mobile': 'https://upload.wikimedia.org/wikipedia/commons/f/fb/9mobile_logo.png'
+  };
+
+  // Generate random transaction ID
+  const randomTxnId = '250' + Math.floor(100000000000000 + Math.random() * 900000000000000);
+
+  // Get current date & time
+  const now = new Date();
+  const dateString = now.toLocaleDateString('en-NG', {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+  const timeString = now.toLocaleTimeString('en-NG');
+  const fullDateTime = `${dateString} ${timeString}`;
+
+  // Delay and show receipt
   setTimeout(() => {
     document.getElementById('processing').style.display = 'none';
     document.getElementById('receipt').style.display = 'block';
-    document.getElementById('userNumber').innerText = userPhone;
-    document.getElementById('txnId').innerText = transactionId;
-    document.getElementById('txnDate').innerText = date;
+
+    // Fill receipt content
+    document.getElementById('amountDisplay').textContent = `₦${amount}`;
+    document.getElementById('cashback').textContent = `+₦${(amount * 0.01).toFixed(2)} Cashback`;
+    document.getElementById('phoneDisplay').textContent = phone;
+    document.getElementById('txnId').textContent = randomTxnId;
+    document.getElementById('txnDate').textContent = fullDateTime;
+    document.getElementById('networkName').textContent = network;
+
+    const logoUrl = networkLogos[network] || '';
+    document.getElementById('networkLogo').src = logoUrl;
   }, 3000);
 </script>
 
