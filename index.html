@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PayGo - Register/Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen;
+      background-color: #fef5f4;
+      color: #000;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 200px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 16px;
+    }
+
+    .primary-btn {
+      padding: 15px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 40px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .switch-text {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #a042f5;
+    }
+
+    .switch-text a {
+      color: #a042f5;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="IMG_2905.png" alt="PayGo Logo" class="logo" />
+
+    <h2 id="form-title">Register to continue</h2>
+
+    <form id="auth-form">
+      <input type="text" id="name" placeholder="Enter Name" required />
+      <input type="email" id="email" placeholder="Enter Email" required />
+      <input type="password" id="password" placeholder="Enter Password" required />
+
+      <button type="submit" class="primary-btn">Register</button>
+    </form>
+
+    <p class="switch-text">
+      Already have an account? <a href="#" id="toggle-link">Login</a>
+    </p>
+  </div>
+
+  <script>
+    const form = document.getElementById('auth-form');
+    const formTitle = document.getElementById('form-title');
+    const toggleLink = document.getElementById('toggle-link');
+    const nameInput = document.getElementById('name');
+    const submitBtn = form.querySelector('button');
+
+    let isRegistering = true;
+
+    toggleLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      isRegistering = !isRegistering;
+
+      formTitle.textContent = isRegistering ? 'Register to continue' : 'Login to continue';
+      toggleLink.textContent = isRegistering ? 'Login' : 'Register';
+      nameInput.style.display = isRegistering ? 'block' : 'none';
+      submitBtn.textContent = isRegistering ? 'Register' : 'Login';
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Simulate success
+      window.location.href = 'welcomebonus.html';
+    });
+  </script>
+</body>
+</html>
