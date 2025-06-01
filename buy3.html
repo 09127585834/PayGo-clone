@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Airtime Top-up</title>
+  <title>Processing Airtime</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -30,33 +30,6 @@
       box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
     }
 
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      background-color: #6c63ff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      margin-top: 20px;
-      font-size: 16px;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background-color: #574fcf;
-    }
-
     .amount {
       font-size: 2rem;
       font-weight: bold;
@@ -79,36 +52,34 @@
       font-weight: bold;
     }
 
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background-color: #574fcf;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Airtime Form -->
-  <div id="formPage" class="page active">
-    <div class="container">
-      <h2>Airtime Top-Up</h2>
-      <form onsubmit="startPayment(event)">
-        <input type="tel" id="phone" placeholder="Enter phone number" required />
-        <input type="number" id="amount" placeholder="Enter amount (₦)" required />
-        <select id="network" required>
-          <option value="">Select Network</option>
-          <option value="Airtel">Airtel</option>
-          <option value="MTN">MTN</option>
-          <option value="Glo">Glo</option>
-          <option value="9mobile">9mobile</option>
-        </select>
-        <button class="btn" type="submit">Top Up</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Processing -->
-  <div id="processingPage" class="page">
+  <!-- Processing Page -->
+  <div id="processingPage" class="page active">
     <h2>Processing Airtime Payment...</h2>
     <p>Please wait while we process your transaction.</p>
   </div>
 
-  <!-- Receipt -->
+  <!-- Receipt Page -->
   <div id="receiptPage" class="page">
     <div class="container">
       <img id="networkLogo" src="" alt="Network Logo" width="60" />
@@ -121,60 +92,44 @@
       <div class="info"><span class="label">Transaction ID:</span> <span id="receiptID"></span></div>
       <div class="info"><span class="label">Order Time:</span> <span id="receiptTime"></span></div>
 
-      <button class="btn" onclick="showDashboard()">Back to Dashboard</button>
+      <button class="btn" onclick="window.location.href='dashboard.html'">Back to Dashboard</button>
     </div>
   </div>
 
-  <!-- Dashboard -->
-  <div id="dashboardPage" class="page">
-    <h1>Welcome to Your Dashboard</h1>
-    <p>You have successfully completed your transaction.</p>
-  </div>
-
   <script>
-    function startPayment(event) {
-      event.preventDefault();
+    // Example user data (replace this with your actual data from session/localStorage or passed vars)
+    const userData = {
+      phone: "09127585834",
+      amount: 400,
+      network: "Airtel"
+    };
 
-      const phone = document.getElementById('phone').value;
-      const amount = document.getElementById('amount').value;
-      const network = document.getElementById('network').value;
-
-      // Save details to show later
-      document.getElementById('receiptPhone').textContent = phone;
-      document.getElementById('receiptAmount').textContent = `₦${parseFloat(amount).toFixed(2)}`;
-      document.getElementById('receiptID').textContent = generateTransactionID();
-      document.getElementById('receiptTime').textContent = new Date().toLocaleString();
-
-      // Network logos (can be expanded)
-      const logos = {
-        "Airtel": "https://1000logos.net/wp-content/uploads/2021/05/Airtel-logo.png",
-        "MTN": "https://upload.wikimedia.org/wikipedia/commons/6/6e/MTN_Logo.svg",
-        "Glo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Globacom_Logo.png",
-        "9mobile": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/9mobile_logo.svg/800px-9mobile_logo.svg.png"
-      };
-      document.getElementById('networkLogo').src = logos[network] || "";
-
-      // Go to processing
-      switchPage("formPage", "processingPage");
-
-      // Simulate processing for 4 seconds
-      setTimeout(() => {
-        switchPage("processingPage", "receiptPage");
-      }, 4000);
-    }
+    const logos = {
+      "Airtel": "https://1000logos.net/wp-content/uploads/2021/05/Airtel-logo.png",
+      "MTN": "https://upload.wikimedia.org/wikipedia/commons/6/6e/MTN_Logo.svg",
+      "Glo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Globacom_Logo.png",
+      "9mobile": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/9mobile_logo.svg/800px-9mobile_logo.svg.png"
+    };
 
     function generateTransactionID() {
       return 'TX' + Math.random().toString(36).substring(2, 10).toUpperCase();
     }
 
-    function switchPage(from, to) {
-      document.getElementById(from).classList.remove("active");
-      document.getElementById(to).classList.add("active");
+    function showReceipt() {
+      // Fill in receipt details
+      document.getElementById('receiptPhone').textContent = userData.phone;
+      document.getElementById('receiptAmount').textContent = `₦${parseFloat(userData.amount).toFixed(2)}`;
+      document.getElementById('receiptID').textContent = generateTransactionID();
+      document.getElementById('receiptTime').textContent = new Date().toLocaleString();
+      document.getElementById('networkLogo').src = logos[userData.network] || "";
+
+      // Switch views
+      document.getElementById('processingPage').classList.remove("active");
+      document.getElementById('receiptPage').classList.add("active");
     }
 
-    function showDashboard() {
-      switchPage("receiptPage", "dashboardPage");
-    }
+    // Start 4-second delay
+    setTimeout(showReceipt, 4000);
   </script>
 
 </body>
