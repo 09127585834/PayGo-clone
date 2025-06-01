@@ -1,135 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f2ff;
-      margin: 0;
-      padding: 0;
-    }
-    .header {
-      background-color: #7e00ff;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    .balance-card {
-      background-color: #a000ff;
-      color: white;
-      margin: 20px;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-    }
-    .balance-card h2 {
-      margin: 0;
-      font-size: 30px;
-    }
-    .balance-card button {
-      margin: 10px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: #fff;
-      color: #a000ff;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin: 20px;
-    }
-    .feature {
-      width: 90px;
-      text-align: center;
-      margin: 15px;
-      background: #fff;
-      padding: 10px;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-    .feature:hover {
-      transform: scale(1.05);
-    }
-    .promotions {
-      background-color: white;
-      margin: 20px;
-      padding: 15px;
-      border-radius: 10px;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
+import React, { useState } from "react";
 
-  <div class="header">
-    <h1>Hi, <span id="username">User</span> 👋</h1>
-    <p>Welcome back!</p>
-  </div>
+const Dashboard = ({ username }) => {
+  const [balance] = useState(180000.0);
+  const [weeklyRewards] = useState(180000.0);
 
-  <div class="balance-card">
-    <p>Your Balance</p>
-    <h2>₦<span id="balance">180000.00</span></h2>
-    <p>Weekly Rewards: ₦180,000.00</p>
-    <button onclick="redirectTo('update.html')">Upgrade</button>
-    <button onclick="transfer()">Transfer</button>
-  </div>
+  return (
+    <div style={{ fontFamily: "Arial, sans-serif", backgroundColor: "#7b16e8", minHeight: "100vh", color: "#fff", padding: "20px" }}>
+      <header style={{ marginBottom: "20px" }}>
+        <h2>
+          Hi, {username} <span role="img" aria-label="waving hand">👋</span>
+        </h2>
+        <p>Welcome back!</p>
+      </header>
 
-  <div class="features">
-    <div class="feature" onclick="redirectTo('buy.html')">Buy PAY ID</div>
-    <div class="feature" onclick="redirectTo('watch.html')">Watch</div>
-    <div class="feature" onclick="redirectTo('airtime.html')">Airtime</div>
-    <div class="feature" onclick="redirectTo('data.html')">Data</div>
-    <div class="feature" onclick="redirectTo('support.html')">Support</div>
-    <div class="feature" onclick="redirectTo('group.html')">Group</div>
-    <div class="feature" onclick="redirectTo('earn.html')">Earn More</div>
-    <div class="feature" onclick="redirectTo('profile.html')">Profile</div>
-  </div>
+      <section style={{ backgroundColor: "#6a12d1", borderRadius: "12px", padding: "20px", boxShadow: "0 5px 15px rgba(0,0,0,0.2)" }}>
+        <p>Your Balance</p>
+        <h1 style={{ fontWeight: "bold", fontSize: "2.5rem" }}>₦{balance.toLocaleString(undefined, {minimumFractionDigits: 2})}</h1>
+        <p>Weekly Rewards: ₦{weeklyRewards.toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
 
-  <div class="promotions">
-    <h3>Current Promotions</h3>
-    <p><strong>Winners of K20 Airtime</strong></p>
-    <p>Patience Ng’andwe &nbsp;|&nbsp; Phiri John</p>
-  </div>
+        <div style={{ marginTop: "20px", display: "flex", gap: "15px" }}>
+          <button style={buttonStyle}>Upgrade</button>
+          <button style={buttonStyle}>Transfer</button>
+        </div>
+      </section>
 
-  <script>
-    // Set this once after registration (example)
-    if (!localStorage.getItem('registeredUsername')) {
-      localStorage.setItem('registeredUsername', 'Khalifah'); // Change this as needed
-    }
+      <nav style={{ marginTop: "30px", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "20px", color: "#3c3c3c" }}>
+        {[
+          { label: "Buy PAY ID", icon: "💳" },
+          { label: "Watch", icon: "📺" },
+          { label: "Airtime", icon: "📶" },
+          { label: "Data", icon: "🛢️" },
+          { label: "Support", icon: "🎧" },
+          { label: "Group", icon: "🌐" },
+          { label: "Earn More", icon: "💰" },
+          { label: "Profile", icon: "👤" },
+        ].map(({ label, icon }) => (
+          <div key={label} style={{ textAlign: "center", backgroundColor: "#f0f0f0", borderRadius: "10px", padding: "15px", color: "#333", cursor: "pointer" }}>
+            <div style={{ fontSize: "1.5rem" }}>{icon}</div>
+            <div style={{ marginTop: "8px", fontSize: "0.85rem" }}>{label}</div>
+          </div>
+        ))}
+      </nav>
 
-    // Load user data
-    const username = localStorage.getItem('registeredUsername') || 'User';
-    document.getElementById('username').textContent = username;
+      <section style={{ marginTop: "40px", color: "#fff" }}>
+        <h3>Current Promotions</h3>
+        <div style={{ backgroundColor: "#6a12d1", borderRadius: "12px", padding: "15px" }}>
+          <h2>Transact & Win</h2>
+          <p>
+            Locations: Cheers Gold Crest Mall | Chrismar Hotel | Hot Spot Pub & Grill
+          </p>
+          <p>
+            All customers who pay with PayGo in store will stand a chance to win great prizes.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+};
 
-    function redirectTo(page) {
-      window.location.href = page;
-    }
+const buttonStyle = {
+  backgroundColor: "#8f37ff",
+  border: "none",
+  padding: "12px 25px",
+  borderRadius: "25px",
+  color: "#fff",
+  cursor: "pointer",
+  fontWeight: "bold",
+  fontSize: "1rem",
+};
 
-    function transfer() {
-      let balanceElement = document.getElementById("balance");
-      let balance = parseFloat(balanceElement.textContent);
-      let amount = prompt("Enter amount to withdraw:");
-
-      amount = parseFloat(amount);
-      if (!isNaN(amount) && amount > 0 && amount <= balance) {
-        balance -= amount;
-        balanceElement.textContent = balance.toFixed(2);
-        alert("₦" + amount + " withdrawn successfully.");
-        window.location.href = 'withdraw.html';
-      } else {
-        alert("Invalid amount or insufficient balance.");
-      }
-    }
-  </script>
-
-</body>
-</html>
+export default Dashboard;
