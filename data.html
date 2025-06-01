@@ -1,165 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buy Data - PayGo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
-    }
-
-    header {
-      background-color: #fff;
-      padding: 15px;
-      text-align: center;
-      font-size: 20px;
-      font-weight: bold;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .form-section {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
       padding: 20px;
     }
-
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    .network-tabs {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-    }
-
-    .network-tab {
-      flex: 1;
-      padding: 10px;
-      text-align: center;
-      cursor: pointer;
-      border: 1px solid #ccc;
-      background-color: #fff;
-      margin: 0 5px;
-      border-radius: 8px;
-    }
-
-    .network-tab.active {
-      background-color: #0a84ff;
-      color: #fff;
-      border-color: #0a84ff;
-    }
-
-    .data-plans {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .plan-card {
+    .container {
       background: #fff;
-      padding: 12px;
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
       border-radius: 10px;
-      border: 1px solid #ddd;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-
-    .plan-card h3 {
-      margin: 0;
-      font-size: 18px;
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
     }
-
-    .plan-card p {
-      margin: 5px 0;
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .error {
+      color: red;
+      text-align: center;
+    }
+    .redirect {
+      text-align: center;
       font-size: 14px;
     }
-
-    .buy-btn {
-      display: block;
-      width: 100%;
-      margin-top: 20px;
-      background-color: #0a84ff;
-      color: white;
-      border: none;
-      padding: 14px;
-      font-size: 16px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .buy-btn:hover {
-      background-color: #006edc;
+    .redirect a {
+      color: blue;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
 
-<header>Buy Mobile Data</header>
+<div class="container">
+  <h2>Buy Data</h2>
+  <div id="error" class="error"></div>
+  <form id="buyDataForm">
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" name="phone" required placeholder="e.g. 08012345678" />
 
-<div class="form-section">
-  <input type="tel" id="phone" placeholder="Enter phone number (e.g. 08012345678)" required>
-  <input type="text" id="payid" placeholder="Enter your PAY ID" required>
+    <label for="amount">Amount (₦)</label>
+    <input type="number" id="amount" name="amount" required placeholder="Enter amount" />
 
-  <div class="network-tabs">
-    <div class="network-tab active" onclick="selectNetwork(this)">MTN</div>
-    <div class="network-tab" onclick="selectNetwork(this)">Glo</div>
-    <div class="network-tab" onclick="selectNetwork(this)">Airtel</div>
-    <div class="network-tab" onclick="selectNetwork(this)">9mobile</div>
+    <label for="network">Network</label>
+    <select id="network" name="network" required>
+      <option value="">Select Network</option>
+      <option value="MTN">MTN</option>
+      <option value="Glo">Glo</option>
+      <option value="Airtel">Airtel</option>
+      <option value="9mobile">9mobile</option>
+    </select>
+
+    <label for="payid">PAY ID</label>
+    <input type="text" id="payid" name="payid" required placeholder="Your PAY ID" />
+
+    <button type="submit">Buy Data</button>
+  </form>
+
+  <div class="redirect">
+    Don’t have a PAY ID? <a href="buy.html">Buy PAY ID</a>
   </div>
-
-  <div class="data-plans">
-    <div class="plan-card">
-      <h3>1GB</h3>
-      <p>1 Day - ₦500</p>
-      <p style="color:green;">₦10 Cashback</p>
-    </div>
-    <div class="plan-card">
-      <h3>6GB</h3>
-      <p>7 Days - ₦2,500</p>
-      <p style="color:green;">₦50 Cashback</p>
-    </div>
-    <div class="plan-card">
-      <h3>12GB</h3>
-      <p>30 Days - ₦5,000</p>
-      <p style="color:green;">₦50 Cashback</p>
-    </div>
-    <div class="plan-card">
-      <h3>250MB</h3>
-      <p>1 Day - ₦50</p>
-      <p style="color:green;">₦1 Cashback</p>
-    </div>
-  </div>
-
-  <button class="buy-btn" onclick="buyData()">Buy</button>
 </div>
 
 <script>
-  function selectNetwork(tab) {
-    const allTabs = document.querySelectorAll('.network-tab');
-    allTabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-  }
+  // Simulated PAY ID and balance from session or server
+  const storedPayId = localStorage.getItem('payid') || 'PAY123456'; // Replace with backend integration
+  let dashboardBalance = parseFloat(localStorage.getItem('balance')) || 15000;
 
-  function buyData() {
+  document.getElementById('buyDataForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
     const phone = document.getElementById('phone').value.trim();
+    const amount = parseFloat(document.getElementById('amount').value.trim());
+    const network = document.getElementById('network').value.trim();
     const payid = document.getElementById('payid').value.trim();
+    const errorDiv = document.getElementById('error');
 
-    if (!phone || !payid) {
-      alert("Please enter both phone number and PAY ID.");
+    // Basic validations
+    if (!phone || !amount || !network || !payid) {
+      errorDiv.textContent = 'Please fill all fields.';
       return;
     }
 
-    // Redirect to buy2.html
-    window.location.href = "buy2.html";
-  }
+    if (payid !== storedPayId) {
+      errorDiv.textContent = 'Incorrect PAY ID. Redirecting...';
+      setTimeout(() => {
+        window.location.href = 'buy.html';
+      }, 2000);
+      return;
+    }
+
+    if (amount > dashboardBalance) {
+      errorDiv.textContent = 'Insufficient balance.';
+      return;
+    }
+
+    // Deduct from balance (simulate)
+    dashboardBalance -= amount;
+    localStorage.setItem('balance', dashboardBalance.toFixed(2));
+
+    // Simulate success and redirect
+    alert('Data purchase successful!');
+    window.location.href = 'buy2.html';
+  });
 </script>
 
 </body>
