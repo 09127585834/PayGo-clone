@@ -1,111 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Withdrawal Processing</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Processing Withdrawal</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f4;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: #ffffff;
       display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      background-color: #9b34eb;
+      padding: 10px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .sub-header {
+      background-color: #2a004e;
+      padding: 15px;
+      color: white;
+      font-size: 17px;
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      flex-direction: column;
-    }
-
-    .processing, .receipt {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       text-align: center;
-      width: 300px;
-    }
-
-    .receipt {
-      display: none;
+      padding: 20px;
     }
 
     .spinner {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #00a86b;
+      border: 4px solid #eee;
+      border-top: 4px solid #9b34eb;
       border-radius: 50%;
       width: 50px;
       height: 50px;
-      margin: 20px auto;
       animation: spin 1s linear infinite;
+      margin-bottom: 20px;
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      to { transform: rotate(360deg); }
     }
 
-    .dashboard-bar {
-      margin-top: 20px;
-      background-color: #00a86b;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      border-radius: 0 0 10px 10px;
-      cursor: pointer;
-      transition: background 0.3s;
+    h2 {
+      margin: 10px 0 5px;
+      font-size: 20px;
+      color: #111;
     }
 
-    .dashboard-bar:hover {
-      background-color: #008b5a;
+    p {
+      color: #555;
+      font-size: 14px;
+    }
+
+    .progress-bar {
+      height: 5px;
+      width: 100%;
+      background: #eee;
+      margin-top: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      background: #9b34eb;
+      width: 0%;
+      height: 100%;
+      animation: fillBar 2s linear forwards;
+    }
+
+    @keyframes fillBar {
+      to { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <div class="processing" id="processing">
-    <h2>Processing Withdrawal...</h2>
-    <div class="spinner"></div>
-    <p>Please wait</p>
-  </div>
+  <div class="header">9:42</div>
+  <div class="sub-header">Processing Withdrawal</div>
 
-  <div class="receipt" id="receipt">
-    <h2>Withdrawal Successful</h2>
-    <p><strong>Name:</strong> <span id="name"></span></p>
-    <p><strong>Account:</strong> <span id="account"></span></p>
-    <p><strong>Bank:</strong> <span id="bank"></span></p>
-    <p><strong>Amount:</strong> ₦<span id="amount"></span></p>
-    <p><strong>Date:</strong> <span id="date"></span></p>
-    <div class="dashboard-bar" onclick="window.location.href='dashboard.html'">
-      Back to Dashboard
+  <div class="container">
+    <div class="spinner"></div>
+    <h2>Sending Funds</h2>
+    <p>Please wait while we process your withdrawal...</p>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
     </div>
   </div>
 
   <script>
-    // Helper function to get query parameters
-    function getParam(param) {
-      const urlParams = new URLSearchParams(window.location.search);
-      return urlParams.get(param) || '';
-    }
-
-    // Populate fields with user data
-    const userData = {
-      name: getParam('name'),
-      account: getParam('account'),
-      bank: getParam('bank'),
-      amount: getParam('amount'),
-      date: getParam('date')
-    };
-
-    document.getElementById('name').textContent = userData.name;
-    document.getElementById('account').textContent = userData.account;
-    document.getElementById('bank').textContent = userData.bank;
-    document.getElementById('amount').textContent = userData.amount;
-    document.getElementById('date').textContent = userData.date;
-
-    // Switch from processing to receipt after 3 seconds
     setTimeout(() => {
-      document.getElementById('processing').style.display = 'none';
-      document.getElementById('receipt').style.display = 'block';
-    }, 3000);
+      window.location.href = "app.html";
+    }, 2000); // redirect after 2 seconds
   </script>
 
 </body>
