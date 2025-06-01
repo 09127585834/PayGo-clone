@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Make Payment - PayGo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 25px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      text-align: center;
+      color: #00B894;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .label {
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .value-box {
+      background-color: #f1f1f1;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background-color: #00B894;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .button:hover {
+      background-color: #009f7a;
+    }
+
+    .note {
+      font-size: 13px;
+      color: #888;
+      text-align: center;
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Transfer Payment</h2>
+
+    <div class="section">
+      <div class="label">Amount to Pay</div>
+      <div class="value-box">₦7,250</div>
+
+      <div class="label">Bank Name</div>
+      <div class="value-box">Wema Bank</div>
+
+      <div class="label">Account Number</div>
+      <div class="value-box">0123456789</div>
+
+      <div class="label">Account Name</div>
+      <div class="value-box">PayGo Technologies</div>
+    </div>
+
+    <button class="button" onclick="redirectToVerified()">I Have Sent the Money</button>
+
+    <div class="note">Please ensure you use your registered name or PAY ID as payment reference.</div>
+  </div>
+
+  <script>
+    function redirectToVerified() {
+      // You can also perform validation or confirmation here before redirect
+      window.location.href = "verified.html";
+    }
+  </script>
+
+</body>
+</html>
