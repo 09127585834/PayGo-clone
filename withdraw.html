@@ -6,148 +6,161 @@
   <title>Withdraw</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f8f9fc;
+      font-family: "Segoe UI", sans-serif;
+      background: #f7f8fa;
       margin: 0;
       padding: 0;
     }
     .container {
+      max-width: 500px;
+      margin: auto;
       padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     h2 {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .section {
-      background-color: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      margin-top: 0;
+      font-size: 20px;
     }
     label {
+      font-size: 14px;
+      margin-bottom: 6px;
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      color: #555;
     }
-    input, select, button {
+    input, select {
       width: 100%;
       padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid #ccc;
+      margin-bottom: 15px;
       font-size: 16px;
+      box-sizing: border-box;
     }
-    button {
-      background-color: #94e2bd;
-      color: #000;
-      font-weight: bold;
+    .note {
+      background: #eafbe7;
+      color: #2d9d2d;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    .note::before {
+      content: "🔔";
+      margin-right: 8px;
+    }
+    .btn {
+      width: 100%;
+      padding: 14px;
+      background: #d3c1f7;
+      color: white;
       border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
       cursor: pointer;
     }
-    input[readonly] {
-      background-color: #f1f1f1;
-    }
-    .no-payid {
+    .buy-link {
       text-align: center;
-      margin-top: 10px;
-    }
-    .no-payid a {
-      color: #007bff;
-      text-decoration: none;
+      display: block;
+      margin-top: -10px;
+      margin-bottom: 10px;
+      color: #6200ea;
+      font-weight: 500;
+      text-decoration: underline;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h2>Transfer To Bank Account</h2>
+    <div class="card">
+      <h2>Withdraw to Bank</h2>
 
-    <div class="section">
-      <form action="next.html" method="GET">
-        <label for="payid">PAY ID</label>
-        <input type="text" id="payid" name="payid" placeholder="Enter your PAY ID" required>
+      <label for="payid">PAY ID</label>
+      <input type="text" id="payid" placeholder="Enter your PAY ID" />
+      <span class="buy-link" onclick="redirectToBuy()">Don't have a PAY ID? Buy one</span>
 
-        <label for="accountNumber">Account Number</label>
-        <input type="text" id="accountNumber" name="accountNumber" placeholder="Enter 10-digit account number" pattern="\d{10}" required>
+      <div class="note">All bank transfers are free!</div>
 
-        <label for="bank">Select Bank</label>
-        <select id="bank" name="bank" required>
-          <option value="">-- Select Bank --</option>
-          <option value="access">Access Bank</option>
-          <option value="citibank">Citibank</option>
-          <option value="ecobank">Ecobank</option>
-          <option value="fidelity">Fidelity Bank</option>
-          <option value="first">First Bank</option>
-          <option value="fcmb">FCMB</option>
-          <option value="globus">Globus Bank</option>
-          <option value="gtbank">GTBank</option>
-          <option value="heritage">Heritage Bank</option>
-          <option value="jaiz">Jaiz Bank</option>
-          <option value="keystone">Keystone Bank</option>
-          <option value="kuda">Kuda Bank</option>
-          <option value="opay">Opay</option>
-          <option value="palmpay">PalmPay</option>
-          <option value="parallex">Parallex Bank</option>
-          <option value="polaris">Polaris Bank</option>
-          <option value="providus">Providus Bank</option>
-          <option value="stanbic">Stanbic IBTC</option>
-          <option value="standard">Standard Chartered</option>
-          <option value="sterling">Sterling Bank</option>
-          <option value="suntrust">Suntrust Bank</option>
-          <option value="taj">Taj Bank</option>
-          <option value="uba">UBA</option>
-          <option value="union">Union Bank</option>
-          <option value="unity">Unity Bank</option>
-          <option value="wema">Wema Bank</option>
-          <option value="zenith">Zenith Bank</option>
-        </select>
+      <label for="account">Account Number</label>
+      <input type="text" id="account" maxlength="10" placeholder="10-digit account number" />
 
-        <label for="accountName">Account Name</label>
-        <input type="text" id="accountName" name="accountName" readonly placeholder="Account name will appear here">
+      <label for="bank">Select Bank</label>
+      <select id="bank">
+        <option value="">-- Select Bank --</option>
+        <option>Access Bank</option>
+        <option>GTBank</option>
+        <option>First Bank</option>
+        <option>UBA</option>
+        <option>Zenith Bank</option>
+        <option>Fidelity Bank</option>
+        <option>Stanbic IBTC</option>
+        <option>Polaris Bank</option>
+        <option>Union Bank</option>
+        <option>Wema Bank</option>
+        <option>Jaiz Bank</option>
+        <option>Kuda</option>
+        <option>Opay</option>
+        <option>Moniepoint</option>
+        <option>Palmpay</option>
+        <option>Carbon</option>
+        <option>Rubies</option>
+      </select>
 
-        <button type="submit">Next</button>
-      </form>
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" placeholder="Your Full Name" />
 
-      <div class="no-payid">
-        Don't have a PAY ID? <a href="buy.html">Buy Now</a>
-      </div>
+      <label for="accountname">Account Name</label>
+      <input type="text" id="accountname" placeholder="Bank Account Name" />
+
+      <button class="btn" onclick="proceed()">Next</button>
     </div>
   </div>
 
   <script>
-    const accountNumberInput = document.getElementById('accountNumber');
-    const bankSelect = document.getElementById('bank');
-    const accountNameField = document.getElementById('accountName');
-
-    function simulateFetchAccountName(accountNumber, bank) {
-      // Replace this with a real API call (e.g. Paystack, Flutterwave)
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const fakeNames = {
-            'gtbank': 'ADEBAYO JOHNSON',
-            'first': 'CHIOMA OBI',
-            'opay': 'MUHAMMAD NASIR',
-            'palmpay': 'IBRAHIM KHALIFAH'
-          };
-          resolve(fakeNames[bank] || 'JOHN DOE');
-        }, 1000);
-      });
+    function redirectToBuy() {
+      window.location.href = "buy.html";
     }
 
-    function handleFetch() {
-      const accountNumber = accountNumberInput.value;
-      const bank = bankSelect.value;
+    function proceed() {
+      const payid = document.getElementById("payid").value.trim();
+      const account = document.getElementById("account").value.trim();
+      const bank = document.getElementById("bank").value;
+      const fullname = document.getElementById("fullname").value.trim();
+      const accountname = document.getElementById("accountname").value.trim();
 
-      if (accountNumber.length === 10 && bank) {
-        accountNameField.value = "Fetching...";
-        simulateFetchAccountName(accountNumber, bank).then(name => {
-          accountNameField.value = name;
-        });
+      if (!payid) {
+        alert("You must enter your PAY ID.");
+        window.location.href = "buy.html";
+        return;
       }
-    }
 
-    accountNumberInput.addEventListener('input', handleFetch);
-    bankSelect.addEventListener('change', handleFetch);
+      if (!account || account.length !== 10) {
+        alert("Please enter a valid 10-digit account number.");
+        return;
+      }
+
+      if (!bank) {
+        alert("Please select a bank.");
+        return;
+      }
+
+      if (!fullname || !accountname) {
+        alert("Please enter both your full name and account name.");
+        return;
+      }
+
+      // Redirect to next page
+      window.location.href = "next.html";
+    }
   </script>
 </body>
 </html>
