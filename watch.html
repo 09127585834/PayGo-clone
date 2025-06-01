@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Earn with PayGo</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: white;
+      color: black;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background-color: #ffffff;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .back-arrow {
+      font-size: 24px;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .title-section {
+      padding: 20px;
+    }
+
+    .title-section h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+
+    .tag {
+      display: inline-block;
+      background-color: black;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 5px;
+      margin-right: 8px;
+      font-size: 13px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      margin-top: 20px;
+    }
+
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .more-options {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="back-arrow" onclick="history.back()">←</div>
+    <div><strong>Watch</strong></div>
+  </div>
+
+  <div class="title-section">
+    <h2>How to Earn with PayGo</h2>
+    <div class="tag">How to Earn with Paygo</div>
+    <div class="tag">INCLUDES AI</div>
+    <div class="tag">Derex Community</div>
+  </div>
+
+  <div class="video-container">
+    <!-- 👇 REPLACE this link with your video link -->
+    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+    <!-- OR use <video> for direct MP4 links -->
+    <!--
+    <video controls>
+      <source src="your-video-link.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    -->
+  </div>
+
+</body>
+</html>
