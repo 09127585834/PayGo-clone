@@ -61,46 +61,4 @@
   <input type="text" id="name" placeholder="Enter Name" />
   <input type="email" id="email" placeholder="Enter Email" />
   <input type="password" id="password" placeholder="Enter Password" />
-  <button onclick="register()">Register</button>
-  <div class="redirect">
-    Already have an account? <a href="#" onclick="showLogin()">Login</a>
-  </div>
-</div>
-
-<!-- Login Form -->
-<div class="container" id="login-container" style="display:none;">
-  <h2>Login to continue</h2>
-  <input type="email" id="login-email" placeholder="Enter Email" />
-  <input type="password" id="login-password" placeholder="Enter Password" />
-  <button onclick="login()">Login</button>
-  <div class="redirect">
-    Don't have an account? <a href="#" onclick="showRegister()">Register</a>
-  </div>
-</div>
-
-<script>
-  function showLogin() {
-    document.getElementById('signup-container').style.display = 'none';
-    document.getElementById('login-container').style.display = 'block';
-  }
-
-  function showRegister() {
-    document.getElementById('signup-container').style.display = 'block';
-    document.getElementById('login-container').style.display = 'none';
-  }
-
-  function register() {
-    // You can add validation or save info here
-    // Then redirect to welcomebonus.html
-    window.location.href = "welcomebonus.html";
-  }
-
-  function login() {
-    // You can add validation or authentication here
-    // Then redirect to welcomebonus.html
-    window.location.href = "welcomebonus.html";
-  }
-</script>
-
-</body>
-</html>
+  <button onclick="register()">Register</
