@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Buy Airtime - PayGo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
+      color: #000;
+    }
+    .header {
+      background-color: #7b2cbf;
+      padding: 15px;
+      color: white;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .header span {
+      cursor: pointer;
+      font-size: 24px;
+    }
+    .bonus-banner {
+      background-color: #9d4edd;
+      color: white;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+    .bonus-banner span strong {
+      color: #ffd60a;
+    }
+    .bonus-banner button {
+      background-color: #ffd60a;
+      border: none;
+      border-radius: 20px;
+      padding: 5px 20px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .container {
+      padding: 15px;
+    }
+    .carrier-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+    .carrier-buttons button {
+      padding: 12px;
+      border: 1px solid #ddd;
+      background: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .amount-option {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .amount-option small {
+      display: block;
+      margin-top: 5px;
+      color: #6c757d;
+      font-size: 14px;
+      text-decoration: line-through;
+    }
+    .buy-button {
+      width: 100%;
+      background-color: #d0a9f5;
+      color: white;
+      font-size: 18px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <span onclick="history.back()">&#8592;</span>
+    <div>Airtime</div>
+  </div>
+
+  <div class="bonus-banner">
+    <span>Enjoy <strong>Airtime Bonuses!</strong></span>
+    <button>GO</button>
+  </div>
+
+  <div class="container">
+    <div class="carrier-buttons">
+      <button>Airtel</button>
+      <button>MTN</button>
+      <button>Glo</button>
+      <button>9mobile</button>
+    </div>
+
+    <input type="text" placeholder="Enter mobile number" />
+
+    <h3>Select Amount</h3>
+    <div class="amount-grid">
+      <div class="amount-option">₦50<small>₦1 Cashback</small></div>
+      <div class="amount-option">₦100<small>₦2 Cashback</small></div>
+      <div class="amount-option">₦200<small>₦3 Cashback</small></div>
+      <div class="amount-option">₦500<small>₦10 Cashback</small></div>
+      <div class="amount-option">₦1000<small>₦20 Cashback</small></div>
+      <div class="amount-option">₦2000<small>₦50 Cashback</small></div>
+      <div class="amount-option">₦3000<small>₦75 Cashback</small></div>
+      <div class="amount-option">₦5000<small>₦125 Cashback</small></div>
+      <div class="amount-option">₦10000<small>₦250 Cashback</small></div>
+    </div>
+
+    <input type="text" placeholder="Enter PAY ID Code" />
+
+    <button class="buy-button">Buy Airtime</button>
+  </div>
+
+</body>
+</html>
