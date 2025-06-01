@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PayGo Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3edf9;
+    }
+
+    /* Header */
+    .header {
+      background: #7e22ce;
+      color: white;
+      padding: 25px 20px 100px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+
+    .header h2 {
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .header small {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Balance Card */
+    .balance-card {
+      background: #7e22ce;
+      color: white;
+      border-radius: 20px;
+      padding: 25px 20px;
+      margin: -60px 20px 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .balance-card .title {
+      font-size: 14px;
+      color: #e2d2ff;
+    }
+
+    .balance-card .amount {
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 8px;
+    }
+
+    .balance-card .rewards {
+      font-size: 14px;
+      color: #e2d2ff;
+      margin-top: 4px;
+    }
+
+    .balance-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .balance-actions button {
+      width: 48%;
+      background: white;
+      color: #7e22ce;
+      padding: 10px 0;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+
+    /* Services */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px 10px 10px;
+    }
+
+    .service {
+      width: 22%;
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #444;
+    }
+
+    .service span {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 5px;
+    }
+
+    /* Promotions */
+    .promotions {
+      padding: 0 20px 40px;
+    }
+
+    .promotions h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .promo-banner {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .promo-banner img {
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    <h2>Hi, Khalifah 👋</h2>
+    <small>Welcome back!</small>
+  </div>
+
+  <!-- Balance Card -->
+  <div class="balance-card">
+    <div class="title">Your Balance</div>
+    <div class="amount">₦180,000.00</div>
+    <div class="rewards">Weekly Rewards: ₦180,000.00</div>
+    <div class="balance-actions">
+      <button>Upgrade</button>
+      <button>Transfer</button>
+    </div>
+  </div>
+
+  <!-- Services Section -->
+  <div class="services">
+    <div class="service">
+      <span>💳</span>
+      Buy PAY ID
+    </div>
+    <div class="service">
+      <span>📺</span>
+      Watch
+    </div>
+    <div class="service">
+      <span>📶</span>
+      Airtime
+    </div>
+    <div class="service">
+      <span>🛢️</span>
+      Data
+    </div>
+    <div class="service">
+      <span>🎧</span>
+      Support
+    </div>
+    <div class="service">
+      <span>🌐</span>
+      Group
+    </div>
+    <div class="service">
+      <span>💰</span>
+      Earn More
+    </div>
+    <div class="service">
+      <span>👤</span>
+      Profile
+    </div>
+  </div>
+
+  <!-- Promotions Section -->
+  <div class="promotions">
+    <h3>Current Promotions</h3>
+    <div class="promo-banner">
+      <img src="https://via.placeholder.com/360x160/7e22ce/ffffff?text=Transact+%26+Win" alt="Promo Banner">
+    </div>
+  </div>
+
+</body>
+</html>
