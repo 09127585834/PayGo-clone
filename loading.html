@@ -2,91 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Buy PAY ID</title>
+  <meta http-equiv="refresh" content="4;url=Pay.html">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparing Payment Account</title>
   <style>
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #ffffff;
+      background-color: #f0f4f8;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
+      flex-direction: column;
+      margin: 0;
       text-align: center;
+      color: #2c3e50;
     }
-
-    .top-bar {
-      background-color: #2b0a64;
-      color: white;
-      width: 100%;
-      padding: 16px;
-      font-size: 20px;
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
     .spinner {
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #8a2be2;
+      width: 50px;
+      height: 50px;
+      border: 5px solid #e0e0e0;
+      border-top: 5px solid #3498db;
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
       animation: spin 1s linear infinite;
-      margin: 30px 0;
+      margin-bottom: 20px;
     }
-
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
     h2 {
       font-size: 22px;
-      margin: 0;
-      font-weight: 600;
+      margin-bottom: 10px;
     }
-
     p {
-      color: #6c757d;
-      margin-top: 8px;
-      font-size: 16px;
-    }
-
-    .progress-bar {
-      width: 80%;
-      height: 6px;
-      background-color: #e0e0e0;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 40px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 30%;
-      background-color: #8a2be2;
-      transition: width 1s ease-in-out;
+      font-size: 14px;
+      color: #555;
     }
   </style>
-
-  <script>
-    // Redirect to pay.html after 3 seconds
-    setTimeout(() => {
-      window.location.href = "pay.html";
-    }, 3000);
-  </script>
 </head>
 <body>
-  <div class="top-bar">Buy PAY ID</div>
-
   <div class="spinner"></div>
-  <h2>Preparing Payment Account</h2>
-  <p>Please wait while we set up your payment...</p>
-
-  <div class="progress-bar">
-    <div class="progress-fill" id="progress"></div>
-  </div>
+  <h2>Preparing Your Payment Account...</h2>
+  <p>Please wait while we securely set up your payment details.<br>You’ll be redirected shortly.</p>
 </body>
 </html>
