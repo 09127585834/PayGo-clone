@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome Notification</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: url('background.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      max-width: 400px;
+      width: 100%;
+      overflow: hidden;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .modal-header {
+      background: linear-gradient(to right, #8224e3, #a34ce7);
+      color: white;
+      padding: 16px 20px;
+      font-weight: bold;
+      font-size: 18px;
+      position: relative;
+    }
+
+    .modal-header small {
+      display: block;
+      font-size: 13px;
+      font-weight: normal;
+      margin-top: 5px;
+    }
+
+    .progress-bar {
+      display: flex;
+      margin-top: 8px;
+      gap: 6px;
+    }
+
+    .progress-bar div {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .progress-bar div.active {
+      background-color: white;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 20px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .modal-body .icon {
+      font-size: 40px;
+      color: #a24be7;
+      background: #f4eaff;
+      border-radius: 50%;
+      padding: 16px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .modal-body h2 {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    .modal-body p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .modal-footer {
+      padding: 20px;
+      padding-top: 0;
+    }
+
+    .next-btn {
+      background: linear-gradient(to right, #8224e3, #a34ce7);
+      color: white;
+      font-size: 16px;
+      font-weight: 500;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .next-btn:hover {
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="modal">
+    <div class="modal-header">
+      Welcome to PayGo, Khalifah!
+      <small>Step 1 of 5</small>
+      <div class="progress-bar">
+        <div class="active"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="close-btn" onclick="skipToDashboard()">×</div>
+    </div>
+    <div class="modal-body">
+      <div class="icon">🎁</div>
+      <h2>Welcome Bonus</h2>
+      <p>You've received a welcome bonus of <strong>₦180,000</strong>! This amount is already in your account and can be withdrawn after purchasing a PAY ID.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="next-btn" onclick="goToDashboard()">Next →</button>
+    </div>
+  </div>
+
+  <script>
+    function goToDashboard() {
+      window.location.href = 'dashboard.html';
+    }
+
+    function skipToDashboard() {
+      window.location.href = 'dashboard.html';
+    }
+  </script>
+
+</body>
+</html>
