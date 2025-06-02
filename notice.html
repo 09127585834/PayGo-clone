@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Service Notice</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f0f0f5;
+    }
+
+    .notice-container {
+      max-width: 400px;
+      margin: 100px auto;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      padding: 20px;
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .header img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 20px;
+      color: #888;
+      cursor: pointer;
+    }
+
+    .alert-box {
+      background-color: #fff7e6;
+      padding: 12px;
+      border-left: 4px solid #f0ad4e;
+      margin-bottom: 15px;
+      border-radius: 6px;
+    }
+
+    .alert-title {
+      color: #cc6600;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .message {
+      color: #444;
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      background-color: #8108f8;
+      color: white;
+      padding: 12px 20px;
+      text-align: center;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: 600;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="notice-container">
+    <div class="header">
+      <img src="https://img.icons8.com/ios-filled/50/30cc64/info.png" alt="icon"/>
+      Service Notice
+      <span class="close-btn" onclick="redirect()">×</span>
+    </div>
+
+    <div class="alert-box">
+      <div class="alert-title">⚠️ Opay Bank Service Down</div>
+      <div>We're currently experiencing issues with Opay bank transfers. Please use other banks for your payments.</div>
+    </div>
+
+    <div class="message">
+      We apologize for any inconvenience. All other banks are working normally and your payment will be processed immediately.
+    </div>
+
+    <a href="#" class="button" onclick="redirect()">I Understand</a>
+  </div>
+
+  <script>
+    function redirect() {
+      window.location.href = "payment.html";
+    }
+  </script>
+
+</body>
+</html>
