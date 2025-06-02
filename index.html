@@ -1,249 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PayGo Sign Up & Login</title>
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-<style>
-  /* Reset some default styles */
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Header with logo */
-  header {
-    width: 100%;
-    padding: 30px 0;
-    display: flex;
-    justify-content: center;
-    background: transparent;
-  }
-
-  .logo-img {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
-  }
-
-  /* Main container for forms */
-  .container {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 1200px;
-    width: 90%;
-  }
-
-  /* Card styles */
-  .card {
-    background: #fff;
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    flex: 1 1 350px;
-    max-width: 400px;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .card:hover {
-    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
-    transform: translateY(-2px);
-  }
-
-  /* Titles */
-  .card h2 {
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    color: #333;
-    text-align: center;
-  }
-
-  /* Form styles */
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  label {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-weight: 600;
-    font-size: 0.95em;
-    color: #555;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    padding: 14px 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1em;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  input[type="password"]:focus {
-    border-color: #4A90E2;
-    box-shadow: 0 0 8px rgba(74, 144, 226, 0.2);
-    outline: none;
-  }
-
-  /* Checkbox container */
-  .checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-    font-size: 0.9em;
-    color: #555;
-  }
-
-  .checkbox-group input[type="checkbox"] {
-    margin-right: 10px;
-  }
-
-  /* Buttons */
-  button {
-    margin-top: 25px;
-    padding: 15px;
-    background: linear-gradient(135deg, #4A90E2, #357ABD);
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1.1em;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s, transform 0.2s;
-  }
-
-  button:hover {
-    background: linear-gradient(135deg, #357ABD, #2A5DA0);
-    transform: translateY(-2px);
-  }
-
-  /* Additional links */
-  .extra-links {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
-    font-size: 0.9em;
-  }
-
-  .extra-links a {
-    text-decoration: none;
-    color: #4A90E2;
-    transition: color 0.2s;
-  }
-
-  .extra-links a:hover {
-    color: #2A5DA0;
-  }
-
-  /* Responsive adjustments */
-  @media(max-width: 900px){
-    .container {
-      flex-direction: column;
-      align-items: center;
+  <meta charset="UTF-8">
+  <title>PayGo - Sign Up & Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f9f9fb;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
-  }
 
-  /* Footer (optional) */
-  footer {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 0.85em;
-    color: #fff;
-  }
-</style>
+    .help-top {
+      text-align: right;
+      padding: 1rem 1.5rem 0 0;
+    }
+
+    .help-top a {
+      color: #9d3df5;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 2rem;
+    }
+
+    .logo {
+      width: 160px;
+      animation: slideBackForth 1s infinite alternate ease-in-out;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes slideBackForth {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(10px); }
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #222;
+    }
+
+    form input {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+
+    form button {
+      width: 100%;
+      padding: 14px;
+      background-color: #000;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .toggle-link {
+      margin-top: 15px;
+      color: #9d3df5;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #message-icon {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 28px;
+      background-color: #9d3df5;
+      color: white;
+      padding: 14px;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    #message-icon:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <!-- Replace with your actual logo image URL -->
-  <img src="https://via.placeholder.com/150x60?text=Your+Logo" alt="PayGo Logo" class="logo-img" />
-</header>
-
-<div class="container">
-  <!-- Sign Up Form -->
-  <div class="card" id="signup">
-    <h2>Create Account</h2>
-    <form id="signupForm">
-      <label for="signupName">Full Name</label>
-      <input type="text" id="signupName" name="signupName" placeholder="Your full name" required />
-
-      <label for="signupEmail">Email</label>
-      <input type="email" id="signupEmail" name="signupEmail" placeholder="you@example.com" required />
-
-      <label for="signupPassword">Password</label>
-      <input type="password" id="signupPassword" name="signupPassword" placeholder="Create password" required />
-
-      <div class="checkbox-group">
-        <input type="checkbox" id="terms" required />
-        <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
-      </div>
-
-      <button type="submit">Sign Up</button>
-    </form>
+  <!-- Need Help link -->
+  <div class="help-top">
+    <a href="#" id="help-link">Need Help?</a> <!-- Replace # with help page link -->
   </div>
 
-  <!-- Login Form -->
-  <div class="card" id="login">
-    <h2>Welcome Back</h2>
-    <form id="loginForm">
-      <label for="loginEmail">Email</label>
-      <input type="email" id="loginEmail" name="loginEmail" placeholder="you@example.com" required />
+  <div class="container">
+    <!-- PayGo Logo -->
+    <img src="Paygo—promo.jpeg..JPG" alt="PayGo Logo" class="logo" />
 
-      <label for="loginPassword">Password</label>
-      <input type="password" id="loginPassword" name="loginPassword" placeholder="Your password" required />
+    <!-- Sign Up Form -->
+    <div id="signup-form">
+      <h2>Register to continue</h2>
+      <form onsubmit="submitForm(event)">
+        <input type="text" placeholder="Enter Name" required />
+        <input type="email" placeholder="Enter Email" required />
+        <input type="password" placeholder="Enter Password" required />
+        <button type="submit">Register</button>
+      </form>
+      <div class="toggle-link" onclick="toggleForms()">Already have an account? Login</div>
+    </div>
 
-      <div class="checkbox-group">
-        <input type="checkbox" id="remember" />
-        <label for="remember">Remember me</label>
-      </div>
-
-      <div class="extra-links">
-        <a href="#">Forgot password?</a>
-        <a href="#signup" onclick="switchToSignup()">Create account</a>
-      </div>
-
-      <button type="submit">Login</button>
-    </form>
+    <!-- Login Form -->
+    <div id="login-form" class="hidden">
+      <h2>Login to your account</h2>
+      <form onsubmit="submitForm(event)">
+        <input type="email" placeholder="Enter Email" required />
+        <input type="password" placeholder="Enter Password" required />
+        <button type="submit">Login</button>
+      </form>
+      <div class="toggle-link" onclick="toggleForms()">Don't have an account? Register</div>
+    </div>
   </div>
-</div>
 
-<script>
-  // Basic form submission handlers
-  document.getElementById('signupForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert('Sign Up submitted! (Add your sign-up logic here)');
-  });
+  <!-- Message Icon Button -->
+  <a href="#" id="message-icon" title="Chat Support">💬</a> <!-- Replace # with your chat/help link -->
 
-  document.getElementById('loginForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    alert('Login submitted! (Add your login logic here)');
-  });
+  <script>
+    function toggleForms() {
+      const signup = document.getElementById('signup-form');
+      const login = document.getElementById('login-form');
+      signup.classList.toggle('hidden');
+      login.classList.toggle('hidden');
+    }
 
-  // Optional: switch between forms
-  function switchToSignup() {
-    document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
-  }
-</script>
+    function submitForm(e) {
+      e.preventDefault();
+      window.location.href = "welcomebonus.html";
+    }
+  </script>
 
 </body>
 </html>
