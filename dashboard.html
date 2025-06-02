@@ -21,40 +21,6 @@
       font-size: 14px;
       color: #444;
     }
-
-    /* Announcement animation container */
-    .announcement {
-      width: 100%;
-      overflow: hidden;
-      background: #fff3cd;
-      border: 1px solid #ffeeba;
-      color: #856404;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 10px 0;
-      box-sizing: border-box;
-      position: relative;
-      user-select: none;
-    }
-    .announcement-text {
-      display: inline-block;
-      white-space: nowrap;
-      padding-left: 100%;
-      animation: slideBackForth 10s ease-in-out infinite;
-    }
-
-    @keyframes slideBackForth {
-      0% {
-        transform: translateX(0);
-      }
-      50% {
-        transform: translateX(calc(-100% + 100vw));
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
-
     .header-card {
       background: #7c20e6;
       color: white;
@@ -64,19 +30,207 @@
       position: relative;
       box-shadow: 0 6px 10px rgb(124 32 230 / 0.5);
     }
-    /* Rest of your existing styles remain unchanged... */
-    /* ... */
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-top-left {
+      display: flex;
+      align-items: center;
+    }
+    .profile-circle {
+      width: 40px;
+      height: 40px;
+      background: white;
+      color: #7c20e6;
+      font-weight: 700;
+      font-size: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+    }
+    .header-greeting {
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .header-greeting span {
+      font-size: 22px;
+    }
+    .welcome-back {
+      font-size: 14px;
+      opacity: 0.75;
+    }
+    .notification-bell {
+      background: rgba(255 255 255 / 0.2);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .notification-bell svg {
+      fill: #fff;
+      width: 22px;
+      height: 22px;
+    }
+    .notification-bell .red-dot {
+      width: 8px;
+      height: 8px;
+      background: #ff3838;
+      border-radius: 50%;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+    .balance-label {
+      margin-top: 18px;
+      font-weight: 400;
+      font-size: 15px;
+      opacity: 0.85;
+    }
+    .balance-amount {
+      font-weight: 700;
+      font-size: 36px;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+    }
+    .currency {
+      font-weight: 400;
+      font-size: 24px;
+      margin-right: 6px;
+      text-decoration: line-through;
+    }
+    .weekly-rewards {
+      margin-top: 6px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+    .eye-icon {
+      cursor: pointer;
+      margin-left: 12px;
+    }
+    .eye-icon svg {
+      fill: #fff;
+      width: 24px;
+      height: 24px;
+    }
+    .header-buttons {
+      margin-top: 24px;
+      display: flex;
+      gap: 20px;
+    }
+    .header-button {
+      background: #9b4bf9;
+      border-radius: 30px;
+      padding: 10px 24px;
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.25s ease;
+    }
+    .header-button:hover {
+      background: #a463f8;
+    }
+    .header-button svg {
+      fill: white;
+      width: 18px;
+      height: 18px;
+    }
+    .menu-grid {
+      margin: 30px 20px 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      text-align: center;
+    }
+    .menu-item {
+      cursor: pointer;
+      font-size: 13px;
+      color: #222;
+      user-select: none;
+    }
+    .menu-item svg, .menu-item img {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.12));
+    }
+    .section-title {
+      font-weight: 700;
+      font-size: 20px;
+      margin: 24px 20px 8px;
+    }
+    .carousel {
+      margin: 0 20px 40px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .carousel img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+    @media (max-width: 480px) {
+      .header-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
 
 <div class="user-register-banner">
-  Please buy your PAYGO ID on the website for full access to PayGo services.
+  <div class="announcement">
+  <span class="announcement-text">⚡️ Important Announcement: New features launching soon! Stay tuned! ⚡️</span>
 </div>
 
-<!-- Announcement bar inserted below user-register-banner -->
-<div class="announcement">
-  <span class="announcement-text">⚡️ Important Announcement: New features launching soon! Stay tuned! ⚡️</span>
+<style>
+  .announcement {
+    width: 100%;
+    overflow: hidden;
+    background: #fffae6;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .announcement-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: slideBackForth 8s ease-in-out infinite;
+  }
+
+  @keyframes slideBackForth {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(calc(100% - 100vw));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+</style>
 </div>
 
 <div class="header-card">
@@ -114,7 +268,21 @@
   </div>
 </div>
 
-<!-- Rest of your dashboard content remains unchanged -->
+<div class="menu-grid">
+  <div class="menu-item" onclick="location.href='buy.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M20 6H4v12h16V6zm-2 9h-4v-2h4v2zm0-4h-4V9h4v2z"/></svg><div>Buy PAY ID</div></div>
+  <div class="menu-item" onclick="location.href='watch.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M21 6h-6l-2-2H9L7 6H3v12h18V6zM9 16l4-4-4-4v8z"/></svg><div>Watch</div></div>
+  <div class="menu-item" onclick="location.href='airtime.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 20c4.418 0 8-2.239 8-5v-2c0-2.761-3.582-5-8-5s-8 2.239-8 5v2c0 2.761 3.582 5 8 5z"/></svg><div>Airtime</div></div>
+  <div class="menu-item" onclick="location.href='data.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M3 12h18v6H3z"/></svg><div>Data</div></div>
+  <div class="menu-item" onclick="location.href='support.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg><div>Support</div></div>
+  <div class="menu-item" onclick="location.href='group.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-8 3v2H4v-2zm12 0v2h-4v-2z"/></svg><div>Group</div></div>
+  <div class="menu-item" onclick="location.href='earn.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 8l6 4-6 4V8z"/></svg><div>Earn More</div></div>
+  <div class="menu-item" onclick="location.href='profile.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 8-4 8-4s8 0 8 4z"/></svg><div>Profile</div></div>
+</div>
+
+<div class="section-title">Current Promotions</div>
+<div class="carousel">
+  <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Promotion" />
+</div>
 
 <script>
   function toggleBalanceVisibility() {
