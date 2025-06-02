@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Welcome Notification</title>
+<style>
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: #f8f8f8;
+  }
+  /* Overlay behind modal */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  /* Modal container */
+  .modal {
+    background: white;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 12px 32px rgb(0 0 0 / 0.12);
+    overflow: hidden;
+  }
+  /* Header with gradient background */
+  .modal-header {
+    background: linear-gradient(90deg, #ff6a94 0%, #ff603c 100%);
+    padding: 18px 20px 12px 20px;
+    color: white;
+    position: relative;
+  }
+  .modal-header h2 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .modal-header small {
+    font-weight: 500;
+    font-size: 13px;
+    opacity: 0.9;
+    margin-top: 8px;
+    display: block;
+  }
+  /* Close button */
+  .close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    line-height: 1;
+  }
+  /* Progress bar container */
+  .progress-bar {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .progress-segment {
+    height: 6px;
+    flex: 1;
+    border-radius: 3px;
+    background: rgba(255 255 255 / 0.35);
+  }
+  .progress-segment.active {
+    background: white;
+  }
+
+  /* Body content */
+  .modal-body {
+    padding: 40px 30px 40px 30px;
+    text-align: center;
+    color: #3a3a3a;
+  }
+  .modal-body .icon-container {
+    background: #f3f3f3;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-body svg {
+    width: 28px;
+    height: 28px;
+    stroke: #1366d6;
+    stroke-width: 2.5;
+    fill: none;
+  }
+  .modal-body h3 {
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    font-size: 18px;
+    color: #121212;
+  }
+  .modal-body p {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #6a6a6a;
+    margin: 0 0 18px 0;
+  }
+
+  /* Next button */
+  .modal-footer {
+    padding: 0 30px 30px 30px;
+  }
+  .next-btn {
+    width: 100%;
+    padding: 13px 0;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #a639f9 0%, #ff603c 100%);
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .next-btn:hover {
+    background: linear-gradient(90deg, #8c2dda 0%, #e04b2d 100%);
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="welcomeModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle" aria-describedby="welcomeDesc">
+    <div class="modal-header">
+      <h2 id="welcomeTitle">Welcome to PayGo, Khalifah! <span>👋</span></h2>
+      <small>Step 2 of 5</small>
+      <button class="close-btn" aria-label="Close modal" id="closeModal">&times;</button>
+      <div class="progress-bar" aria-hidden="true">
+        <div class="progress-segment active"></div>
+        <div class="progress-segment active"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+        <div class="progress-segment"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="icon-container" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
+          <rect x="2" y="7" width="20" height="10" rx="2" ry="2" />
+          <line x1="2" y1="12" x2="22" y2="12" />
+        </svg>
+      </div>
+      <h3>Get Your PAY ID</h3>
+      <p>To withdraw funds, you'll need to purchase a PAY ID for <s>₦6,500</s>. This is a one-time purchase that unlocks all features of the app.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="next-btn" id="nextBtn">Next →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Close modal if close button clicked
+  document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('welcomeModal').style.display = 'none';
+  });
+
+  // Redirect on next button click
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    window.location.href = 'next4.html';
+  });
+</script>
+
+</body>
+</html>
