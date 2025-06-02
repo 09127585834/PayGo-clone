@@ -3,103 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Make Payment - PayGo</title>
+  <title>Bank Transfer - PayGo</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
       margin: 0;
-      padding: 20px;
-      background-color: #f9f9f9;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #333;
+      padding: 0;
     }
-
-    .container {
-      max-width: 400px;
-      margin: auto;
-      background-color: #fff;
-      border-radius: 12px;
-      padding: 25px 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    h2 {
-      text-align: center;
-      color: #00B894;
-    }
-
-    .section {
-      margin-top: 20px;
-    }
-
-    .label {
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 5px;
-    }
-
-    .value-box {
-      background-color: #f1f1f1;
-      border-radius: 8px;
-      padding: 10px 14px;
-      font-size: 16px;
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    .button {
-      display: block;
-      width: 100%;
-      padding: 14px;
-      background-color: #00B894;
+    header {
+      background: #a020f0;
       color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
+      padding: 15px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+    }
+    header a {
+      color: white;
+      text-decoration: none;
+      margin-right: 10px;
+      font-size: 24px;
+    }
+    .container {
+      padding: 20px;
+    }
+    .notice {
+      background: #fff3cd;
+      color: #856404;
+      padding: 10px;
+      border: 1px solid #ffeeba;
       border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .card label {
+      display: block;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    .card input {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 5px;
+    }
+    .highlight {
+      color: purple;
+      font-weight: bold;
+    }
+    .copy-btn {
+      float: right;
+      background: orange;
+      padding: 5px 8px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
-      transition: background-color 0.2s ease;
+      margin-top: -35px;
     }
-
-    .button:hover {
-      background-color: #009f7a;
-    }
-
-    .note {
-      font-size: 13px;
-      color: #888;
+    .upload-box {
+      border: 2px dashed #ccc;
       text-align: center;
+      padding: 20px;
+      border-radius: 10px;
       margin-top: 10px;
     }
-
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: #a020f0;
+      color: white;
+      border: none;
+      font-size: 16px;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    .footer {
+      text-align: center;
+      color: gray;
+      margin-top: 20px;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
 
+  <header>
+    <a href="index.html">&#8592;</a> Bank Transfer
+  </header>
+
   <div class="container">
-    <h2>Transfer Payment</h2>
-
-    <div class="section">
-      <div class="label">Amount to Pay</div>
-      <div class="value-box">₦7,250</div>
-
-      <div class="label">Bank Name</div>
-      <div class="value-box">Wema Bank</div>
-
-      <div class="label">Account Number</div>
-      <div class="value-box">0123456789</div>
-
-      <div class="label">Account Name</div>
-      <div class="value-box">PayGo Technologies</div>
+    <div class="notice">
+      Please transfer the exact amount to the account below and upload your receipt
     </div>
 
-    <button class="button" onclick="redirectToVerified()">I Have Sent the Money</button>
+    <div class="card">
+      <label>Account Number</label>
+      <input type="text" value="9127585834" readonly id="acctNum" />
+      <button class="copy-btn" onclick="copyText()">Copy</button>
 
-    <div class="note">Please ensure you use your registered name or PAY ID as payment reference.</div>
+      <label>Bank Name</label>
+      <input type="text" value="PALMPAY LTD" readonly />
+
+      <label>Account Name</label>
+      <input type="text" value="KHALIFAH IBRAHIM" readonly />
+
+      <label>Amount to Transfer</label>
+      <input type="text" value="₦7,250" readonly />
+
+      <label>Your Email Address</label>
+      <input user="email" value=" readonly />
+
+      <label>Upload Payment Receipt</label>
+      <div class="upload-box">
+        <input type="file" accept="image/*,application/pdf" required/>
+      </div>
+
+      <button class="btn" onclick="redirectToPay()">Confirm Transfer</button>
+    </div>
+
+    <div class="footer">
+      PayGo Financial Services LTD
+    </div>
   </div>
 
   <script>
-    function redirectToVerified() {
-      // You can also perform validation or confirmation here before redirect
+    function copyText() {
+      const acct = document.getElementById("acctNum");
+      navigator.clipboard.writeText(acct.value);
+      alert("Account number copied!");
+    }
+
+    function redirectToverified() {
+      // Simulate form validation/upload success
+      alert("Receipt uploaded. Redirecting to confirmation...");
       window.location.href = "verified.html";
     }
   </script>
