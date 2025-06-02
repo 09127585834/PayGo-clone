@@ -1,151 +1,187 @@
-<!-- welcome.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome to PayGo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: linear-gradient(to bottom, #7b2ff7, #f107a3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Welcome Bonus</title>
+<style>
+  /* Background overlay */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
 
-    .modal {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 90%;
-      padding: 20px;
-      position: relative;
-      text-align: center;
-      animation: slideIn 0.4s ease;
-    }
+  /* Popup container */
+  .popup {
+    width: 90%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+  }
 
-    @keyframes slideIn {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+  /* Header with gradient and close */
+  .popup-header {
+    background: linear-gradient(90deg, #8b39f6, #f52d67);
+    padding: 20px;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    position: relative;
+  }
 
-    .modal-header {
-      background-color: #7b2ff7;
-      color: white;
-      padding: 15px 20px;
-      border-top-left-radius: 20px;
-      border-top-right-radius: 20px;
-      font-size: 18px;
-      text-align: left;
-      font-weight: bold;
-    }
+  .popup-header small {
+    font-weight: 400;
+    font-size: 14px;
+    display: block;
+    margin-top: 4px;
+  }
 
-    .progress-bar {
-      height: 4px;
-      background-color: #fff;
-      margin-top: 5px;
-      border-radius: 5px;
-      overflow: hidden;
-    }
+  /* Close button */
+  .popup-close {
+    position: absolute;
+    top: 20px; right: 20px;
+    cursor: pointer;
+    font-size: 20px;
+    opacity: 0.7;
+  }
+  .popup-close:hover {
+    opacity: 1;
+  }
 
-    .progress-bar-inner {
-      width: 20%;
-      height: 100%;
-      background-color: #ddd;
-    }
+  /* Progress bar container */
+  .progress-container {
+    margin-top: 12px;
+    display: flex;
+    gap: 6px;
+  }
+  .progress-step {
+    flex: 1;
+    height: 6px;
+    background: #efeff1;
+    border-radius: 4px;
+  }
+  .progress-step.active {
+    background: white;
+  }
 
-    .modal-body {
-      padding: 20px;
-    }
+  /* Content inside popup */
+  .popup-content {
+    padding: 30px 20px 40px;
+    text-align: center;
+    color: #222431;
+  }
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+    background: #efeff1;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-circle svg {
+    width: 28px;
+    height: 28px;
+    fill: #8b39f6;
+  }
 
-    .icon-circle {
-      width: 60px;
-      height: 60px;
-      background-color: #f3e9ff;
-      color: #7b2ff7;
-      border-radius: 50%;
-      margin: 20px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-    }
+  .popup-content h2 {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+  .popup-content p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
 
-    .modal-body h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .modal-body p {
-      color: #444;
-      font-size: 15px;
-    }
-
-    .modal-footer {
-      padding: 20px;
-    }
-
-    .next-button {
-      background-color: #7b2ff7;
-      color: white;
-      border: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-      transition: background-color 0.3s;
-    }
-
-    .next-button:hover {
-      background-color: #651dce;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 12px;
-      right: 20px;
-      font-size: 20px;
-      color: white;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-  </style>
+  /* Next button */
+  .btn-next {
+    background: linear-gradient(90deg, #8b39f6, #f52d67);
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 12px 0;
+    border-radius: 16px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .btn-next:hover {
+    background: linear-gradient(90deg, #a35bf7, #f84f6f);
+  }
+</style>
 </head>
 <body>
 
-<div class="modal">
-  <div class="modal-header">
-    Welcome to PayGo, Khalifah!
-    <button class="close-btn" onclick="redirectToDashboard()">×</button>
-    <div style="font-size: 13px; margin-top: 5px;">Step 1 of 5</div>
-    <div class="progress-bar">
-      <div class="progress-bar-inner"></div>
+<div class="overlay" id="welcomeBonusPopup">
+  <div class="popup" role="dialog" aria-modal="true" aria-labelledby="popupTitle" aria-describedby="popupDesc">
+    <div class="popup-header">
+      <span id="popupTitle">Welcome to PayGo, <span id="usernameDisplay">User</span>!</span>
+      <br />
+      <small>Step 1 of 5</small>
+      <div class="progress-container" aria-hidden="true">
+        <div class="progress-step active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+      </div>
+      <span class="popup-close" role="button" aria-label="Close popup" tabindex="0" id="closeBtn">&times;</span>
     </div>
-  </div>
-
-  <div class="modal-body">
-    <div class="icon-circle">🎁</div>
-    <h2>Welcome Bonus</h2>
-    <p>
-      You've received a welcome bonus of <strong>₦180,000!</strong> This amount is already in your account and can be withdrawn after purchasing a PAY ID.
-    </p>
-  </div>
-
-  <div class="modal-footer">
-    <button class="next-button" onclick="redirectToDashboard()">Next →</button>
+    <div class="popup-content">
+      <div class="icon-circle" aria-hidden="true">
+        <!-- Gift icon SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8H1v-2h4.18a3 3 0 0 1 2.65-4.4 3 3 0 0 1 5.34 0A3 3 0 0 1 18.82 10H23v2zM6 20h12v-6H6zm5-13a1 1 0 0 0-.94.66L8.56 10H15.44l-1.5-3.34A1 1 0 0 0 11 7z"/>
+        </svg>
+      </div>
+      <h2>Welcome Bonus</h2>
+      <p>You've received a welcome bonus of <strong>₦180,000</strong>! This amount is already in your account and can be withdrawn after purchasing a PAY ID.</p>
+      <button class="btn-next" id="nextBtn">Next →</button>
+    </div>
   </div>
 </div>
 
 <script>
-  function redirectToDashboard() {
-    window.location.href = "dashboard.html";
+  // Replace "username" dynamically from your backend/session or query string
+  // For demo, getting from URL param "username"
+  function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param) || "User";
   }
+
+  const username = getQueryParam("username"); // e.g., ?username=Khalifah
+  document.getElementById("usernameDisplay").textContent = username;
+
+  // Close button hides popup
+  document.getElementById("closeBtn").addEventListener("click", () => {
+    document.getElementById("welcomeBonusPopup").style.display = "none";
+  });
+
+  // Close popup on ESC key
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      document.getElementById("welcomeBonusPopup").style.display = "none";
+    }
+  });
+
+  // Next button redirects to next.html
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    window.location.href = "next.html";
+  });
 </script>
 
 </body>
