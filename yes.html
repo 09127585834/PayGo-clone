@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transaction Failed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+    }
+
+    .header {
+      background: #a020f0;
+      color: white;
+      width: 100%;
+      padding: 15px;
+      text-align: left;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .header span {
+      margin-left: 10px;
+    }
+
+    .container {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon {
+      background: #ff3b30;
+      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      animation: pulse 1.5s infinite;
+    }
+
+    .icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: white;
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.1); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    h2 {
+      color: #ff6600;
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    p {
+      color: #555;
+      font-size: 15px;
+      margin: 6px 0;
+    }
+
+    .input-box {
+      width: 90%;
+      max-width: 300px;
+      background: #f2f2f2;
+      padding: 12px;
+      margin: 20px 0;
+      border-radius: 10px;
+      color: #888;
+      font-size: 15px;
+    }
+
+    .btn {
+      width: 90%;
+      max-width: 300px;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .btn.try {
+      background: #a020f0;
+      color: white;
+    }
+
+    .btn.dashboard {
+      background: #ffffff;
+      color: #000;
+      border: 1px solid #ccc;
+    }
+
+    .spinner {
+      border: 3px solid #ffffff;
+      border-top: 3px solid #a020f0;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .footer {
+      margin-bottom: 30px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .chat-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 20px;
+      background-color: #a020f0;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    ← <span>Transaction Failed</span>
+  </div>
+
+  <div class="container">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none">
+        <line x1="6" y1="6" x2="18" y2="18" />
+        <line x1="6" y1="18" x2="18" y2="6" />
+      </svg>
+    </div>
+    <h2>Transaction verification failed!</h2>
+    <p>Your payment could not be completed.</p>
+    <p>Reason: No Payment received from you / invalid payment method.</p>
+
+    <div class="input-box">Not Available</div>
+
+    <button class="btn try" onclick="retryPayment(this)">
+      <span class="spinner" style="display:none;"></span>
+      <span class="btn-text">Try Again</span>
+    </button>
+
+    <button class="btn dashboard" onclick="window.location.href='dashboard.html'">Go to Dashboard</button>
+  </div>
+
+  <div class="footer">PayGo Financial Services LTD</div>
+
+  <a href="help.html" class="chat-btn">💬</a>
+
+  <script>
+    function retryPayment(button) {
+      const spinner = button.querySelector('.spinner');
+      const text = button.querySelector('.btn-text');
+      spinner.style.display = 'inline-block';
+      text.textContent = "Retrying...";
+      setTimeout(() => {
+        window.location.href = 'buy.html';
+      }, 2000); // simulate retry delay
+    }
+  </script>
+
+</body>
+</html>
