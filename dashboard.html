@@ -232,7 +232,54 @@
   }
 </style>
 </div>
+<!-- Animated Withdrawal Announcement -->
+<div id="announcement-bar" style="background:#fffbe6;padding:10px;text-align:center;display:none;font-weight:600;color:#333;">
+  <div id="announcement-text" class="fade-slide"></div>
+</div>
 
+<style>
+  .fade-slide {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-slide.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  if (!localStorage.getItem("withdrawals")) {
+    localStorage.setItem("withdrawals", JSON.stringify([
+      { name: "Khalifah", amount: 180000 },
+      { name: "Fatima", amount: 90000 },
+      { name: "John", amount: 120000 },
+      { name: "Ada", amount: 105000 }
+    ]));
+  }
+
+  let w = JSON.parse(localStorage.getItem("withdrawals") || "[]").slice(-5);
+  if (w.length) {
+    let i = 0;
+    const bar = document.getElementById("announcement-bar");
+    const text = document.getElementById("announcement-text");
+    bar.style.display = "block";
+
+    function showNext() {
+      text.classList.remove("show");
+      setTimeout(() => {
+        let item = w[i];
+        text.textContent = `${item.name.toUpperCase()} just now withdrew ₦${Number(item.amount).toLocaleString()}`;
+        text.classList.add("show");
+        i = (i + 1) % w.length;
+      }, 300);
+    }
+
+    showNext();
+    setInterval(showNext, 30000); // every 30 seconds
+  }
+</script>
 <div class="header-card">
   <div class="header-top">
     <div class="header-top-left">
