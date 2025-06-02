@@ -4,197 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Profile Information</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
-
-    body {
-      background: linear-gradient(to bottom, #a44ee4 10%, #fdf7ff 40%);
-      padding: 20px;
-      color: #1f1f1f;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      color: #000;
-    }
-
-    .topbar i {
-      font-size: 22px;
-      margin-right: 10px;
-      cursor: pointer;
-    }
-
-    .title {
-      font-weight: 600;
-      font-size: 20px;
-    }
-
-    .profile-icon {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .profile-icon div {
-      background-color: #f3e6ff;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #a44ee4;
-      font-size: 50px;
-    }
-
-    .profile-icon h2 {
-      margin-top: 10px;
-      font-size: 22px;
-    }
-
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      margin-top: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-
-    .info-row {
-      display: flex;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .info-row:last-child {
-      margin-bottom: 0;
-    }
-
-    .info-icon {
-      background-color: #f5f5f5;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 10px;
-      font-size: 18px;
-    }
-
-    .info-label {
-      font-size: 14px;
-      color: #666;
-    }
-
-    .info-value {
-      font-weight: 600;
-      font-size: 16px;
-      color: #1f1f1f;
-    }
-
-    .info-col {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .status-green {
-      color: green;
-    }
-
-    .status-orange {
-      color: orange;
-    }
-
-    .logout-btn {
-      margin-top: 30px;
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ff5b5b;
-      color: #ff5b5b;
-      background-color: #fff0f0;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: 600;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .logout-btn:hover {
-      background-color: #ffe2e2;
-    }
-  </style>
+  <link rel="stylesheet" href="profile.css" />
 </head>
 <body>
-
-  <div class="topbar">
-    <i onclick="window.history.back()">←</i>
-    <div class="title">Profile Information</div>
+  <div class="header">
+    <button onclick="history.back()">←</button>
+    <h2>Profile Information</h2>
   </div>
 
-  <div class="profile-icon">
-    <div>👤</div>
-    <h2 id="userName">Khalifah</h2> <!-- JavaScript can set this dynamically -->
+  <div class="profile-container">
+    <div class="avatar-section">
+      <label for="profilePicInput">
+        <img id="profilePic" src="default-avatar.png" alt="Profile Picture" />
+      </label>
+      <input type="file" id="profilePicInput" accept="image/*" hidden />
+      <h3 id="profileName">User Name</h3>
+    </div>
+
+    <div class="info-card">
+      <div class="info-row">
+        <span>👤 Full Name</span>
+        <strong id="fullName"></strong>
+      </div>
+      <div class="info-row">
+        <span>📧 Email Address</span>
+        <strong id="email"></strong>
+      </div>
+      <div class="info-row">
+        <span>🏅 Account Level</span>
+        <strong>Basic</strong>
+      </div>
+      <div class="info-row">
+        <span>✅ Account Status</span>
+        <strong style="color: green;">Active</strong>
+      </div>
+      <div class="info-row">
+        <span>🆔 PAY ID Status</span>
+        <strong style="color: orange;">Not Purchased</strong>
+      </div>
+    </div>
+
+    <button class="logout-btn" onclick="logout()">🚪 Logout</button>
   </div>
-
-  <div class="card">
-    <div class="info-row">
-      <div class="info-icon">👤</div>
-      <div class="info-col">
-        <div class="info-label">Full Name</div>
-        <div class="info-value" id="fullName">Khalifah</div>
-      </div>
-    </div>
-
-    <div class="info-row">
-      <div class="info-icon">📧</div>
-      <div class="info-col">
-        <div class="info-label">Email Address</div>
-        <div class="info-value" id="email">kingkhalifah001@gmail.com</div>
-      </div>
-    </div>
-
-    <div class="info-row">
-      <div class="info-icon">🏅</div>
-      <div class="info-col">
-        <div class="info-label">Account Level</div>
-        <div class="info-value">Basic</div>
-      </div>
-    </div>
-
-    <div class="info-row">
-      <div class="info-icon">✅</div>
-      <div class="info-col">
-        <div class="info-label">Account Status</div>
-        <div class="info-value status-green">● Active</div>
-      </div>
-    </div>
-
-    <div class="info-row">
-      <div class="info-icon">🆔</div>
-      <div class="info-col">
-        <div class="info-label">PAY ID Status</div>
-        <div class="info-value status-orange">Not Purchased</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="logout-btn" onclick="logout()">🔓 Logout</div>
 
   <script>
+    // Load user data
+    window.onload = () => {
+      const name = localStorage.getItem("userName") || "Guest";
+      const email = localStorage.getItem("userEmail") || "example@email.com";
+      const profilePic = localStorage.getItem("userPic");
+
+      document.getElementById("profileName").textContent = name;
+      document.getElementById("fullName").textContent = name;
+      document.getElementById("email").textContent = email;
+
+      if (profilePic) {
+        document.getElementById("profilePic").src = profilePic;
+      }
+    };
+
+    // Upload profile picture
+    document.getElementById("profilePicInput").addEventListener("change", function () {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        document.getElementById("profilePic").src = e.target.result;
+        localStorage.setItem("userPic", e.target.result);
+      };
+      reader.readAsDataURL(this.files[0]);
+    });
+
     function logout() {
-      // You can add session clearing logic here if needed
-      window.location.href = 'dashboard.html';
+      localStorage.clear();
+      window.location.href = "index.html";
     }
   </script>
-
 </body>
 </html>
