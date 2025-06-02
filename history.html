@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transaction History</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .transaction-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .transaction-item {
+      background: white;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .transaction-item span {
+      display: block;
+      margin-top: 0.25rem;
+      color: #374151;
+    }
+
+    .back-btn {
+      margin-top: 2rem;
+      display: inline-block;
+      background: #7c3aed;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .no-transactions {
+      color: #6b7280;
+      text-align: center;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Transaction History</h1>
+  <ul class="transaction-list" id="transactionList"></ul>
+  <div class="no-transactions" id="emptyState" style="display: none;">
+    No transactions found.
+  </div>
+
+  <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
+
+  <script>
+    const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+    const list = document.getElementById('transactionList');
+    const empty = document.getElementById('emptyState');
+
+    if (transactions.length === 0) {
+      empty.style.display = 'block';
+    } else {
+      transactions.forEach(txn => {
+        const item = document.createElement('li');
+        item.className = 'transaction-item';
+
+        let details = '';
+        if (txn.type === 'Withdrawal') {
+          details = `<span>To: ${txn.account} (${txn.bank})</span>`;
+        } else if (txn.type === 'Airtime') {
+          details = `<span>To: ${txn.number} (${txn.network})</span>`;
+        }
+
+        item.innerHTML = `
+          <strong>${txn.type}</strong>
+          <span>Date: ${txn.date}</span>
+          <span>Amount: ${txn.amount}</span>
+          ${details}
+        `;
+        list.appendChild(item);
+      });
+    }
+  </script>
+
+</body>
+</html>
