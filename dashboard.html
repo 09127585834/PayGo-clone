@@ -1,216 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PayGo Dashboard</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #f7f0fc;
-    color: #000;
-  }
-  /* Top user registration banner */
-  .user-register-banner {
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-    padding: 8px;
-    font-weight: 600;
-    font-size: 14px;
-    color: #444;
-  }
-  /* Header with purple card */
-  .header-card {
-    background: #7c20e6;
-    color: white;
-    margin: 16px;
-    border-radius: 12px;
-    padding: 20px 24px;
-    position: relative;
-    box-shadow: 0 6px 10px rgb(124 32 230 / 0.5);
-  }
-  .header-card .profile-circle {
-    width: 40px;
-    height: 40px;
-    background: white;
-    color: #7c20e6;
-    font-weight: 700;
-    font-size: 20px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-  }
-  .header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .header-top-left {
-    display: flex;
-    align-items: center;
-  }
-  .header-greeting {
-    font-weight: 600;
-    font-size: 20px;
-  }
-  .header-greeting span {
-    font-size: 22px;
-  }
-  .welcome-back {
-    font-size: 14px;
-    opacity: 0.75;
-  }
-  .notification-bell {
-    background: rgba(255 255 255 / 0.2);
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-  }
-  .notification-bell svg {
-    fill: #fff;
-    width: 22px;
-    height: 22px;
-  }
-  .notification-bell .red-dot {
-    width: 8px;
-    height: 8px;
-    background: #ff3838;
-    border-radius: 50%;
-    position: absolute;
-    top: 8px;
-    right: 8px;
-  }
-  /* Balance */
-  .balance-label {
-    margin-top: 18px;
-    font-weight: 400;
-    font-size: 15px;
-    opacity: 0.85;
-  }
-  .balance-amount {
-    font-weight: 700;
-    font-size: 36px;
-    margin-top: 6px;
-    display: flex;
-    align-items: center;
-  }
-  .currency {
-    font-weight: 400;
-    font-size: 24px;
-    margin-right: 6px;
-    text-decoration: line-through;
-  }
-  .weekly-rewards {
-    margin-top: 6px;
-    font-size: 13px;
-    opacity: 0.75;
-  }
-  /* Eye icon to toggle visibility */
-  .eye-icon {
-    cursor: pointer;
-    margin-left: 12px;
-  }
-  .eye-icon svg {
-    fill: #fff;
-    width: 24px;
-    height: 24px;
-  }
-  /* Buttons container */
-  .header-buttons {
-    margin-top: 24px;
-    display: flex;
-    gap: 20px;
-  }
-  .header-button {
-    background: #9b4bf9;
-    border-radius: 30px;
-    padding: 10px 24px;
-    font-weight: 600;
-    font-size: 16px;
-    color: white;
-    cursor: pointer;
-    border: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: background 0.25s ease;
-  }
-  .header-button:hover {
-    background: #a463f8;
-  }
-  .header-button svg {
-    fill: white;
-    width: 18px;
-    height: 18px;
-  }
-  /* Grid menu */
-  .menu-grid {
-    margin: 30px 20px 10px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    text-align: center;
-  }
-  .menu-item {
-    cursor: pointer;
-    font-size: 13px;
-    color: #222;
-    user-select: none;
-  }
-  .menu-item svg, .menu-item img {
-    width: 30px;
-    height: 30px;
-    margin-bottom: 8px;
-    filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.12));
-  }
-  /* Section title */
-  .section-title {
-    font-weight: 700;
-    font-size: 20px;
-    margin: 24px 20px 8px;
-  }
-  /* Carousel placeholder */
-  .carousel {
-    margin: 0 20px 40px;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-  .carousel img {
-    width: 100%;
-    display: block;
-    border-radius: 12px;
-  }
-  /* Responsive */
-  @media (max-width: 480px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PayGo Dashboard</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #f7f0fc;
+      color: #000;
+    }
+    .user-register-banner {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      padding: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      color: #444;
+    }
+    .header-card {
+      background: #7c20e6;
+      color: white;
+      margin: 16px;
+      border-radius: 12px;
+      padding: 20px 24px;
+      position: relative;
+      box-shadow: 0 6px 10px rgb(124 32 230 / 0.5);
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-top-left {
+      display: flex;
+      align-items: center;
+    }
+    .profile-circle {
+      width: 40px;
+      height: 40px;
+      background: white;
+      color: #7c20e6;
+      font-weight: 700;
+      font-size: 20px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 12px;
+    }
+    .header-greeting {
+      font-weight: 600;
+      font-size: 20px;
+    }
+    .header-greeting span {
+      font-size: 22px;
+    }
+    .welcome-back {
+      font-size: 14px;
+      opacity: 0.75;
+    }
+    .notification-bell {
+      background: rgba(255 255 255 / 0.2);
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+    }
+    .notification-bell svg {
+      fill: #fff;
+      width: 22px;
+      height: 22px;
+    }
+    .notification-bell .red-dot {
+      width: 8px;
+      height: 8px;
+      background: #ff3838;
+      border-radius: 50%;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+    }
+    .balance-label {
+      margin-top: 18px;
+      font-weight: 400;
+      font-size: 15px;
+      opacity: 0.85;
+    }
+    .balance-amount {
+      font-weight: 700;
+      font-size: 36px;
+      margin-top: 6px;
+      display: flex;
+      align-items: center;
+    }
+    .currency {
+      font-weight: 400;
+      font-size: 24px;
+      margin-right: 6px;
+      text-decoration: line-through;
+    }
+    .weekly-rewards {
+      margin-top: 6px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+    .eye-icon {
+      cursor: pointer;
+      margin-left: 12px;
+    }
+    .eye-icon svg {
+      fill: #fff;
+      width: 24px;
+      height: 24px;
+    }
     .header-buttons {
-      flex-direction: column;
-      gap: 12px;
+      margin-top: 24px;
+      display: flex;
+      gap: 20px;
+    }
+    .header-button {
+      background: #9b4bf9;
+      border-radius: 30px;
+      padding: 10px 24px;
+      font-weight: 600;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.25s ease;
+    }
+    .header-button:hover {
+      background: #a463f8;
+    }
+    .header-button svg {
+      fill: white;
+      width: 18px;
+      height: 18px;
     }
     .menu-grid {
-      grid-template-columns: repeat(3, 1fr);
+      margin: 30px 20px 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      text-align: center;
     }
-  }
-</style>
+    .menu-item {
+      cursor: pointer;
+      font-size: 13px;
+      color: #222;
+      user-select: none;
+    }
+    .menu-item svg, .menu-item img {
+      width: 30px;
+      height: 30px;
+      margin-bottom: 8px;
+      filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.12));
+    }
+    .section-title {
+      font-weight: 700;
+      font-size: 20px;
+      margin: 24px 20px 8px;
+    }
+    .carousel {
+      margin: 0 20px 40px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .carousel img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+    @media (max-width: 480px) {
+      .header-buttons {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .menu-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- User registration banner -->
 <div class="user-register-banner">
   Please buy your PAYGO ID on the website for full access to PayGo services.
 </div>
 
-<!-- Header card -->
 <div class="header-card">
   <div class="header-top">
     <div class="header-top-left">
@@ -221,16 +209,14 @@
       </div>
     </div>
     <div class="notification-bell" onclick="location.href='history.html'">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M12 24c1.104 0 2-.896 2-2h-4c0 1.104.896 2 2 2zM18 16v-5c0-3.074-1.639-5.636-4.5-6.32V4a1.5 1.5 0 10-3 0v.68C7.639 5.364 6 7.926 6 11v5l-2 2v1h16v-1l-2-2z"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 24c1.104 0 2-.896 2-2h-4c0 1.104.896 2 2 2zM18 16v-5c0-3.074-1.639-5.636-4.5-6.32V4a1.5 1.5 0 10-3 0v.68C7.639 5.364 6 7.926 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>
       <div class="red-dot"></div>
     </div>
   </div>
 
   <div class="balance-label">Your Balance</div>
   <div class="balance-amount" id="balance-display">
-    <span class="currency">₦</span><span id="balance-amount">180,000.00</span>
+    <span class="currency">₦</span><span id="balance-amount">0.00</span>
     <span class="eye-icon" onclick="toggleBalanceVisibility()" title="Toggle balance visibility">
       <svg id="eye-open" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 110-10 5 5 0 010 10z"/></svg>
       <svg id="eye-closed" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none"><path d="M1 1l22 22M4.31 4.31C2.13 6.49 1 9.09 1 11c0 0 3 7 10 7 2.46 0 4.61-.9 6.24-2.37L18.18 18c-1.3.86-2.85 1.37-4.18 1.37-5 0-7-4-7-4a9.4 9.4 0 013.24-2.67l-4.1-4.1z"/></svg>
@@ -248,49 +234,23 @@
   </div>
 </div>
 
-<!-- Menu grid -->
 <div class="menu-grid">
-  <div class="menu-item" onclick="location.href='buy.html'" title="Buy PAY ID">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M20 6H4v12h16V6zm-2 9h-4v-2h4v2zm0-4h-4V9h4v2z"/></svg>
-    <div>Buy PAY ID</div>
-  </div>
-  <div class="menu-item" onclick="location.href='watch.html'" title="Watch">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M21 6h-6l-2-2H9L7 6H3v12h18V6zM9 16l4-4-4-4v8z"/></svg>
-    <div>Watch</div>
-  </div>
-  <div class="menu-item" onclick="location.href='airtime.html'" title="Airtime">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 20c4.418 0 8-2.239 8-5v-2c0-2.761-3.582-5-8-5s-8 2.239-8 5v2c0 2.761 3.582 5 8 5z"/></svg>
-    <div>Airtime</div>
-  </div>
-  <div class="menu-item" onclick="location.href='data.html'" title="Data">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M3 12h18v6H3z"/></svg>
-    <div>Data</div>
-  </div>
-  <div class="menu-item" onclick="location.href='support.html'" title="Support">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg>
-    <div>Support</div>
-  </div>
-  <div class="menu-item" onclick="location.href='group.html'" title="Group">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-8 3v2H4v-2zm12 0v2h-4v-2z"/></svg>
-    <div>Group</div>
-  </div>
-  <div class="menu-item" onclick="location.href='earn.html'" title="Earn More">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 8l6 4-6 4V8z"/></svg>
-    <div>Earn More</div>
-  </div>
-  <div class="menu-item" onclick="location.href='profile.html'" title="Profile">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 8-4 8-4s8 0 8 4z"/></svg>
-    <div>Profile</div>
-  </div>
+  <div class="menu-item" onclick="location.href='buy.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M20 6H4v12h16V6zm-2 9h-4v-2h4v2zm0-4h-4V9h4v2z"/></svg><div>Buy PAY ID</div></div>
+  <div class="menu-item" onclick="location.href='watch.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M21 6h-6l-2-2H9L7 6H3v12h18V6zM9 16l4-4-4-4v8z"/></svg><div>Watch</div></div>
+  <div class="menu-item" onclick="location.href='airtime.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 20c4.418 0 8-2.239 8-5v-2c0-2.761-3.582-5-8-5s-8 2.239-8 5v2c0 2.761 3.582 5 8 5z"/></svg><div>Airtime</div></div>
+  <div class="menu-item" onclick="location.href='data.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M3 12h18v6H3z"/></svg><div>Data</div></div>
+  <div class="menu-item" onclick="location.href='support.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg><div>Support</div></div>
+  <div class="menu-item" onclick="location.href='group.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-8 3v2H4v-2zm12 0v2h-4v-2z"/></svg><div>Group</div></div>
+  <div class="menu-item" onclick="location.href='earn.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 8l6 4-6 4V8z"/></svg><div>Earn More</div></div>
+  <div class="menu-item" onclick="location.href='profile.html'"><svg xmlns="http://www.w3.org/2000/svg" fill="#7c20e6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 8-4 8-4s8 0 8 4z"/></svg><div>Profile</div></div>
 </div>
 
-<!-- Promotions section -->
 <div class="section-title">Current Promotions</div>
 <div class="carousel">
-  <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Promotion: Winners of K20 airtime Patience Ng’andwe Phiri John" />
+  <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Promotion" />
 </div>
+
 <script>
-  // Toggle balance visibility
   function toggleBalanceVisibility() {
     const balance = document.getElementById('balance-amount');
     const eyeOpen = document.getElementById('eye-open');
@@ -306,46 +266,16 @@
     }
   }
 
-  // Set default starting balance only once if not already set
-  if (!localStorage.getItem('startingBalance')) {
-    localStorage.setItem('startingBalance', '180000');
-  }
-
-  const startingBalance = parseFloat(localStorage.getItem('startingBalance'));
-
-  // Get transactions and calculate total spent
-  const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
-  const totalSpent = transactions
-    .filter(txn => ['Withdrawal', 'Airtime', 'Data'].includes(txn.type))
-    .reduce((sum, txn) => sum + Number(txn.amount), 0);
-
-  const currentBalance = Math.max(startingBalance - totalSpent, 0).toFixed(2);
-
-  // Update balance on page
-  document.getElementById('balance-amount').textContent = Number(currentBalance).toLocaleString('en-NG', {
-    minimumFractionDigits: 2
+  // Calculate new balance
+  const startingBalance = 180000;
+  let transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
+  let totalSpent = 0;
+  transactions.forEach(tx => {
+    totalSpent += Number(tx.amount || 0);
   });
+  let newBalance = startingBalance - totalSpent;
+  document.getElementById("balance-amount").textContent = newBalance.toLocaleString("en-NG", { minimumFractionDigits: 2 });
+</script>
 
-  // Optional: Save updated balance to localStorage if you want it accessible across pages
-  localStorage.setItem('currentBalance', currentBalance);
-</script>
-<script>
-  // Toggle balance visibility
-  function toggleBalanceVisibility() {
-    const balance = document.getElementById('balance-amount');
-    const eyeOpen = document.getElementById('eye-open');
-    const eyeClosed = document.getElementById('eye-closed');
-    if (balance.style.filter === 'blur(8px)') {
-      balance.style.filter = 'none';
-      eyeOpen.style.display = 'inline';
-      eyeClosed.style.display = 'none';
-    } else {
-      balance.style.filter = 'blur(8px)';
-      eyeOpen.style.display = 'none';
-      eyeClosed.style.display = 'inline';
-    }
-  }
-</script>
-  
 </body>
 </html>
