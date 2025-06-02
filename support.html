@@ -1,300 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Support - PayGo</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #fff;
-      color: #111;
-    }
-    header {
-      background-color: #7b1fa2;
-      color: white;
-      padding: 16px;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-    }
-    header span {
-      margin-left: 8px;
-    }
-    .container {
-      padding: 20px;
-    }
-    h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-    .card {
-      border: 1px solid #eee;
-      border-radius: 10px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    .card h3 {
-      font-size: 20px;
-      display: flex;
-      align-items: center;
-      color: #000;
-    }
-    .card h3 svg {
-      margin-right: 10px;
-    }
-    .description {
-      margin-top: 5px;
-      margin-bottom: 15px;
-      color: #444;
-    }
-    .btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      color: white;
-      text-align: center;
-    }
-    .btn.live {
-      background-color: #7b1fa2;
-    }
-    .btn.whatsapp {
-      background-color: #25D366;
-    }
-    footer {
-      text-align: center;
-      font-size: 14px;
-      color: #888;
-      margin-top: 40px;
-    }
-  </style>
-</head>
-<body>
-
-  <header>
-    <span onclick="history.back()" style="cursor:pointer;">←</span>
-    <span style="margin-left: 12px;">Support</span>
-  </header>
-
-  <div class="container">
-    <h2>How can we help you?</h2>
-
-    <!-- Live Chat -->
-    <div class="card">
-      <h3>💬 Live Chat</h3>
-      <p class="description">Chat with our support team directly in the app</p>
-      <button class="btn live" onclick="openLiveChat()">💬 Start Live Chat</button>
-      <p class="description">Our support agents are available to assist you with any questions or issues.</p>
-    </div>
-
-    <!-- WhatsApp Support -->
-    <div class="card">
-      <h3>💬 WhatsApp Support</h3>
-      <p class="description">Chat with our support team on WhatsApp for quick assistance</p>
-      <a href="#" class="btn whatsapp" id="whatsapp-link">💬 Chat on WhatsApp</a>
-      <p class="description">Our support team is available 24/7 to assist you with any issues or questions.</p>
-    </div>
-
-    <footer>
-      Financial Services<br/>
-      PayGo © 2023. All rights reserved.
-    </footer>
-  </div>
-
-  <script>
-    function openLiveChat() {
-      <!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PayGo Assistant Chat Widget</title>
+<title>Support</title>
 <style>
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background: #f9f9f9;
     margin: 0;
-    padding: 20px;
-  }
-
-  .chat-widget {
-    max-width: 360px;
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    overflow: hidden;
+    padding: 1rem;
     background: #fff;
-    display: flex;
-    flex-direction: column;
+    color: #000;
   }
-
-  .chat-header {
-    background: #8e3ffc; /* PayGo purple */
-    color: white;
-    padding: 14px 16px;
-    font-weight: 700;
-    font-size: 18px;
-    position: relative;
-    user-select: none;
-  }
-
-  .chat-header small {
-    font-weight: 400;
-    font-size: 13px;
-    display: block;
-    opacity: 0.9;
-    margin-top: 4px;
-  }
-
-  .close-btn {
-    position: absolute;
-    right: 12px;
-    top: 14px;
-    color: white;
-    font-weight: 700;
-    font-size: 22px;
-    cursor: pointer;
-    user-select: none;
-    line-height: 1;
-  }
-
-  .chat-body {
-    padding: 20px 16px 0 16px;
-    flex-grow: 1;
-    overflow-y: auto;
-    min-height: 150px;
-  }
-
-  .chat-message {
-    background: #f1f3f5;
-    padding: 14px 18px;
-    border-radius: 14px;
-    font-size: 14px;
-    line-height: 1.4;
-    max-width: 80%;
-    white-space: pre-line;
-    user-select: text;
-  }
-
-  .chat-input-container {
-    display: flex;
-    border-top: 1px solid #ddd;
-    padding: 10px 12px;
-    background: #fff;
-  }
-
-  .chat-input-container input[type="text"] {
-    flex-grow: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 20px;
-    background: #f1f3f5;
-    color: #444;
-  }
-
-  .send-btn {
-    background: #8e3ffc;
-    border: none;
-    color: white;
-    margin-left: 8px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
+  header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.1rem;
   }
-
-  .send-btn svg {
-    width: 20px;
-    height: 20px;
-    stroke: white;
+  header .back-arrow {
+    cursor: pointer;
+    font-weight: 700;
+  }
+  h2 {
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .card {
+    border: 1px solid #ddd;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+  }
+  .card h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0 0 0.25rem 0;
+  }
+  .card p.description {
+    margin: 0 0 1rem 0;
+    color: #666;
+    font-size: 0.95rem;
+  }
+  button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  .btn-livechat {
+    background-color: #8c2ef3; /* purple */
+    color: #000;
+  }
+  .btn-whatsapp {
+    background-color: #25d366; /* WhatsApp green */
+    color: #000;
+  }
+  .btn svg {
+    width: 18px;
+    height: 18px;
     stroke-width: 2;
+  }
+  .footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 3rem;
   }
 </style>
 </head>
 <body>
 
-<div class="chat-widget" id="chatWidget">
-  <div class="chat-header">
-    PayGo Assistant
-    <small>Online</small>
-    <div class="close-btn" id="closeChat" title="Close chat">&times;</div>
-  </div>
-  <div class="chat-body" id="chatBody">
-    <div class="chat-message">
-      Hello! I'm PayGo Assistant.<br />How can I help you today?
-    </div>
-  </div>
-  <form class="chat-input-container" id="chatForm">
-    <input type="text" id="chatInput" placeholder="Type your message..." autocomplete="off" />
-    <button type="submit" class="send-btn" aria-label="Send message">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="22" y1="2" x2="11" y2="13"></line>
-        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-      </svg>
-    </button>
-  </form>
+<header>
+  <span class="back-arrow">&#8592;</span>
+  <span>Support</span>
+</header>
+
+<h2>How can we help you?</h2>
+
+<div class="card live-chat">
+  <h3>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#8c2ef3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M21 16a2 2 0 0 1-2 2H7l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/></svg>
+    Live Chat
+  </h3>
+  <p class="description">Chat with our support team directly in the app</p>
+  <button class="btn btn-livechat" id="telegramButton" aria-label="Start Live Chat">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+    Start Live Chat
+  </button>
+  <p style="color:#666; font-size:0.9rem; margin-top:0.75rem;">
+    Our support agents are available to assist you with any questions or issues.
+  </p>
+</div>
+
+<div class="card whatsapp-support">
+  <h3>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#25d366" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 16a2 2 0 0 1-2 2H7l-4 4V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"/></svg>
+    WhatsApp Support
+  </h3>
+  <p class="description">Chat with our support team on WhatsApp for quick assistance</p>
+  <button class="btn btn-whatsapp" id="whatsappButton" aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.5a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg>
+    Chat on WhatsApp
+  </button>
+  <p style="color:#666; font-size:0.9rem; margin-top:0.75rem;">
+    Our support team is available 24/7 to assist you with any issues or questions.
+  </p>
+</div>
+
+<div class="footer">
+  Financial Services<br />
+  PayGo © 2023. All rights reserved.
 </div>
 
 <script>
-  const chatWidget = document.getElementById('chatWidget');
-  const closeBtn = document.getElementById('closeChat');
-  const chatForm = document.getElementById('chatForm');
-  const chatBody = document.getElementById('chatBody');
-  const chatInput = document.getElementById('chatInput');
+  // TODO: Insert your Telegram bot link here
+  const telegramLink = "https://wa.me/2348037750681"; // Replace with your Telegram bot link
+  document.getElementById("telegramButton").onclick = () => {
+    window.open(telegramLink, "_blank");
+  };
 
-  closeBtn.addEventListener('click', () => {
-    chatWidget.style.display = 'none';
-  });
+  // TODO: Insert your WhatsApp number link here
+  const whatsappLink = "https://wa.me/2348037750681"; // Replace with your WhatsApp number link
+  document.getElementById("whatsappButton").onclick = () => {
+    window.open(whatsappLink, "_blank");
+  };
 
-  chatForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const message = chatInput.value.trim();
-    if (!message) return;
-
-    // Add user message
-    const userMsg = document.createElement('div');
-    userMsg.className = 'chat-message';
-    userMsg.style.background = '#8e3ffc';
-    userMsg.style.color = 'white';
-    userMsg.style.marginTop = '12px';
-    userMsg.style.alignSelf = 'flex-end';
-    userMsg.textContent = message;
-    chatBody.appendChild(userMsg);
-
-    chatInput.value = '';
-    chatBody.scrollTop = chatBody.scrollHeight;
-
-    // Simulate assistant reply after a delay
-    setTimeout(() => {
-      const replyMsg = document.createElement('div');
-      replyMsg.className = 'chat-message';
-      replyMsg.style.marginTop = '12px';
-      replyMsg.textContent = "Thanks for your message! We'll get back to you soon.";
-      chatBody.appendChild(replyMsg);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }, 1000);
-  });
+  // Back arrow click handler
+  document.querySelector('.back-arrow').onclick = () => {
+    window.history.back();
+  };
 </script>
-
-</body>
-</html>
-    }
-
-    // WhatsApp Support Link — Replace with your number
-    document.getElementById("whatsapp-link").href = "https://wa.me/2348037750681"; // Your WhatsApp number
-  </script>
 
 </body>
 </html>
