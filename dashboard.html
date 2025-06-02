@@ -199,39 +199,6 @@
   <div class="announcement">
   <span class="announcement-text">⚡️ Important Announcement: New features launching soon! Stay tuned! ⚡️</span>
 </div>
-
-<style>
-  .announcement {
-    width: 100%;
-    overflow: hidden;
-    background: #fffae6;
-    color: #333;
-    font-weight: 600;
-    font-size: 1.2rem;
-    padding: 10px 0;
-    box-sizing: border-box;
-    position: relative;
-  }
-
-  .announcement-text {
-    display: inline-block;
-    white-space: nowrap;
-    animation: slideBackForth 8s ease-in-out infinite;
-  }
-
-  @keyframes slideBackForth {
-    0% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(calc(100% - 100vw));
-    }
-    100% {
-      transform: translateX(0);
-    }
-  }
-</style>
-</div>
 <!-- Animated Withdrawal Announcement -->
 <div id="announcement-bar" style="background:#fffbe6;padding:10px;text-align:center;display:none;font-weight:600;color:#333;">
   <div id="announcement-text" class="fade-slide"></div>
@@ -278,6 +245,41 @@
 
     showNext();
     setInterval(showNext, 30000); // every 30 seconds
+  }
+</script>
+<style>
+  .announcement {
+    width: 100%;
+    overflow: hidden;
+    background: #fffae6;
+    color: #333;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 10px 0;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .announcement-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: slideBackForth 8s ease-in-out infinite;
+  }
+
+  @keyframes slideBackForth {
+    0% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(calc(100% - 100vw));
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+</style>
+</div>
+
   }
 </script>
 <div class="header-card">
