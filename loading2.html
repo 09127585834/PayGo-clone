@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Processing Withdrawal</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9fafc;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      color: #111827;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #7c3aed; /* purple */
+      color: white;
+      font-weight: 600;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+    }
+    header .back-arrow {
+      margin-right: 1rem;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    .spinner {
+      margin: 40px 0 20px;
+      width: 60px;
+      height: 60px;
+      border: 6px solid #d8b4fe;
+      border-top-color: #7c3aed;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    p {
+      margin: 0.5rem 0 2rem;
+      color: #6b7280;
+    }
+    .progress-bar {
+      width: 80%;
+      height: 8px;
+      background: #e5e7eb;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .progress-bar > div {
+      height: 100%;
+      background: #111827;
+      width: 0;
+      transition: width 0.4s ease;
+    }
+    footer {
+      position: fixed;
+      bottom: 1rem;
+      font-weight: 600;
+      color: #111827;
+    }
+    .chat-button {
+      position: fixed;
+      right: 1rem;
+      bottom: 4rem;
+      background: #7c3aed;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(124, 58, 237, 0.5);
+    }
+    .chat-button svg {
+      fill: white;
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="back-arrow" onclick="history.back()">←</div>
+  proccessing
+</header>
+
+<div class="spinner"></div>
+
+<h2>withdrawal is proccessing</h2>
+<p>Please wait while we are proccessing your withdrawal...</p>
+
+<div class="progress-bar"><div></div></div>
+
+<footer>PayGo Financial Services LTD</footer>
+
+<div class="chat-button" onclick="alert('Open chat/help')">
+  <svg viewBox="0 0 24 24"><path d="M2 21l1.5-4.5A8.953 8.953 0 012 12C2 6.48 6.48 2 12 2s10 4.48 10 10-4.48 10-10 10c-1.85 0-3.57-.63-4.95-1.68L2 21zM8.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm7 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
+</div>
+
+<script>
+  const progressBar = document.querySelector('.progress-bar > div');
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += 5;
+    if (progress > 100) {
+      clearInterval(interval);
+      // Redirect after loading finishes
+      window.location.href = 'receive.html';
+    } else {
+      progressBar.style.width = progress + '%';
+    }
+  }, 200);
+</script>
+
+</body>
+</html>
