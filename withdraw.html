@@ -62,13 +62,14 @@
 
   <div class="balance-box">
     <div>Available Balance</div>
-    <div id="balance">₦180,000/<div>
+    <div>₦180,000.00</div>
   </div>
 
   <form id="transferForm">
     <label>Select Bank</label>
     <select required>
       <option value="">Choose a bank</option>
+      <!-- Full Nigerian Bank List -->
       <option>Access Bank</option>
       <option>ALAT by Wema</option>
       <option>Carbon</option>
@@ -122,82 +123,6 @@
       <option>Abeg</option>
       <option>Barter (by Flutterwave)</option>
       <option>Remita</option>
-  <option value="">Choose a bank</option>
-  <option>Access Bank</option>
-  <option>ALAT by Wema</option>
-  <option>Carbon</option>
-  <option>CitiBank Nigeria</option>
-  <option>Dot Bank</option>
-  <option>Ecobank Nigeria</option>
-  <option>Eyowo</option>
-  <option>FairMoney MFB</option>
-  <option>Fidelity Bank</option>
-  <option>First Bank of Nigeria</option>
-  <option>FCMB</option>
-  <option>Globus Bank</option>
-  <option>GoMoney</option>
-  <option>Guaranty Trust Bank (GTBank)</option>
-  <option>Heritage Bank</option>
-  <option>Hope PSBank</option>
-  <option>Jaiz Bank</option>
-  <option>Keystone Bank</option>
-  <option>Kuda Microfinance Bank</option>
-  <option>Lotus Bank</option>
-  <option>Mintyn Bank</option>
-  <option>Moniepoint MFB</option>
-  <option>NPF Microfinance Bank</option>
-  <option>OPay</option>
-  <option>Paga</option>
-  <option>PalmPay</option>
-  <option>Parallex Bank</option>
-  <option>Paycom</option>
-  <option>Paystack</option>
-  <option>PiggyVest</option>
-  <option>PocketApp (PiggyVest)</option>
-  <option>Polaris Bank</option>
-  <option>Premium Trust Bank</option>
-  <option>Providus Bank</option>
-  <option>Rubies MFB</option>
-  <option>Sparkle Bank</option>
-  <option>Stanbic IBTC Bank</option>
-  <option>Standard Chartered</option>
-  <option>Sterling Bank</option>
-  <option>SunTrust Bank</option>
-  <option>TAJ Bank</option>
-  <option>Titan Trust Bank</option>
-  <option>Trust MFB</option>
-  <option>UBA (United Bank for Africa)</option>
-  <option>Union Bank of Nigeria</option>
-  <option>Unity Bank</option>
-  <option>V Bank</option>
-  <option>VFD Microfinance Bank</option>
-  <option>Wema Bank</option>
-  <option>Zenith Bank</option>
-  <option>9Pay</option>
-  <option>Abeg (now Pocket)</option>
-  <option>Barter by Flutterwave</option>
-  <option>Chipper Cash</option>
-  <option>Remita</option>
-  <option>Trove</option>
-  <option>Bamboo</option>
-  <option>Risevest</option>
-  <option>Branch</option>
-  <option>Quickteller</option>
-  <option>Paylater</option>
-  <option>Interswitch</option>
-  <option>NowNow</option>
-  <option>CashEnvoy</option>
-  <option>Cellulant</option>
-  <option>Zenith Direct</option>
-  <option>Kudi</option>
-  <option>Accelerex</option>
-  <option>Interswitch MFB</option>
-  <option>eTranzact</option>
-  <option>Paysharp</option>
-  <option>Clickatell MFB</option>
-  <!-- Add this inside your <select> in withdraw.html -->
-<select required>
-
     </select>
 
     <label>Account Number</label>
@@ -207,58 +132,32 @@
     <input type="text" placeholder="Enter account name" required />
 
     <label>Amount</label>
-    <input type="number" id="amount" placeholder="Enter amount" required />
+    <input type="number" placeholder="Enter amount" required />
 
     <label>PAY ID Code</label>
     <input type="password" id="payId" placeholder="Enter PAY ID Code" required />
     <p class="note">Enter your PAY ID code to authorize withdrawal</p>
     <p class="error" id="errorMsg" style="display: none;">❌ Invalid PAY ID Code</p>
-    <p class="error" id="insufficient" style="display: none;">❌ Insufficient Balance</p>
 
     <button type="submit">Transfer Money</button>
   </form>
 
   <script>
-    if (!localStorage.getItem("userBalance")) {
-      localStorage.setItem("userBalance", "180000");
-    }
-
-    function loadBalance() {
-      const balance = parseFloat(localStorage.getItem("userBalance"));
-      document.getElementById("balance").innerText = "₦" + balance.toLocaleString("en-NG", { minimumFractionDigits: 2 });
-    }
-
-    loadBalance();
-
     document.getElementById('payId').addEventListener('input', function () {
       this.value = this.value.toUpperCase();
     });
 
     document.getElementById('transferForm').addEventListener('submit', function (e) {
       e.preventDefault();
-
       const payId = document.getElementById('payId').value.trim();
-      const amount = parseFloat(document.getElementById('amount').value);
       const errorMsg = document.getElementById('errorMsg');
-      const insufficient = document.getElementById('insufficient');
-
-      errorMsg.style.display = 'none';
-      insufficient.style.display = 'none';
 
       if (payId !== 'PAYGO238') {
         errorMsg.style.display = 'block';
         return;
       }
 
-      let currentBalance = parseFloat(localStorage.getItem("userBalance"));
-
-      if (amount > currentBalance || amount <= 0) {
-        insufficient.style.display = 'block';
-        return;
-      }
-
-      const newBalance = currentBalance - amount;
-      localStorage.setItem("userBalance", newBalance.toFixed(2));
+      errorMsg.style.display = 'none';
       window.location.href = 'loading2.html';
     });
   </script>
