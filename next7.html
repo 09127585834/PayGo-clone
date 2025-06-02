@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Welcome Notification</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .popup-container {
+    width: 90vw;
+    max-width: 400px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgb(0 0 0 / 0.15);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .popup-header {
+    background: linear-gradient(90deg, #9f24b7 0%, #f44336 50%, #ff8a00 100%);
+    color: white;
+    padding: 24px 24px 16px 24px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
+
+  .popup-header h2 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  .popup-header .step {
+    font-weight: 500;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: 6px;
+  }
+
+  .progress-bar {
+    display: flex;
+    margin-top: 12px;
+    gap: 8px;
+  }
+
+  .progress-segment {
+    flex: 1;
+    height: 8px;
+    background: white;
+    border-radius: 4px;
+    opacity: 0.7;
+  }
+
+  .progress-segment.filled {
+    opacity: 1;
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    font-weight: 700;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    line-height: 1;
+  }
+
+  .popup-body {
+    padding: 32px 24px 24px 24px;
+    text-align: center;
+    color: #4a5568; /* gray-700 */
+  }
+
+  .popup-body .icon-container {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px auto;
+    background: #f7f7f7;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Lightning bolt icon style */
+  .icon-container svg {
+    width: 30px;
+    height: 30px;
+    stroke: #f44336;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .popup-body h3 {
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    color: #1a202c; /* gray-900 */
+    font-size: 20px;
+  }
+
+  .popup-body p {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin-bottom: 32px;
+  }
+
+  .circle-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 0 4px transparent;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .circle-button.communities {
+    background: #fed7e2; /* pink-200 */
+  }
+
+  .circle-button.communities:hover {
+    box-shadow: 0 0 0 4px #ed64a6; /* pink-500 */
+  }
+
+  .circle-button .inner-dot {
+    width: 20px;
+    height: 20px;
+    background: #d53f8c; /* pink-600 */
+    border-radius: 50%;
+  }
+
+  .circle-button.support {
+    background: #c6f6d5; /* green-200 */
+  }
+
+  .circle-button.support:hover {
+    box-shadow: 0 0 0 4px #48bb78; /* green-500 */
+  }
+
+  .circle-button .inner-dot-support {
+    width: 18px;
+    height: 18px;
+    background: #2f855a; /* green-700 */
+    border-radius: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+  }
+
+  .circle-button.support .inner-dot-support {
+    position: relative;
+    top: 1px;
+  }
+
+  .button-label {
+    margin-top: 6px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #4a5568; /* gray-700 */
+  }
+
+  .get-started-btn {
+    display: block;
+    width: calc(100% - 48px);
+    margin: 0 auto 24px auto;
+    background: linear-gradient(90deg, #9f24b7 0%, #f44336 50%, #ff8a00 100%);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 14px 0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-align: center;
+  }
+
+  .get-started-btn:hover {
+    background: linear-gradient(90deg, #8a1e95 0%, #d93928 50%, #e67a00 100%);
+  }
+</style>
+</head>
+<body>
+
+<div class="popup-container" role="dialog" aria-labelledby="welcome-title" aria-modal="true">
+  <div class="popup-header">
+    <h2 id="welcome-title">Welcome to PayGo, Khalifah!</h2>
+    <div class="step">Step 5 of 5</div>
+    <div class="progress-bar" aria-label="Progress steps">
+      <div class="progress-segment filled"></div>
+      <div class="progress-segment filled"></div>
+      <div class="progress-segment filled"></div>
+      <div class="progress-segment filled"></div>
+      <div class="progress-segment filled"></div>
+    </div>
+    <div class="popup-close" aria-label="Close">&times;</div>
+  </div>
+
+  <div class="popup-body">
+    <div class="icon-container" aria-hidden="true">
+      <!-- Lightning bolt SVG -->
+      <svg viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M13 2L3 14h7v8l10-12h-7z" />
+      </svg>
+    </div>
+
+    <h3>Earn More</h3>
+
+    <p>
+      Explore our app to discover ways to earn more! Refer friends to earn <del>₦500</del> per referral, join our communities, and take advantage of special promotions.
+    </p>
+
+    <div class="button-row" role="group" aria-label="Navigation buttons">
+      <div>
+        <button class="circle-button communities" aria-label="Communities">
+          <span class="inner-dot"></span>
+        </button>
+        <div class="button-label">Communities</div>
+      </div>
+      <div>
+        <button class="circle-button support" aria-label="Support">
+          <span class="inner-dot-support">?</span>
+        </button>
+        <div class="button-label">Support</div>
+      </div>
+    </div>
+
+    <button class="get-started-btn" id="getStartedBtn">Get Started →</button>
+  </div>
+</div>
+
+<script>
+  // Close popup on clicking X
+  document.querySelector('.popup-close').addEventListener('click', () => {
+    // You can customize what happens on close, here we just hide it
+    document.querySelector('.popup-container').style.display = 'none';
+  });
+
+  // Redirect to dashboard.html on Get Started click
+  document.getElementById('getStartedBtn').addEventListener('click', () => {
+    window.location.href = 'dashboard.html';
+  });
+
+  // Optional: Add functionality to Communities and Support buttons if needed
+  // Example:
+  // document.querySelector('.circle-button.communities').addEventListener('click', () => {
+  //   alert('Communities clicked!');
+  // });
+  // document.querySelector('.circle-button.support').addEventListener('click', () => {
+  //   alert('Support clicked!');
+  // });
+</script>
+
+</body>
+</html>
