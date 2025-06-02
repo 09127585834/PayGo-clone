@@ -1,184 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Transfer To Bank</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw | PayGo</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      font-family: "Segoe UI", sans-serif;
-      background-color: #ffffff;
-    }
-
-    .header {
-      background-color: #a020f0;
-      color: white;
-      padding: 20px 20px;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .header span {
-      margin-right: 10px;
-      font-size: 24px;
-      font-weight: normal;
-      cursor: pointer;
-    }
-
-    .container {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
       padding: 20px;
     }
-
-    h2 {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 20px;
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
     }
-
+    h2 {
+      text-align: center;
+      color: #8000cc;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
     input, select {
       width: 100%;
-      font-size: 18px;
-      padding: 18px 15px;
-      margin-bottom: 20px;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      border-radius: 12px;
-      box-sizing: border-box;
     }
-
-    .buy-link {
-      display: block;
-      margin-top: -10px;
-      margin-bottom: 25px;
-      color: #a020f0;
-      font-size: 16px;
-      text-decoration: none;
-    }
-
-    .balance {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    .error {
-      color: red;
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    .submit-button {
+    button {
       width: 100%;
-      background-color: #a020f0;
+      margin-top: 20px;
+      background: #8000cc;
       color: white;
-      font-size: 20px;
-      font-weight: bold;
-      padding: 16px;
       border: none;
-      border-radius: 10px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 16px;
       cursor: pointer;
     }
-
-    .submit-button:hover {
-      background-color: #8b1bd4;
+    #loading {
+      display: none;
+      text-align: center;
+      margin-top: 20px;
     }
-
+    .receipt {
+      background: #e7ffe7;
+      border: 1px solid #b7e3b7;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+    .buy-pay-id {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    .buy-pay-id a {
+      color: #8000cc;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-
-  <div class="header">
-    <span>&larr;</span> Transfer To Bank
-  </div>
-
   <div class="container">
-    <h2>Bank Details</h2>
-    <form id="transferForm">
-      <input type="text" id="accountName" placeholder="Account Name" required>
-      <input type="text" id="accountNumber" placeholder="Account Number (10 digits)" pattern="\d{10}" required>
+    <h2>Withdraw Funds</h2>
 
-      <select id="bankName" required>
-        <option value="">Select Bank or Wallet</option>
-        <!-- Nigerian Banks and Wallets -->
-        <option value="Access Bank">Access Bank</option>
-        <option value="First Bank">First Bank</option>
-        <option value="GTBank">GTBank</option>
-        <option value="UBA">UBA</option>
-        <option value="Zenith Bank">Zenith Bank</option>
-        <option value="Fidelity Bank">Fidelity Bank</option>
-        <option value="Union Bank">Union Bank</option>
-        <option value="Stanbic IBTC">Stanbic IBTC</option>
-        <option value="Polaris Bank">Polaris Bank</option>
-        <option value="Wema Bank">Wema Bank</option>
-        <option value="Keystone Bank">Keystone Bank</option>
-        <option value="FCMB">FCMB</option>
-        <option value="EcoBank">EcoBank</option>
-        <option value="Sterling Bank">Sterling Bank</option>
-        <option value="Unity Bank">Unity Bank</option>
-        <option value="Heritage Bank">Heritage Bank</option>
-        <option value="Opay">Opay</option>
-        <option value="Palmpay">Palmpay</option>
-        <option value="Kuda">Kuda</option>
-        <option value="Moniepoint">Moniepoint</option>
-        <option value="Carbon">Carbon</option>
-        <option value="FairMoney">FairMoney</option>
-        <option value="Rubies">Rubies</option>
-        <option value="Sparkle">Sparkle</option>
-        <option value="Eyowo">Eyowo</option>
-        <option value="ALAT">ALAT by Wema</option>
-      </select>
+    <label>Account Number</label>
+    <input type="text" id="accountNumber" placeholder="Enter 10-digit account number" maxlength="10" />
+    <div id="accountNameDisplay" class="error"></div>
 
-      <input type="number" id="amount" placeholder="Amount (Max ₦180,000.00)" required>
-      <input type="text" id="payId" placeholder="PAY ID CODE (Buy PAY ID)" required>
+    <label>Bank Name</label>
+    <select id="bankName">
+      <option value="">Select Bank</option>
+      <option>Access Bank</option>
+      <option>Citibank</option>
+      <option>Ecobank Nigeria</option>
+      <option>Fidelity Bank</option>
+      <option>First Bank of Nigeria</option>
+      <option>First City Monument Bank (FCMB)</option>
+      <option>Globus Bank</option>
+      <option>Guaranty Trust Bank (GTBank)</option>
+      <option>Heritage Bank</option>
+      <option>Keystone Bank</option>
+      <option>Polaris Bank</option>
+      <option>Providus Bank</option>
+      <option>Stanbic IBTC Bank</option>
+      <option>Standard Chartered Bank</option>
+      <option>Sterling Bank</option>
+      <option>Suntrust Bank</option>
+      <option>Titan Trust Bank</option>
+      <option>Union Bank of Nigeria</option>
+      <option>United Bank for Africa (UBA)</option>
+      <option>Unity Bank</option>
+      <option>Wema Bank</option>
+      <option>Zenith Bank</option>
+      <option>Kuda Bank</option>
+      <option>Opay</option>
+      <option>Palmpay</option>
+      <option>Moniepoint MFB</option>
+      <option>Rubies Bank</option>
+      <option>VFD Microfinance Bank</option>
+      <option>Parallex Bank</option>
+      <option>Sparkle Microfinance Bank</option>
+      <option>Carbon</option>
+      <option>ALAT by Wema</option>
+      <option>Eyowo</option>
+      <option>Fairmoney MFB</option>
+      <option>Renmoney</option>
+      <option>Branch</option>
+      <option>NiceNaira</option>
+      <option>Mint Finex MFB</option>
+    </select>
 
-      <a href="buy.html" class="buy-link">Buy PAY ID code</a>
+    <label>PayGo ID</label>
+    <input type="text" id="paygoId" placeholder="Enter PayGo ID" />
+    <div class="buy-pay-id">
+      Don’t have PayGo ID? <a href="buy.html">Buy Pay ID</a>
+    </div>
 
-      <p class="balance">Available Balance: ₦<span id="balance"></span></p>
-      <p class="error" id="errorMsg"></p>
+    <label>Amount</label>
+    <input type="number" id="amount" placeholder="Enter amount to withdraw" />
 
-      <button type="submit" class="submit-button">Submit</button>
-    </form>
+    <button onclick="handleWithdraw()">Proceed</button>
+
+    <div id="loading">Processing withdrawal... Please wait.</div>
+
+    <div id="receipt" class="receipt" style="display: none;"></div>
   </div>
 
   <script>
-    // Initialize balance from localStorage or set default
-    let balance = localStorage.getItem("walletBalance");
-    if (!balance) {
-      balance = 180000;
-      localStorage.setItem("walletBalance", balance);
-    } else {
-      balance = parseFloat(balance);
+    function fetchAccountName(accountNumber) {
+      if (accountNumber.length === 10) {
+        document.getElementById("accountNameDisplay").textContent = "Account Name: John Doe"; // Simulated
+      } else {
+        document.getElementById("accountNameDisplay").textContent = "";
+      }
     }
 
-    document.getElementById('balance').textContent = balance.toFixed(2);
-
-    document.getElementById('transferForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const amount = parseFloat(document.getElementById('amount').value);
-      const payId = document.getElementById('payId').value.trim();
-      const errorMsg = document.getElementById('errorMsg');
-
-      if (payId !== "PAYGO238") {
-        errorMsg.textContent = "❌ Invalid PAY ID. Please buy pay Id.";
-        return;
-      }
-
-      if (isNaN(amount) || amount <= 0 || amount > balance) {
-        errorMsg.textContent = "❌ Amount exceeds available balance or is invalid.";
-        return;
-      }
-
-      // Deduct amount from balance
-      balance -= amount;
-      localStorage.setItem("walletBalance", balance.toFixed(2));
-      document.getElementById('balance').textContent = balance.toFixed(2);
-      errorMsg.textContent = "";
-
-      // Redirect to next.html
-      window.location.href = "next.html";
+    document.getElementById("accountNumber").addEventListener("input", function () {
+      fetchAccountName(this.value);
     });
-  </script>
 
+    function handleWithdraw() {
+      const acctNo = document.getElementById("accountNumber").value;
+      const acctName = "John Doe"; // Simulated
+      const bank = document.getElementById("bankName").value;
+      const paygoId = document.getElementById("paygoId").value.trim();
+      const amount = parseFloat(document.getElementById("amount").value);
+
+      if (!acctNo || acctNo.length !== 10 || !bank || !paygoId || isNaN(amount) || amount <= 0) {
+        alert("Please complete all fields correctly.");
+        return;
+      }
+
+      if (paygoId.toUpperCase() !== "PAYGO238") {
+        alert("Invalid PayGo ID.");
+        return;
+      }
+
+      let balance = parseFloat(localStorage.getItem("balance")) || 180000;
+
+      if (amount > balance) {
+        alert("Insufficient balance.");
+        return;
+      }
+
+      // Deduct balance
+      localStorage.setItem("balance", balance - amount);
+
+      // Show loading
+      document.getElementById("loading").style.display = "block";
+
+      // Delay for 5 seconds and show receipt
+      setTimeout(() => {
+        document.getElementById("loading").style.display = "none";
+        const now = new Date();
+        const receiptHtml = `
+          <h3>Withdrawal Receipt</h3>
+          <p><strong>Date:</strong> ${now.toLocaleString()}</p>
+          <p><strong>Account Name:</strong> ${acctName}</p>
+          <p><strong>Account Number:</strong> ${acctNo}</p>
+          <p><strong>Bank Name:</strong> ${bank}</p>
+          <p><strong>PayGo ID:</strong> ${paygoId}</p>
+          <p><strong>Amount:</strong> ₦${amount.toLocaleString()}</p>
+        `;
+        document.getElementById("receipt").innerHTML = receiptHtml;
+        document.getElementById("receipt").style.display = "block";
+
+        // Save to history
+        const history = JSON.parse(localStorage.getItem("withdrawals") || "[]");
+        history.unshift({
+          amount,
+          date: now.toLocaleString(),
+        });
+        localStorage.setItem("withdrawals", JSON.stringify(history));
+      }, 5000);
+    }
+  </script>
 </body>
 </html>
