@@ -207,7 +207,7 @@
 
 <!-- User registration banner -->
 <div class="user-register-banner">
-  Please Register your account for full access to PayGo services.
+  Please buy your PAYGO ID on the website for full access to PayGo services.
 </div>
 
 <!-- Header card -->
@@ -307,6 +307,9 @@
     }
   }
 </script>
-
+  // Reset the withdrawal deduction flag so the next transaction can deduct properly
+  localStorage.removeItem('withdrawDeducted');
+</script>
+  
 </body>
 </html>
