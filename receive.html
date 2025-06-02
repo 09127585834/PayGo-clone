@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Withdrawal Receipt</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9fafc;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 60px;
+      color: #111827;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #4ade80;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .success-icon svg {
+      width: 36px;
+      height: 36px;
+      fill: white;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0.5rem 0;
+    }
+
+    .receipt-box {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 400px;
+      margin-top: 1.5rem;
+    }
+
+    .receipt-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.5rem;
+    }
+
+    .receipt-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 0.75rem 0;
+      font-size: 1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    .btn {
+      background: #7c3aed;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .btn-print {
+      background: #10b981;
+    }
+
+    footer {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #6b7280;
+    }
+
+    @media print {
+      .btn-group, .success-icon, footer {
+        display: none;
+      }
+      body {
+        padding-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="success-icon">
+    <svg viewBox="0 0 24 24">
+      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+    </svg>
+  </div>
+
+  <h1>Withdrawal Successful</h1>
+
+  <div class="receipt-box" id="receipt">
+    <div class="receipt-title">Transaction Receipt</div>
+    <div class="receipt-item">
+      <span>Amount Withdrawn:</span>
+      <span id="amount">₦0</span>
+    </div>
+    <div class="receipt-item">
+      <span>Account Name:</span>
+      <span id="accountName">---</span>
+    </div>
+    <div class="receipt-item">
+      <span>Bank Name:</span>
+      <span id="bankName">---</span>
+    </div>
+    <div class="receipt-item">
+      <span>Transaction ID:</span>
+      <span id="txnId">---</span>
+    </div>
+    <div class="receipt-item">
+      <span>Date:</span>
+      <span id="date">---</span>
+    </div>
+    <div class="receipt-item">
+      <span>Remaining Balance:</span>
+      <span id="balance">₦0</span>
+    </div>
+  </div>
+
+  <div class="btn-group">
+    <button class="btn btn-print" onclick="window.print()">Print Receipt</button>
+    <a href="dashboard.html" class="btn">Back to Dashboard</a>
+  </div>
+
+  <footer>PayGo Financial Services LTD</footer>
+
+  <script>
+    // Parse withdrawal amount from localStorage
+    const amountStr = localStorage.getItem('withdrawalAmount') || '₦0';
+    const amount = parseInt(amountStr.replace(/[₦,]/g, '')) || 0;
+    const oldBalance = parseFloat(localStorage.getItem('userBalance')) || 0;
+
+    // Deduct from balance (only once)
+    let alreadyDeducted = localStorage.getItem('withdrawDeducted');
+    if (!alreadyDeducted) {
+      const newBalance = oldBalance - amount;
+      localStorage.setItem('userBalance', newBalance);
+      localStorage.setItem('withdrawDeducted', 'true'); // prevent multiple deductions
+    }
+
+    const currentBalance = parseFloat(localStorage.getItem('userBalance')) || 0;
+
+    // Set values in receipt
+    document.getElementById('amount').textContent = `₦${amount.toLocaleString()}`;
+    document.getElementById('accountName').textContent = localStorage.getItem('accountName') || 'Not Provided';
+    document.getElementById('bankName').textContent = localStorage.getItem('bankName') || 'Not Provided';
+    document.getElementById('txnId').textContent = localStorage.getItem('txnId') || '#000000';
+    document.getElementById('date').textContent = new Date().toLocaleDateString();
+    document.getElementById('balance').textContent = `₦${currentBalance.toLocaleString()}`;
+  </script>
+
+</body>
+</html>
