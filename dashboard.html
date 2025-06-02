@@ -289,7 +289,46 @@
 <div class="carousel">
   <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=400&q=80" alt="Promotion: Winners of K20 airtime Patience Ng’andwe Phiri John" />
 </div>
+<script>
+  // Toggle balance visibility
+  function toggleBalanceVisibility() {
+    const balance = document.getElementById('balance-amount');
+    const eyeOpen = document.getElementById('eye-open');
+    const eyeClosed = document.getElementById('eye-closed');
+    if (balance.style.filter === 'blur(8px)') {
+      balance.style.filter = 'none';
+      eyeOpen.style.display = 'inline';
+      eyeClosed.style.display = 'none';
+    } else {
+      balance.style.filter = 'blur(8px)';
+      eyeOpen.style.display = 'none';
+      eyeClosed.style.display = 'inline';
+    }
+  }
 
+  // Set default starting balance only once if not already set
+  if (!localStorage.getItem('startingBalance')) {
+    localStorage.setItem('startingBalance', '180000');
+  }
+
+  const startingBalance = parseFloat(localStorage.getItem('startingBalance'));
+
+  // Get transactions and calculate total spent
+  const transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+  const totalSpent = transactions
+    .filter(txn => ['Withdrawal', 'Airtime', 'Data'].includes(txn.type))
+    .reduce((sum, txn) => sum + Number(txn.amount), 0);
+
+  const currentBalance = Math.max(startingBalance - totalSpent, 0).toFixed(2);
+
+  // Update balance on page
+  document.getElementById('balance-amount').textContent = Number(currentBalance).toLocaleString('en-NG', {
+    minimumFractionDigits: 2
+  });
+
+  // Optional: Save updated balance to localStorage if you want it accessible across pages
+  localStorage.setItem('currentBalance', currentBalance);
+</script>
 <script>
   // Toggle balance visibility
   function toggleBalanceVisibility() {
