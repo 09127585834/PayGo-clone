@@ -7,143 +7,199 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f4;
+      font-family: sans-serif;
+      background: #f8f6ff;
+      color: #333;
     }
-
-    .notification-bar {
-      background: #fff3f3;
-      color: red;
-      text-align: center;
-      font-size: 14px;
-      padding: 6px;
-      border-bottom: 1px solid #f5c2c2;
-    }
-
-    .dashboard-container {
-      background-color: #8000ff;
+    .banner {
+      background: red;
       color: white;
-      padding: 20px;
-      border-radius: 0 0 20px 20px;
-      position: relative;
-    }
-
-    .bell-icon {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 22px;
-    }
-
-    .user-info {
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
-
-    .balance {
-      font-size: 32px;
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .weekly-rewards {
+      padding: 8px;
       font-size: 14px;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 20px;
-    }
-
-    .actions a {
-      background: white;
-      color: #8000ff;
-      padding: 10px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .icon-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      padding: 20px;
-      background: white;
-      border-radius: 15px;
-      margin: 20px 10px;
       text-align: center;
     }
-
-    .icon-grid a {
-      text-decoration: none;
-      color: black;
-      font-size: 13px;
+    .card {
+      background: #8000cc;
+      color: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 16px;
+    }
+    .card-header {
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
       align-items: center;
     }
-
-    .icon-grid img {
-      width: 36px;
-      height: 36px;
-      margin-bottom: 6px;
+    .avatar {
+      background: white;
+      color: #8000cc;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      margin-right: 10px;
     }
-
-    .promotions {
-      margin: 10px;
+    .bell {
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .balance-info {
+      margin-top: 10px;
+    }
+    .amount {
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .card-actions {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 15px;
+    }
+    .card-actions button {
+      padding: 10px 20px;
+      background: #a44bf5;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       text-align: center;
+      padding: 15px;
+      gap: 10px;
+      background: white;
+      border-radius: 12px;
+      margin: 10px;
     }
-
-    .promotions img {
-      width: 90%;
+    .grid div {
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .promotions {
+      padding: 15px;
+    }
+    .promo-img {
+      width: 100%;
       border-radius: 10px;
+    }
+    .withdrawal {
+      background: white;
+      margin: 10px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+    input[type="number"] {
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .withdraw-btn {
+      background: #8000cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-
-  <!-- Top Alert Banner -->
-  <div class="notification-bar">
-    ease use other banks for your payments. Dear User, We're currently...
+  <div class="banner">
+    please use other banks for your payments. Dear User, We're currently having issuse with opay bank
   </div>
 
-  <!-- Dashboard Header -->
-  <div class="dashboard-container">
-    <div class="bell-icon">
-      <a href="history.html">🔔</a>
+  <div class="card">
+    <div class="card-header">
+      <div style="display: flex; align-items: center;">
+        <div class="avatar">K</div>
+        <div>
+          <div class="greeting">Hi, user👋</div>
+          <div>Welcome back!</div>
+        </div>
+      </div>
+      <div class="bell" onclick="location.href='history.html'">🔔</div>
     </div>
-    <div class="user-info">Hi, Khalifah 👋</div>
-    <div>Welcome back!</div>
-    <div class="balance">₦180,000.00</div>
-    <div class="weekly-rewards">Weekly Rewards: ₦180,000.00</div>
-
-    <!-- Action Buttons -->
-    <div class="actions">
-      <a href="earn.html">✔ Upgrade</a>
-      <a href="withdraw.html">⬆ Transfer</a>
+    <div class="balance-info">
+      <div>Your Balance</div>
+      <div id="balance" class="amount">180,000</div>
+      <div>Weekly Rewards: <span id="rewards">₦180,000</span></div>
+    </div>
+    <div class="card-actions">
+      <button onclick="location.href='earn.html'">Upgrade</button>
+      <button onclick="toggleWithdraw()">Transfer</button>
     </div>
   </div>
 
-  <!-- Feature Grid -->
-  <div class="icon-grid">
-    <a href="buy.html"><img src="https://img.icons8.com/pastel-glyph/64/wallet.png"/><div>Buy PAY ID</div></a>
-    <a href="watch.html"><img src="https://img.icons8.com/color/48/tv.png"/><div>Watch</div></a>
-    <a href="airtime.html"><img src="https://img.icons8.com/ios-filled/50/signal.png"/><div>Airtime</div></a>
-    <a href="data.html"><img src="https://img.icons8.com/ios-filled/50/database.png"/><div>Data</div></a>
-    <a href="support.html"><img src="https://img.icons8.com/ios-glyphs/30/help.png"/><div>Support</div></a>
-    <a href="group.html"><img src="https://img.icons8.com/ios-filled/50/group.png"/><div>Group</div></a>
-    <a href="earn.html"><img src="https://img.icons8.com/ios-filled/50/money-bag.png"/><div>Earn More</div></a>
-    <a href="profile.html"><img src="https://img.icons8.com/ios-filled/50/user.png"/><div>Profile</div></a>
+  <!-- Withdraw Section -->
+  <div id="withdrawalSection" class="withdrawal" style="display: none;">
+    <h3>Withdraw Funds</h3>
+    <input type="number" id="withdrawAmount" placeholder="Enter amount" />
+    <br />
+    <button class="withdraw-btn" onclick="withdraw()">Withdraw</button>
   </div>
 
-  <!-- Promotions Section -->
+  <div class="grid">
+    <div onclick="location.href='buy.html'">💳<div>Buy PAY ID</div></div>
+    <div onclick="location.href='watch.html'">📺<div>Watch</div></div>
+    <div onclick="location.href='airtime.html'">📶<div>Airtime</div></div>
+    <div onclick="location.href='data.html'">🛢<div>Data</div></div>
+    <div onclick="location.href='support.html'">🎧<div>Support</div></div>
+    <div onclick="location.href='group.html'">🌐<div>Group</div></div>
+    <div onclick="location.href='earn.html'">💰<div>Earn More</div></div>
+    <div onclick="location.href='profile.html'">👤<div>Profile</div></div>
+  </div>
+
   <div class="promotions">
     <h3>Current Promotions</h3>
-    <img src="https://img.freepik.com/free-vector/gradient-mobile-sale-banner_23-2148937326.jpg" alt="Promotions" />
+    <img src="promo.jpg" alt="Promotion banner" class="promo-img"/>
   </div>
 
+  <script>
+    function loadBalance() {
+      let balance = parseFloat(localStorage.getItem("balance"));
+      if (isNaN(balance)) {
+        balance = 180000;
+        localStorage.setItem("balance", balance);
+      }
+      document.getElementById("balance").textContent = "₦" + balance.toLocaleString();
+      document.getElementById("rewards").textContent = "₦" + balance.toLocaleString();
+    }
+
+    function toggleWithdraw() {
+      const section = document.getElementById("withdrawalSection");
+      section.style.display = section.style.display === "none" ? "block" : "none";
+    }
+
+    function withdraw() {
+      const input = document.getElementById("withdrawAmount");
+      let amount = parseFloat(input.value);
+      if (isNaN(amount) || amount <= 0) {
+        alert("Enter a valid amount");
+        return;
+      }
+
+      let balance = parseFloat(localStorage.getItem("balance"));
+
+      if (amount > balance) {
+        alert("Insufficient balance");
+        return;
+      }
+
+      balance -= amount;
+      localStorage.setItem("balance", balance);
+      alert(`₦${amount} withdrawn successfully`);
+      input.value = "";
+      toggleWithdraw();
+      loadBalance();
+    }
+
+    document.addEventListener("DOMContentLoaded", loadBalance);
+  </script>
 </body>
 </html>
