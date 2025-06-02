@@ -243,14 +243,14 @@
       text.classList.remove("show");
       setTimeout(() => {
         let item = w[i];
-        text.textContent = `${item.name.toUpperCase()} just now withdrew ₦${Number(item.amount).toLocaleString()}`;
+        text.textContent = `${item.name.toUpperCase()} just now withdraw ₦${Number(item.amount).toLocaleString()}`;
         text.classList.add("show");
         i = (i + 1) % w.length;
       }, 300);
     }
 
     showNext();
-    setInterval(showNext, 30000); // every 30 seconds
+    setInterval(showNext, 30000); // every 10 seconds
   }
 </script>
 <style>
