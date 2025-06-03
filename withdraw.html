@@ -156,11 +156,7 @@
         errorMsg.style.display = 'block';
         return;
       }
-
-errorMsg.style.display = 'none';
-window.location.href = 'loading.html';
-
-// ✅ Deduct the withdrawn amount from the balance
+      // ✅ Deduct the withdrawn amount from the balance
 const amount = parseFloat(document.getElementById("amount").value);
 const currentBalance = parseFloat(localStorage.getItem("balance")) || 0;
 
@@ -169,6 +165,8 @@ if (amount > 0 && amount <= currentBalance) {
   localStorage.setItem("balance", newBalance.toFixed(2));
   localStorage.setItem("lastTransaction", `Withdraw ₦${amount.toFixed(2)}`);
 }
-  </script>
+errorMsg.style.display = 'none';
+window.location.href = 'loading.html';
+</script>
 </body>
 </html>
