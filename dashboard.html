@@ -395,11 +395,11 @@
     totalSpent += Number(tx.amount || 0);
   });
   let newBalance = startingBalance - totalSpent;
-  document.getElementById("balance-amount").textContent = newBalance.toLocaleString("en-NG", { minimumFractionDigits: 2 });
+  document.getElementById("balance-amount").textContent = newBalance.toLocaleString("en-NG", { minimumFractionDigits: 6 });
 </script>
   <script>
   // Load and display the current balance
-  const balance = localStorage.getItem("balance") || "180,000";
+  const balance = localStorage.getItem("balance") || "180.000";
   document.getElementById("balance-amount").textContent = parseFloat(balance).toFixed(2);
 
   // Optional: Show last transaction
