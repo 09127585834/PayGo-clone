@@ -2,195 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Bank Dropdown with Icons</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Transfer to Bank</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f5f7fa;
-      padding: 20px;
+      margin: 0;
+      background: #f8f9fc;
     }
-
-    h2 {
-      margin-bottom: 1rem;
-    }
-
-    .custom-dropdown {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 1rem;
-    }
-
-    .selected {
+    header {
       display: flex;
       align-items: center;
-      padding: 12px;
+      padding: 1rem;
       background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-
-    .selected img {
-      width: 24px;
-      height: 24px;
-      margin-right: 10px;
+    header h1 {
+      margin: 0 auto;
+      font-size: 1.2rem;
     }
-
-    .dropdown-options {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      max-height: 300px;
-      overflow-y: auto;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-top: none;
-      display: none;
-      z-index: 100;
+    .balance-card {
+      background: #a623f7;
+      color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 1rem;
+      margin: 1rem;
     }
-
-    .dropdown-options li {
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
+    .form {
+      padding: 1rem;
     }
-
-    .dropdown-options li:hover {
-      background: #eee;
+    .form label {
+      display: block;
+      margin: 1rem 0 0.3rem;
+      font-size: 0.9rem;
     }
-
-    .dropdown-options img {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-    }
-
-    .dropdown-search {
+    .form input, .form select {
       width: 100%;
-      padding: 8px 10px;
-      border: none;
-      border-bottom: 1px solid #ccc;
-      outline: none;
-    }
-
-    button {
-      padding: 12px 20px;
-      background: #6a35d4;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      padding: 0.8rem;
+      border-radius: 0.6rem;
+      border: 1px solid #ccc;
       font-size: 1rem;
+    }
+    .form small {
+      font-size: 0.75rem;
+      color: gray;
+    }
+    .form button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.6rem;
+      background: #a623f7;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .chat-btn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1rem;
+      background: #a623f7;
+      color: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+      text-align: center;
+      line-height: 50px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <span onclick="history.back()" style="cursor:pointer;">←</span>
+    <h1>Transfer to Bank</h1>
+  </header>
 
-  <h2>Select Your Bank</h2>
-
-  <div class="custom-dropdown" id="bankDropdown">
-    <div class="selected">
-      <img src="icons/default.png" id="selected-icon" />
-      <span id="selected-text">Choose a bank</span>
-    </div>
-    <ul class="dropdown-options" id="options-list">
-      <input type="text" class="dropdown-search" placeholder="Search banks..." id="searchBox" />
-
-      <!-- List of Banks -->
-      <li data-value="access" data-icon="icons/access.png"><img src="icons/access.png" /> Access Bank</li>
-      <li data-value="citibank" data-icon="icons/citibank.png"><img src="icons/citibank.png" /> Citibank</li>
-      <li data-value="ecobank" data-icon="icons/ecobank.png"><img src="icons/ecobank.png" /> Ecobank</li>
-      <li data-value="fidelity" data-icon="icons/fidelity.png"><img src="icons/fidelity.png" /> Fidelity Bank</li>
-      <li data-value="firstbank" data-icon="icons/firstbank.png"><img src="icons/firstbank.png" /> First Bank</li>
-      <li data-value="fcmb" data-icon="icons/fcmb.png"><img src="icons/fcmb.png" /> FCMB</li>
-      <li data-value="gtb" data-icon="icons/gtb.png"><img src="icons/gtb.png" /> GTBank</li>
-      <li data-value="heritage" data-icon="icons/heritage.png"><img src="icons/heritage.png" /> Heritage Bank</li>
-      <li data-value="keystone" data-icon="icons/keystone.png"><img src="icons/keystone.png" /> Keystone Bank</li>
-      <li data-value="polaris" data-icon="icons/polaris.png"><img src="icons/polaris.png" /> Polaris Bank</li>
-      <li data-value="providus" data-icon="icons/providus.png"><img src="icons/providus.png" /> Providus Bank</li>
-      <li data-value="stanbic" data-icon="icons/stanbic.png"><img src="icons/stanbic.png" /> Stanbic IBTC</li>
-      <li data-value="standardchartered" data-icon="icons/standardchartered.png"><img src="icons/standardchartered.png" /> Standard Chartered</li>
-      <li data-value="sterling" data-icon="icons/sterling.png"><img src="icons/sterling.png" /> Sterling Bank</li>
-      <li data-value="suntrust" data-icon="icons/suntrust.png"><img src="icons/suntrust.png" /> SunTrust Bank</li>
-      <li data-value="titan" data-icon="icons/titan.png"><img src="icons/titan.png" /> Titan Trust Bank</li>
-      <li data-value="uba" data-icon="icons/uba.png"><img src="icons/uba.png" /> UBA</li>
-      <li data-value="union" data-icon="icons/union.png"><img src="icons/union.png" /> Union Bank</li>
-      <li data-value="unity" data-icon="icons/unity.png"><img src="icons/unity.png" /> Unity Bank</li>
-      <li data-value="wema" data-icon="icons/wema.png"><img src="icons/wema.png" /> Wema Bank</li>
-      <li data-value="zenith" data-icon="icons/zenith.png"><img src="icons/zenith.png" /> Zenith Bank</li>
-      <li data-value="kuda" data-icon="icons/kuda.png"><img src="icons/kuda.png" /> Kuda</li>
-      <li data-value="opay" data-icon="icons/opay.png"><img src="icons/opay.png" /> OPay</li>
-      <li data-value="palmpay" data-icon="icons/palmpay.png"><img src="icons/palmpay.png" /> PalmPay</li>
-      <li data-value="moniepoint" data-icon="icons/moniepoint.png"><img src="icons/moniepoint.png" /> Moniepoint</li>
-      <li data-value="vfd" data-icon="icons/vfd.png"><img src="icons/vfd.png" /> VFD Bank</li>
-      <li data-value="rubies" data-icon="icons/rubies.png"><img src="icons/rubies.png" /> Rubies</li>
-      <li data-value="sparkle" data-icon="icons/sparkle.png"><img src="icons/sparkle.png" /> Sparkle</li>
-      <li data-value="fairmoney" data-icon="icons/fairmoney.png"><img src="icons/fairmoney.png" /> FairMoney</li>
-      <li data-value="carbon" data-icon="icons/carbon.png"><img src="icons/carbon.png" /> Carbon</li>
-      <li data-value="mint" data-icon="icons/mint.png"><img src="icons/mint.png" /> Mint Bank</li>
-      <li data-value="abeg" data-icon="icons/abeg.png"><img src="icons/abeg.png" /> Abeg</li>
-      <li data-value="jaiz" data-icon="icons/jaiz.png"><img src="icons/jaiz.png" /> Jaiz Bank</li>
-      <li data-value="globus" data-icon="icons/globus.png"><img src="icons/globus.png" /> Globus Bank</li>
-      <li data-value="parallex" data-icon="icons/parallex.png"><img src="icons/parallex.png" /> Parallex Bank</li>
-      <li data-value="premiumtrust" data-icon="icons/premiumtrust.png"><img src="icons/premiumtrust.png" /> PremiumTrust Bank</li>
-      <li data-value="eyowo" data-icon="icons/eyowo.png"><img src="icons/eyowo.png" /> Eyowo</li>
-    </ul>
+  <div class="balance-card">
+    <div>Available Balance</div>
+    <div>₦180,000.00</div>
   </div>
 
-  <input type="hidden" id="bank-input" name="bank" required />
-  <button onclick="submitBank()">Continue</button>
+  <form class="form" onsubmit="return handleSubmit(event)">
+    <label>Select Bank</label>
+    <select id="bank" required>
+      <option value="">Choose a bank</option>
+    </select>
+
+    <label>Account Number</label>
+    <input type="number" id="accountNumber" placeholder="Enter account number" required />
+
+    <label>Account Name</label>
+    <input type="text" id="accountName" placeholder="Enter account name" required />
+
+    <label>Amount</label>
+    <input type="number" id="amount" placeholder="Enter amount" required />
+
+    <label>PAY ID Code</label>
+    <input type="text" id="payId" placeholder="Enter PAY ID Code" required />
+    <small>Enter your PAY ID code to authorize withdrawal</small>
+
+    <button type="submit">Transfer Money</button>
+  </form>
+
+  <div class="chat-btn">💬</div>
 
   <script>
-    const dropdown = document.getElementById('bankDropdown');
-    const selected = dropdown.querySelector('.selected');
-    const options = dropdown.querySelector('.dropdown-options');
-    const bankInput = document.getElementById('bank-input');
-    const searchBox = document.getElementById('searchBox');
+    const bankList = [
+      "Access Bank", "Citibank", "Diamond Bank", "Ecobank Nigeria", "Fidelity Bank",
+      "First Bank", "First City Monument Bank", "Guaranty Trust Bank", "Heritage Bank",
+      "Keystone Bank", "Polaris Bank", "Providus Bank", "Stanbic IBTC Bank", "Standard Chartered",
+      "Sterling Bank", "Suntrust Bank", "Union Bank", "United Bank for Africa", "Unity Bank",
+      "Wema Bank", "Zenith Bank", "Globus Bank", "TAJ Bank", "Parallex Bank", "Premium Trust Bank",
+      "Titan Trust Bank", "Kuda Bank", "Opay", "Moniepoint MFB", "PalmPay", "FairMoney",
+      "Rubies Bank", "Sparkle", "Eyowo", "VBank", "ALAT by Wema", "Carbon", "Branch", "9Pay",
+      "Greenwich Bank", "Nova Bank", "Jaiz Bank", "Gateway Mortgage Bank", "FSDH Merchant Bank",
+      "Covenant MFB", "CitiBank", "AB Microfinance Bank", "Renmoney", "Mainstreet MFB",
+      "Mutual Trust MFB", "BoI", "NIRSAL MFB", "Stanbic IBTC @ease wallet", "GTBank Mobile Wallet",
+      "Fidelity Mobile Wallet", "UBA Moni", "Access Closa", "Zenith Eazybanking", "UnityGO",
+      "UBA Magic Banking", "AccessMore", "ChipperCash", "Barter", "Nomba", "KippaPay",
+      "Eyowo Pay", "Paystack", "Flutterwave", "Quickteller", "Interswitch", "Cellulant",
+      "Remita", "Paga", "Page Financials", "Sudo", "Nownow", "ReadyCash", "eTranzact",
+      "Parkway", "PayCentre", "Xpress MFB", "FCMB", "Ecobank Xpress", "Keystone Mobile",
+      "Heritage Mobile", "Sterling OneBank", "UBA Leo", "FBN Mobile", "Fidelity Online", 
+      "GTWorld", "Zenith Bank Lite", "UBA Click", "UBA ChatBanking", "UBA UDirect", 
+      "UBA Magic", "UBA RED", "UBA Connect", "UBA eToken", "UBA POS", "UBA Africard", 
+      "UBA Global", "UBA UBA"
+    ];
 
-    selected.addEventListener('click', () => {
-      options.style.display = options.style.display === 'block' ? 'none' : 'block';
+    const bankSelect = document.getElementById("bank");
+    bankList.forEach(bank => {
+      const option = document.createElement("option");
+      option.value = bank;
+      option.textContent = bank;
+      bankSelect.appendChild(option);
     });
 
-    options.querySelectorAll('li').forEach(option => {
-      option.addEventListener('click', () => {
-        const value = option.dataset.value;
-        const icon = option.dataset.icon;
-        const text = option.textContent.trim();
-
-        bankInput.value = value;
-        document.getElementById('selected-icon').src = icon;
-        document.getElementById('selected-text').textContent = text;
-        options.style.display = 'none';
-      });
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!dropdown.contains(e.target)) {
-        options.style.display = 'none';
+    function handleSubmit(event) {
+      event.preventDefault();
+      const payId = document.getElementById("payId").value.trim();
+      if (payId !== "PAYGO238") {
+        alert("Invalid PAY ID Code. Please try again.");
+        return false;
       }
-    });
 
-    searchBox.addEventListener('input', function () {
-      const term = this.value.toLowerCase();
-      options.querySelectorAll('li').forEach(option => {
-        option.style.display = option.textContent.toLowerCase().includes(term) ? 'flex' : 'none';
-      });
-    });
-
-    function submitBank() {
-      const bank = bankInput.value;
-      if (!bank) {
-        alert("Please select a bank first.");
-        return;
-      }
-      alert("You selected: " + bank);
-      // window.location.href = "loading2.html"; // enable this when ready
+      // Success: redirect to loading2.html
+      window.location.href = "loading2.html";
+      return true;
     }
   </script>
-
 </body>
 </html>
