@@ -410,6 +410,37 @@
   // Display the balance on the page
   document.getElementById("balance-amount").textContent =
     newBalance.toLocaleString("en-NG", { style: "currency", currency: "NGN" });
+   function toggleBalance() {
+    const balance = document.getElementById("balance-amount");
+    const eyeOpen = document.getElementById("eye-open");
+    const eyeClosed = document.getElementById("eye-closed");
+
+    if (balance.textContent.includes("•")) {
+      // Show balance
+      const value = localStorage.getItem("balance") || 180000;
+      balance.textContent = Number(value).toLocaleString();
+      eyeOpen.style.display = "inline";
+      eyeClosed.style.display = "none";
+    } else {
+      // Hide balance
+      balance.textContent = "••••••";
+      eyeOpen.style.display = "none";
+      eyeClosed.style.display = "inline";
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const value = localStorage.getItem("balance") || 180000;
+    document.getElementById("balance-amount").textContent = Number(value).toLocaleString();
+
+    // Set initial visibility of eye icons
+    const eyeOpen = document.getElementById("eye-open");
+    const eyeClosed = document.getElementById("eye-closed");
+    if (eyeOpen && eyeClosed) {
+      eyeOpen.style.display = "inline";
+      eyeClosed.style.display = "none";
+    }
+  });
 </script>  
 </body>
 </html>
