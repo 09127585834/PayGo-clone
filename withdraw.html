@@ -165,9 +165,8 @@ if (amount > 0 && amount <= currentBalance) {
   localStorage.setItem("balance", newBalance.toFixed(2));
   localStorage.setItem("lastTransaction", `Withdraw ₦${amount.toFixed(2)}`);
   console.log({ amount, currentBalance, payId });
-  console.log("Redirecting...");
-  
-  location.href = 'loading2.html';
+  alert("Redirecting to loading2.html");
+   location.href = 'loading2.html';
 } else {
   alert("Invalid or insufficient amount");
 }
