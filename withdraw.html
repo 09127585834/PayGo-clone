@@ -85,7 +85,7 @@
 
   <div class="balance-card">
     <div>Available Balance</div>
-    <div>₦180,000.00</div>
+    <div id="balanceDisplay">₦0.00</div>
   </div>
 
   <form class="form" onsubmit="return handleSubmit(event)">
@@ -113,6 +113,7 @@
   <div class="chat-btn">💬</div>
 
   <script>
+    // Populate 100+ banks
     const bankList = [
       "Access Bank", "Citibank", "Diamond Bank", "Ecobank Nigeria", "Fidelity Bank",
       "First Bank", "First City Monument Bank", "Guaranty Trust Bank", "Heritage Bank",
@@ -122,17 +123,13 @@
       "Titan Trust Bank", "Kuda Bank", "Opay", "Moniepoint MFB", "PalmPay", "FairMoney",
       "Rubies Bank", "Sparkle", "Eyowo", "VBank", "ALAT by Wema", "Carbon", "Branch", "9Pay",
       "Greenwich Bank", "Nova Bank", "Jaiz Bank", "Gateway Mortgage Bank", "FSDH Merchant Bank",
-      "Covenant MFB", "CitiBank", "AB Microfinance Bank", "Renmoney", "Mainstreet MFB",
-      "Mutual Trust MFB", "BoI", "NIRSAL MFB", "Stanbic IBTC @ease wallet", "GTBank Mobile Wallet",
-      "Fidelity Mobile Wallet", "UBA Moni", "Access Closa", "Zenith Eazybanking", "UnityGO",
-      "UBA Magic Banking", "AccessMore", "ChipperCash", "Barter", "Nomba", "KippaPay",
-      "Eyowo Pay", "Paystack", "Flutterwave", "Quickteller", "Interswitch", "Cellulant",
-      "Remita", "Paga", "Page Financials", "Sudo", "Nownow", "ReadyCash", "eTranzact",
-      "Parkway", "PayCentre", "Xpress MFB", "FCMB", "Ecobank Xpress", "Keystone Mobile",
-      "Heritage Mobile", "Sterling OneBank", "UBA Leo", "FBN Mobile", "Fidelity Online", 
-      "GTWorld", "Zenith Bank Lite", "UBA Click", "UBA ChatBanking", "UBA UDirect", 
-      "UBA Magic", "UBA RED", "UBA Connect", "UBA eToken", "UBA POS", "UBA Africard", 
-      "UBA Global", "UBA UBA"
+      "Covenant MFB", "AB Microfinance Bank", "Renmoney", "Mainstreet MFB", "Mutual Trust MFB",
+      "BoI", "NIRSAL MFB", "ChipperCash", "Barter", "Page Financials", "Quickteller", "Paystack",
+      "Flutterwave", "Paga", "Remita", "Cellulant", "Interswitch", "Nomba", "PayCentre", "Sudo",
+      "Nownow", "ReadyCash", "eTranzact", "Stanbic IBTC Wallet", "UBA Moni", "Access Closa",
+      "Zenith Eazybanking", "UBA Click", "UBA UDirect", "UBA Magic", "UBA RED", "UBA POS",
+      "UBA Leo", "GTWorld", "Zenith Bank Lite", "FBN Mobile", "Fidelity Online", "GTBank Wallet",
+      "Sparkle Wallet", "UBA Global", "UBA eToken", "UBA ChatBanking"
     ];
 
     const bankSelect = document.getElementById("bank");
@@ -143,18 +140,41 @@
       bankSelect.appendChild(option);
     });
 
+    // Load and show balance
+    function loadBalance() {
+      let balance = localStorage.getItem("balance");
+      if (!balance) {
+        balance = 180000; // default
+        localStorage.setItem("balance", balance);
+      }
+      document.getElementById("balanceDisplay").textContent = "₦" + Number(balance).toLocaleString();
+    }
+
     function handleSubmit(event) {
       event.preventDefault();
+
+      const amount = parseFloat(document.getElementById("amount").value);
       const payId = document.getElementById("payId").value.trim();
+      const balance = parseFloat(localStorage.getItem("balance") || 0);
+
       if (payId !== "PAYGO238") {
         alert("Invalid PAY ID Code. Please try again.");
         return false;
       }
 
-      // Success: redirect to loading2.html
+      if (amount > balance) {
+        alert("Insufficient balance.");
+        return false;
+      }
+
+      // Deduct and update balance
+      const newBalance = balance - amount;
+      localStorage.setItem("balance", newBalance);
       window.location.href = "loading2.html";
       return true;
     }
+
+    loadBalance();
   </script>
 </body>
 </html>
