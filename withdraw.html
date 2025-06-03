@@ -159,6 +159,14 @@
 
       errorMsg.style.display = 'none';
       window.location.href = 'loading2.html';
+      // Deduct the withdrawn amount from the balance
+const amount = parseFloat(document.getElementById("amount").value);
+const currentBalance = parseFloat(localStorage.getItem("balance")) || 0;
+
+if (amount > 0 && amount <= currentBalance) {
+  const newBalance = currentBalance - amount;
+  localStorage.setItem("balance", newBalance.toFixed(2));
+}
     });
   </script>
 </body>
