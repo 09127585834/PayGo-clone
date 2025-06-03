@@ -1,195 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PayGo Register/Login</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-  body {
-    margin: 0; padding: 0; background: #f8f9fb; font-family: 'Inter', sans-serif;
-    color: #111827; display: flex; flex-direction: column; min-height: 100vh;
-  }
-  a {
-    color: #9b22ff;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  a:hover {
-    text-decoration: underline;
-  }
-  .top-bar {
-    padding: 1rem 1.5rem;
-    text-align: right;
-    font-size: 1rem;
-  }
-  .top-bar a {
-    font-weight: 500;
-  }
-  .container {
-    flex: 1;
-    max-width: 380px;
-    margin: 0 auto;
-    padding: 0 1.5rem 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .logo {
-    margin: 1rem 0 1.25rem;
-    width: 180px;
-    height: 56px;
-    background: url('/mnt/data/9E9F9366-55DB-4330-810D-F30CE5085D1F.jpeg') no-repeat center/contain;
-  }
-  h1 {
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin: 0 0 1.4rem;
-    text-align: center;
-  }
-  form {
-    width: 100%;
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: none;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    background: #fff;
-    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-    outline-offset: 2px;
-  }
-  input[type="text"]::placeholder,
-  input[type="email"]::placeholder,
-  input[type="password"]::placeholder {
-    color: #9ca3af;
-  }
-  button {
-    width: 100%;
-    background-color: #000;
-    color: white;
-    border-radius: 12px;
-    padding: 14px 0;
-    font-weight: 500;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #333;
-  }
-  .switch-auth {
-    margin-top: 1.2rem;
-    font-weight: 500;
-    text-align: center;
-  }
-  .chat-button {
-    position: fixed;
-    bottom: 1.4rem;
-    right: 1.4rem;
-    width: 52px;
-    height: 52px;
-    background-color: #9b22ff;
-    border-radius: 50%;
-    box-shadow: 0 6px 12px rgb(155 34 255 / 0.4);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease;
-  }
-  .chat-button:hover {
-    background-color: #7a18cc;
-  }
-  .chat-button svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-  }
-</style>
+  <meta charset="UTF-8">
+  <title>PayGo Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .top-message {
+      background: linear-gradient(to right, #ff0080, #7928ca);
+      color: #fff;
+      padding: 10px;
+      font-weight: bold;
+      animation: fade 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes fade {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    img.logo {
+      width: 70%;
+      margin-top: 30px;
+    }
+
+    h2 {
+      margin-top: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      background: black;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .link {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .link a {
+      color: #8a2be2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .help {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #8a2be2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #8a2be2;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .error {
+      color: red;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="top-bar">
-  <a href="#">Need Help?</a>
-</div>
+  <div class="top-message" id="topMsg">Arab Money just now registered</div>
+  <a href="#" class="help">Need Help?</a>
 
-<div class="container">
-  <div class="logo" aria-label="PayGo logo"></div>
+  <div class="container">
+    <img src="https://i.imgur.com/hMOoeXD.png" alt="PayGo Logo" class="logo">
 
-  <h1 id="form-title">Register to continue</h1>
+    <h2>Register to continue</h2>
+    <input type="text" id="name" placeholder="Enter Name">
+    <input type="email" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+    <div id="error" class="error"></div>
+    <button onclick="register()">Register</button>
 
-  <form id="auth-form" autocomplete="off">
-    <input type="text" id="name" placeholder="Enter Name" required />
-    <input type="email" id="email" placeholder="Enter Email" required />
-    <input type="password" id="password" placeholder="Enter Password" required />
-    <button type="submit" id="submit-btn">Register</button>
-  </form>
-
-  <div class="switch-auth" id="switch-auth">
-    Already have an account? <a id="toggle-auth" href="#">Login</a>
+    <div class="link">Already have an account? <a href="#" onclick="login()">Login</a></div>
   </div>
-</div>
 
-<!-- Chat/Help Button -->
-<div class="chat-button" title="Chat / Help">
-  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-    <path d="M12 2C6.48 2 2 5.58 2 10c0 2.45 1.47 4.67 3.91 6.05L5 22l5.16-2.72C11.71 19.4 11.85 19.41 12 19.41c5.52 0 10-3.58 10-8s-4.48-9-10-9zm.5 11h-3v-1h3v1zm0-2h-3V7h3v4z"/>
-  </svg>
-</div>
+  <div class="chat-button">💬</div>
 
-<script>
-  // Elements
-  const form = document.getElementById('auth-form');
-  const formTitle = document.getElementById('form-title');
-  const toggleLink = document.getElementById('toggle-auth');
-  const submitBtn = document.getElementById('submit-btn');
-  const nameInput = document.getElementById('name');
-  const emailInput = document.getElementById('email');
-  const passwordInput = document.getElementById('password');
+  <script>
+    const messages = [
+      "Arab Money just now registered",
+      "Fatima just now registered",
+      "Miracle just now registered",
+      "MUSA just now registered",
+      "John just now registered",
+      "Sunday just now registered",
+      "Max Heal just now registered"
+    ];
+    let msgIndex = 0;
+    setInterval(() => {
+      msgIndex = (msgIndex + 1) % messages.length;
+      document.getElementById("topMsg").innerText = messages[msgIndex];
+    }, 2000);
 
-  // State
-  let isRegister = true;
+    function register() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
 
-  function switchForm() {
-    if (isRegister) {
-      // Switch to login
-      formTitle.textContent = 'Login to continue';
-      submitBtn.textContent = 'Login';
-      toggleLink.textContent = 'Register';
-      toggleLink.previousSibling.textContent = 'Don\'t have an account? ';
-      nameInput.style.display = 'none';
-      nameInput.required = false;
-    } else {
-      // Switch to register
-      formTitle.textContent = 'Register to continue';
-      submitBtn.textContent = 'Register';
-      toggleLink.textContent = 'Login';
-      toggleLink.previousSibling.textContent = 'Already have an account? ';
-      nameInput.style.display = 'block';
-      nameInput.required = true;
+      if (!name || !email || !password) {
+        document.getElementById("error").innerText = "All fields are required.";
+        return;
+      }
+
+      const users = JSON.parse(localStorage.getItem("users") || "{}");
+
+      if (users[email]) {
+        document.getElementById("error").innerText = "This email has already registered. Kindly login.";
+        return;
+      }
+
+      users[email] = { name, password };
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.setItem("currentUser", email);
+      window.location.href = "welcome.html";
     }
-    isRegister = !isRegister;
-    // Clear inputs on switch
-    form.reset();
-  }
 
-  toggleLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    switchForm();
-  });
+    function login() {
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
 
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Here you can add form validation or API call.
-    // For demo, we just redirect to welcome.html
-    window.location.href = 'welcome.html';
-  });
-</script>
-
+      const users = JSON.parse(localStorage.getItem("users") || "{}");
+      if (users[email] && users[email].password === password) {
+        localStorage.setItem("currentUser", email);
+        window.location.href = "welcome.html";
+      } else {
+        document.getElementById("error").innerText = "Invalid email or password.";
+      }
+    }
+  </script>
 </body>
 </html>
