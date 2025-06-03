@@ -398,10 +398,12 @@
   document.getElementById("balance-amount").textContent = newBalance.toLocaleString("en-NG", { minimumFractionDigits: 6 });
 </script>
   <script>
- const balance = parseFloat(localStorage.getItem("balance") || 0);
-document.getElementById("balance-amount").textContent =
-  balance.toLocaleString("en-NG", { style: "currency", currency: "NGN" });
-  // Optional: Show last transaction
+  // Load and display the current balance
+  const balance = parseFloat(localStorage.getItem("balance") || 0);
+  document.getElementById("balance-amount").textContent =
+    balance.toLocaleString("en-NG", { style: "currency", currency: "NGN" });
+</script>
+    // Optional: Show last transaction
   const lastTxn = localStorage.getItem("lastTransaction");
   if (lastTxn) {
     console.log("Last Transaction:", lastTxn);
