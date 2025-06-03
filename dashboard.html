@@ -397,6 +397,16 @@
   let newBalance = startingBalance - totalSpent;
   document.getElementById("balance-amount").textContent = newBalance.toLocaleString("en-NG", { minimumFractionDigits: 2 });
 </script>
+  <script>
+  // Load and display the current balance
+  const balance = localStorage.getItem("balance") || "0.00";
+  document.getElementById("balance-amount").textContent = parseFloat(balance).toFixed(2);
 
+  // Optional: Show last transaction
+  const lastTxn = localStorage.getItem("lastTransaction");
+  if (lastTxn) {
+    console.log("Last Transaction:", lastTxn);
+  }
+</script>
 </body>
 </html>
