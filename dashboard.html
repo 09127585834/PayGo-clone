@@ -388,26 +388,28 @@
   }
 
   // Calculate new balance
+  <script>
+  // Set starting balance (only once, or when needed)
   const startingBalance = 180000;
+
+  // Get transactions from localStorage
   let transactions = JSON.parse(localStorage.getItem("transactions") || "[]");
+
+  // Calculate total spent
   let totalSpent = 0;
   transactions.forEach(tx => {
-    totalSpent += Number(tx.amount || 0);
+    totalSpent += Number(tx.amount);
   });
+
+  // Calculate new balance
   let newBalance = startingBalance - totalSpent;
-  document.getElementById("balance-amount").textContent = newBalance.toLocaleString("en-NG", { minimumFractionDigits: 6 });
-</script>
-  <script>
-  // Load and display the current balance
-  const balance = parseFloat(localStorage.getItem("balance") || 0);
+
+  // Save the new balance to localStorage
+  localStorage.setItem("balance", newBalance);
+
+  // Display the balance on the page
   document.getElementById("balance-amount").textContent =
-    balance.toLocaleString("en-NG", { style: "currency", currency: "NGN" });
-</script>
-    // Optional: Show last transaction
-  const lastTxn = localStorage.getItem("lastTransaction");
-  if (lastTxn) {
-    console.log("Last Transaction:", lastTxn);
-  }
-</script>
+    newBalance.toLocaleString("en-NG", { style: "currency", currency: "NGN" });
+</script>  
 </body>
 </html>
