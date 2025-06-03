@@ -96,12 +96,6 @@
       background-color: #8a2be2;
     }
 
-    .logo-top {
-      width: 65%;
-      margin: 30px auto 10px;
-      display: block;
-    }
-
     h2 {
       margin-top: 20px;
     }
@@ -163,7 +157,7 @@
 
   <div class="container">
 
-    <!-- Animated Promo Banner -->
+    <!-- Animated Promo Banner (replaces broken image) -->
     <div class="carousel-container">
       <div class="carousel">
         <div class="slides" id="slides">
@@ -188,9 +182,6 @@
       </div>
     </div>
 
-    <!-- PayGo Logo -->
-    <img src="https://i.imgur.com/hMOoeXD.png" alt="PayGo Logo" class="logo-top">
-
     <!-- Form -->
     <h2>Register to continue</h2>
     <input type="text" id="name" placeholder="Enter Name">
@@ -204,9 +195,8 @@
 
   <div class="chat-button">💬</div>
 
-  <!-- Scripts -->
   <script>
-    // Banner Messages
+    // Top Announcement Rotation
     const messages = [
       "Arab Money just now registered",
       "Fatima just now registered",
@@ -222,7 +212,7 @@
       document.getElementById("topMsg").innerText = messages[msgIndex];
     }, 2000);
 
-    // Registration Logic
+    // Register Function
     function register() {
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim().toLowerCase();
@@ -246,6 +236,7 @@
       window.location.href = "welcome.html";
     }
 
+    // Login Function
     function login() {
       const email = document.getElementById("email").value.trim().toLowerCase();
       const password = document.getElementById("password").value;
@@ -259,7 +250,7 @@
       }
     }
 
-    // Carousel Logic
+    // Auto-slide carousel
     let slideIndex = 0;
     const slides = document.getElementById('slides');
     const dots = document.querySelectorAll('.dot');
