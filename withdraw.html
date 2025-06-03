@@ -156,17 +156,18 @@
         errorMsg.style.display = 'block';
         return;
       }
-      // ✅ Deduct the withdrawn amount from the balance
-const amount = parseFloat(document.getElementById("amount").value);
-const currentBalance = parseFloat(localStorage.getItem("balance")) || 0;
+      // ✅ Deduct the withdrawn amount from balance
+const amount = parseFloat(document.getElementById("withdraw-amount").value);
+const currentBalance = parseFloat(localStorage.getItem("balance") || "180000");
 
 if (amount > 0 && amount <= currentBalance) {
   const newBalance = currentBalance - amount;
   localStorage.setItem("balance", newBalance.toFixed(2));
   localStorage.setItem("lastTransaction", `Withdraw ₦${amount.toFixed(2)}`);
+  location.href = 'loading.html';
+} else {
+  alert("Invalid or insufficient amount");
 }
-errorMsg.style.display = 'none';
-window.location.href = 'loading.html';
-</script>
+  </script>
 </body>
 </html>
