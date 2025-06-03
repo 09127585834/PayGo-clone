@@ -3,101 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Service Notice</title>
+  <title>Opay Service Down</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background-color: #f0f0f5;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f0f0;
     }
 
-    .notice-container {
-      max-width: 400px;
+    .modal {
+      background: white;
+      max-width: 95%;
       margin: 100px auto;
-      background-color: white;
-      border-radius: 16px;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
-      overflow: hidden;
-      padding: 20px;
-      position: relative;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
 
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 15px;
+    .opay-logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      animation: spin 1s linear infinite;
     }
 
-    .header img {
-      width: 24px;
-      height: 24px;
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
-    .close-btn {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      font-size: 20px;
-      color: #888;
-      cursor: pointer;
+    h2 {
+      color: red;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #333;
     }
 
     .alert-box {
-      background-color: #fff7e6;
-      padding: 12px;
-      border-left: 4px solid #f0ad4e;
-      margin-bottom: 15px;
-      border-radius: 6px;
+      background: #ffe5e5;
+      color: #cc0000;
+      border: 1px solid #cc0000;
+      padding: 10px;
+      margin: 15px 0;
+      border-radius: 8px;
     }
 
-    .alert-title {
-      color: #cc6600;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .message {
-      color: #444;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 20px;
-    }
-
-    .button {
-      background-color: #8108f8;
+    button {
+      background-color: #0066ff;
       color: white;
-      padding: 12px 20px;
-      text-align: center;
-      border-radius: 25px;
-      text-decoration: none;
-      display: inline-block;
-      font-weight: 600;
-      width: 100%;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #004ec2;
     }
   </style>
 </head>
 <body>
 
-  <div class="notice-container">
-    <div class="header">
-      <img src="https://img.icons8.com/ios-filled/50/30cc64/info.png" alt="icon"/>
-      Service Notice
-      <span class="close-btn" onclick="redirect()">×</span>
-    </div>
-
+  <div class="modal">
+    <img class="opay-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Opay_Logo.png/600px-Opay_Logo.png" alt="Opay Logo" />
+    <h2>Opay Service Down</h2>
+    <p>Please do not use Opay bank for payments at this time.</p>
     <div class="alert-box">
-      <div class="alert-title">⚠️ Opay Bank Service Down</div>
-      <div>We're currently experiencing issues with Opay bank transfers. Please use other banks for your payments.</div>
+      The Opay bank service is currently experiencing issues. Please use other supported banks for your payment.
     </div>
-
-    <div class="message">
-      We apologize for any inconvenience. All other banks are working normally and your payment will be processed immediately.
-    </div>
-
-    <a href="#" class="button" onclick="redirect()">I Understand</a>
+    <button onclick="redirect()">I Understand</button>
   </div>
 
   <script>
